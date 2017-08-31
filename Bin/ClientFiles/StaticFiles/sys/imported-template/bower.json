@@ -1,0 +1,43 @@
+{
+  "name": "imported-template",
+  "version": "1.5.0",
+  "devDependencies": {
+    "dom-bind-notifier": "~1.0.0",
+    "iron-icon": "PolymerElements/iron-icon#~1.0.4",
+    "iron-iconset-svg": "PolymerElements/iron-iconset-svg#~1.0.4",
+    "web-component-tester": "Polymer/web-component-tester#~4.0.3",
+    "object.observe": "^0.2.6",
+    "array.observe": "^0.0.1"
+  },
+  "keywords": [
+    "html",
+    "include",
+    "partial",
+    "template",
+    "web-components",
+    "polymer"
+  ],
+  "homepage": "https://github.com/Juicy/imported-template",
+  "authors": [
+    "Tomek Wytrebowicz <tomalecpub@gmail.com>",
+    "Joachim Wester <joachimwester@me.com>",
+    "Marcin Warpechowski <marcin@nextgen.pl>"
+  ],
+  "description": "Custom element that loads HTML partials into your DOM, control loaded `<script>`s, `<link>`s, caching in native way. Plays nice with Polymer",
+  "main": "./imported-template.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "../",
+    "test",
+    "tests",
+    "examples",
+    "preview.png",
+    "wct.conf.json"
+  ],
+  "dependencies": {
+    "juicy-html": ">=1.1.0"
+  }
+}

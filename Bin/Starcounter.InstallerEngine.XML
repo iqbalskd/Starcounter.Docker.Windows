@@ -1,0 +1,712 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.InstallerEngine</name>
+    </assembly>
+    <members>
+        <member name="T:Starcounter.InstallerEngine.PathVariable">
+            <summary>
+            Expose a set of utility methods providing programmatic
+            access to the environment PATH variable.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.SettingsLoader.LoadConfigFile(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Reads all keys from a certain section in config.
+            </summary>
+            <param name="pathToConfig">Path to XML file.</param>
+            <param name="sectionName">Name of the section to read from.</param>
+            <param name="settingDict">Dictionary to which add settings.</param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.SettingsLoader.GetSettingValue(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Get value of a certain setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingsDict">Dictionary to search from.</param>
+            <returns>Setting value.</returns>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.CComponentBase.DescriptiveName">
+            <summary>
+            Provides descriptive name of the components.
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.CComponentBase.SettingName">
+            <summary>
+            Provides name of the component setting.
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.CComponentBase.ComponentPath">
+            <summary>
+            Provides installation path of the component.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CComponentBase.Install">
+            <summary>
+            Installs component.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CComponentBase.Uninstall">
+            <summary>
+            Removes component.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CComponentBase.IsInstalled">
+            <summary>
+            Checks if components is already installed.
+            </summary>
+            <returns>True if already installed.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CComponentBase.CanBeInstalled">
+            <summary>
+            Checks if component can be installed.
+            </summary>
+            <returns>True if can.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CComponentBase.CanBeRemoved">
+            <summary>
+            Checks if component can be removed.
+            </summary>
+            <returns>True if can.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CComponentBase.ShouldBeInstalled">
+            <summary>
+            Determines if this component should be installed
+            in this session.
+            </summary>
+            <returns>True if component should be installed.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CComponentBase.ShouldBeRemoved">
+            <summary>
+            Determines if this component should be uninstalled
+            in this session.
+            </summary>
+            <returns>True if component should be uninstalled.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CComponentBase.Init">
+            <summary>
+            Initializes component data.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CInstallationBase.#ctor">
+            <summary>
+            Component initialization.
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.CInstallationBase.ComponentPath">
+            <summary>
+            Provides installation path of the component.
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.CInstallationBase.DescriptiveName">
+            <summary>
+            Provides descriptive name of the components.
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.CInstallationBase.SettingName">
+            <summary>
+            Provides name of the component setting.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CInstallationBase.GetInstalledDirFromEnv">
+            <summary>
+            Returns the directory path where Starcounter is installed,
+            obtained from environment variables.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CInstallationBase.GetEnvVarMachineUser(System.String)">
+            <summary>
+            Returns environment variable value from user/machine level.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CInstallationBase.Install">
+            <summary>
+            Installs component.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CInstallationBase.Uninstall">
+            <summary>
+            Removes component.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CInstallationBase.IsInstalled">
+            <summary>
+            Checks if components is already installed.
+            </summary>
+            <returns>True if already installed.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CInstallationBase.CanBeInstalled">
+            <summary>
+            Checks if component can be installed.
+            </summary>
+            <returns>True if can.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CInstallationBase.CanBeRemoved">
+            <summary>
+            Checks if component can be installed.
+            </summary>
+            <returns>True if can.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CInstallationBase.ShouldBeInstalled">
+            <summary>
+            Determines if this component should be installed
+            in this session.
+            </summary>
+            <returns>True if component should be installed.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CInstallationBase.ShouldBeRemoved">
+            <summary>
+            Determines if this component should be uninstalled
+            in this session.
+            </summary>
+            <returns>True if component should be uninstalled.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CPersonalServer.#ctor">
+            <summary>
+            Component initialization.
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.CPersonalServer.DescriptiveName">
+            <summary>
+            Provides descriptive name of the components.
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.CPersonalServer.SettingName">
+            <summary>
+            Provides name of the component setting.
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.CPersonalServer.ComponentPath">
+            <summary>
+            Provides installation path of the component.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CPersonalServer.CreatePersonalServerShortcuts">
+            <summary>
+            Creates a Desktop and Menu shortcuts for personal server.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CPersonalServer.CreateAutoStartTrayIconShortcut">
+            <summary>
+            Create TrayIcon shortcut in Windows StartUp folder
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CPersonalServer.CreateWindowsService">
+            <summary>
+            Creates the windows service that can optionally run the server.
+            </summary>
+            <returns>The setup used when the server was created.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CPersonalServer.Install">
+            <summary>
+            Installs component.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CPersonalServer.Uninstall">
+            <summary>
+            Removes component.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CPersonalServer.IsInstalled">
+            <summary>
+            Checks if components is already installed.
+            </summary>
+            <returns>True if already installed.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CPersonalServer.CanBeInstalled">
+            <summary>
+            Checks if component can be installed.
+            </summary>
+            <returns>True if can.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CPersonalServer.CanBeRemoved">
+            <summary>
+            Checks if component can be installed.
+            </summary>
+            <returns>True if can.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CPersonalServer.ShouldBeInstalled">
+            <summary>
+            Determines if this component should be installed
+            in this session.
+            </summary>
+            <returns>True if component should be installed.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.CPersonalServer.ShouldBeRemoved">
+            <summary>
+            Determines if this component should be uninstalled
+            in this session.
+            </summary>
+            <returns>True if component should be uninstalled.</returns>
+        </member>
+        <member name="T:Starcounter.InstallerEngine.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="F:Starcounter.InstallerEngine.Utilities._runningOnBuildServer">
+            <summary>
+            Returns true if running on build server.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.ParentChildDirectory(System.String,System.String)">
+            <summary>
+            Checks if child directory is contained within its parent.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.EqualDirectories(System.String,System.String)">
+            <summary>
+            Compares if two directory paths are equal.
+            </summary>
+            <param name="dirPath1">First directory path.</param>
+            <param name="dirPath2">Second directory path.</param>
+            <returns>TRUE if paths are equal.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.ReplaceXMLParameterInFile(System.String,System.String,System.String)">
+            <summary>
+            Replaces certain parameter in XML file.
+            </summary>
+            <param name="pathToXml"></param>
+            <param name="paramName"></param>
+            <param name="paramNewValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.CopyFilesRecursively(System.IO.DirectoryInfo,System.IO.DirectoryInfo)">
+            <summary>
+            Helping function to copy folders recursively.
+            </summary>
+            <param name="source">Source folder.</param>
+            <param name="target">Destination folder.</param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.SetNormalDirectoryAttributes(System.IO.FileSystemInfo)">
+            <summary>
+            Sets normal security attributes for files and folders (recursively).
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.DirectoryIsNotEmpty(System.IO.FileSystemInfo)">
+            <summary>
+            Checks if directory is not empty (recursively).
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.CreateRegistryPathIfNeeded(System.String,System.Boolean)">
+            <summary>
+            Creates a complete registry path if it does not exist.
+            </summary>
+            <param name="fullRegistryPath">Full path to a registry node.</param>
+            <param name="systemWide">Indicates the personal or system-wide usage.</param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.RemoveZoneIdentifier(System.String,System.String[])">
+            <summary>
+            Removes Zone Identifier from all listed files.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.GetDirectoryFilesRegex(System.String,System.String[])">
+            <summary>
+            Recursively searches files satisfying regex pattern and puts them into linked list.
+            Linked list consists of complete file paths.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.IsLocalPath(System.String)">
+            <summary>
+            Checks if the given path is on local drive not network.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.IsDeveloperFolder(System.String)">
+            <summary>
+            Check if the path is a "developer" path i.e \bin\debug where developers build to.
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.DirectoryContainsFilesRegex(System.String,System.String[])">
+            <summary>
+            Recursively checks if directory contains certain files (any of them).
+            </summary>
+            <param name="dirPath">Path to a directory to check.</param>
+            <param name="filePatterns">List of file REGEX patterns to search for.</param>
+            <returns>True if any matching file found.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.IsWow64Process(System.IntPtr,System.Boolean@)">
+            <summary>
+            Checks if we are installing on 64-bit machine.
+            We can't simply check only the IntPtr.Size,
+            since if running in 32-bit .NET Framework
+            on 64-bit Windows, we will get 32-bit answer.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.Platform64Bit">
+            <summary>
+            Checks if current platform is 64 bit.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.LessThan4GbMemory">
+            <summary>
+            Checks if machine memory is less than 4Gb.
+            </summary>
+            <returns>True if less than approximately 4Gb memory.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.CheckProcessorRequirements">
+            <summary>
+            Checks if current machine is one core.
+            </summary>
+            <returns>True if one core.</returns>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.Utilities.RunsAsAdministrator">
+            <summary>
+            Gets a value indicating if the current client process is run with
+            administrative rights.
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.Utilities.HasAdministrativeRights">
+            <summary>
+            Gets a value that reveals if the user running the client has
+            administrative rights on the local computer.
+            </summary>
+            <remarks>
+            Note that this does not mean that the client/process runs with
+            administrative rights. Under Windows UAC (when enabled) the normal
+            mode even for users having administrative rights is to run
+            processes without them. To see if the loaded client/process is
+            really running with administrative rights, see 
+            <c>RunsAsAdministrator</c>.
+            </remarks>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.CreateShortcut(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates shortcut using external utility.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.IsDeveloperInstallation">
+            <summary>
+            Checks if its developer installation.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.CheckInstallationRequirements">
+            <summary>
+            Checks for basic Starcounter setup requirements.
+            </summary>
+        </member>
+        <member name="F:Starcounter.InstallerEngine.Utilities.promptedKillMessage">
+            <summary>
+            Indicates if user was already prompted about killing Starcounter processes.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.KillDisturbingProcesses(System.String[],System.Boolean)">
+            <summary>
+            Kills all disturbing processes and waits for them to shutdown.
+            </summary>
+            <param name="procNames">Names of processes.</param>
+            Returns true if processes were killed.
+            <param name="silentKill"></param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.ForceDeleteDirectory(System.IO.FileSystemInfo)">
+            <summary>
+            Sets normal security attributes for the folder (recursively) and deletes it.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.ForceDeleteDirectoryEntryPatterns(System.IO.FileSystemInfo,System.String[],System.Boolean)">
+            <summary>
+            Sets normal security attributes for the folder (recursively) and deletes
+            (either matched or NOT matched) entries specified with REGEX strings.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.AddDirFullPermissionsForCurrentUser(System.String)">
+            <summary>
+            Adds permissions for the current user on directory.
+            </summary>
+            <param name="dirPath"></param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.RemoveDirectoryAccessRights(System.IO.FileSystemInfo,System.Security.AccessControl.FileSystemAccessRule)">
+            <summary>
+            Recursively adds specified access rights to a directory.
+            </summary>
+            <param name="fsi">Current file system information (directory or file)</param>
+            <param name="accessRule">Security access rule.</param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.ReportSetupEvent(System.String)">
+            <summary>
+            Reports an installation event in terms
+            of logging and user notification.
+            </summary>
+            <param name="msg">Message to report.</param>
+        </member>
+        <member name="F:Starcounter.InstallerEngine.Utilities.SetupLogDirectory">
+            <summary>
+            Path to the directory where setup log file is stored.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.LogMessage(System.String)">
+            <summary>
+            Logs specified message to the log file.
+            </summary>
+            <param name="msg">Message to log.</param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.ConsoleMessage(System.String)">
+            <summary>
+            Prints specified message to console.
+            </summary>
+            <param name="msg">Message to print.</param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.ShowFeedback(System.String)">
+            <summary>
+            Calls installer GUI feedback function.
+            </summary>
+            <param name="msg">Message to show in feedback.</param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.AskUserForDecision(System.String,System.String)">
+            <summary>
+            Stops current execution to ask a user to make a decision about a question.
+            </summary>
+            <param name="question">Question string.</param>
+            <param name="title">Message box title.</param>
+            <returns>'True' if user agreed, 'False' otherwise.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.MessageBoxWarning(System.String,System.String)">
+            <summary>
+            Message box warning alternative.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.MessageBoxInfo(System.String,System.String,System.Boolean)">
+            <summary>
+            Message box information alternative.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.Utilities.MessageBoxError(System.String,System.String)">
+            <summary>
+            Message box error alternative.
+            </summary>
+        </member>
+        <member name="T:Starcounter.InstallerEngine.Utilities.InstallerProgressEventArgs">
+            <summary>
+            Used to show execution progress
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.Utilities.InstallerProgressEventArgs.Progress">
+            <summary>
+            Gets or sets the progress in percent.
+            Minimum of 0 and max of 100
+            </summary>
+            <value>
+            The progress.
+            </value>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.Utilities.InstallerProgressEventArgs.Text">
+            <summary>
+            Gets or sets the text.
+            Note: Please use as short text as possible, less then 20 chars depending of font size etc..
+            </summary>
+            <value>
+            The text.
+            </value>
+        </member>
+        <member name="T:Starcounter.InstallerEngine.Utilities.MessageBoxEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.InstallerEngine.Utilities.MessageBoxEventArgs.MessageBoxText">
+            <summary>
+            Gets or sets the text.
+            Note: Please use as short text as possible, less then 20 chars depending of font size etc..
+            </summary>
+            <value>
+            The text.
+            </value>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.ComponentsCheck.CheckServerEnvVars(System.Boolean,System.Boolean)">
+            <summary>
+            Checks if Starcounter environment variables exist in the system.
+            </summary>
+        </member>
+        <member name="F:Starcounter.InstallerEngine.ComponentsCheck.cachedInstalledComponents">
+            <summary>
+            Cached list of installed components.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.ComponentsCheck.ResetCachedInstalledComponents">
+            <summary>
+            Simply resets corresponding value so that
+            components are obtained from scratch.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.ComponentsCheck.GetListOfInstalledComponents">
+            <summary>
+            Get list of components that has already been installed in the system.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.ComponentsCheck.AnyComponentsExist">
+            <summary>
+            Returns TRUE if any of Starcounter components still remain in the system.
+            </summary>
+        </member>
+        <member name="F:Starcounter.InstallerEngine.ConstantsBank.Setting_IsProductionInstallation">
+            <summary>
+            Set this to <c>true</c> to install a production-like environment. Default is a
+            developer environment.
+            </summary>
+        </member>
+        <member name="F:Starcounter.InstallerEngine.ConstantsBank.Setting_LaunchVisualStudioExtensionInstaller">
+            <summary>
+            Set to <c>true</c> to launch the Visual Studio extension installer, offering
+            installation of the Starcounter Visual Studio extension.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.InstallerMain.LoadInstallationSettings(System.String)">
+            <summary>
+            Loads installer settings.
+            </summary>
+            <param name="configPath"></param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.InstallerMain.InstallationSettingCompare(System.String,System.String)">
+            <summary>
+            Compares install setting value with provided one.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <returns>True if values are the same.</returns>
+            <param name="compareWith"></param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.InstallerMain.GetInstallationSettingValue(System.String)">
+            <summary>
+            Gets specific installation setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Setting value.</returns>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.InstallerMain.AnotherSetupRunning(System.Int32)">
+            <summary>
+            Check if another instance of setup is running.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.InstallerMain.GetInstalledDirFromEnv">
+            <summary>
+            Returns the directory path where Starcounter is installed,
+            obtained from environment variables.
+            </summary>
+        </member>
+        <member name="F:Starcounter.InstallerEngine.InstallerMain.progressPercent">
+            <summary>
+            Indicates the progress of the
+            tasks being done, in percents.
+            </summary>
+        </member>
+        <member name="F:Starcounter.InstallerEngine.InstallerMain.InstallationBaseComponent">
+            <summary>
+            All components are declared here.
+            </summary>
+        </member>
+        <member name="F:Starcounter.InstallerEngine.InstallerMain.AllComponentsToUninstall">
+            <summary>
+            Array of all Starcounter components ordered for uninstallation purpose.
+            </summary>
+        </member>
+        <member name="F:Starcounter.InstallerEngine.InstallerMain.AllComponentsToInstall">
+            <summary>
+            Array of all Starcounter components ordered for installation purpose.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.InstallerMain.InitAllComponents">
+            <summary>
+            Initializing components.
+            </summary>
+        </member>
+        <member name="F:Starcounter.InstallerEngine.InstallerMain.GuiProgressCallback">
+            <summary>
+            Contains references to installer GUI callbacks.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.InstallerMain.SetNiceWpfMessageBoxDelegate(System.EventHandler{Starcounter.InstallerEngine.Utilities.MessageBoxEventArgs})">
+            <summary>
+            Sets a nice WPF message box instead of standard one.
+            </summary>
+            <param name="guiMessageboxCallback"></param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.InstallerMain.StarcounterSetup(System.String[],System.String,System.String,System.EventHandler{Starcounter.InstallerEngine.Utilities.InstallerProgressEventArgs},System.EventHandler{Starcounter.InstallerEngine.Utilities.MessageBoxEventArgs})">
+            <summary>
+            This is the main environment setup function
+            which is exposed to be called from outside.
+            </summary>
+        </member>
+        <member name="T:Starcounter.InstallerEngine.InstallerAbortedException">
+            <summary>
+            Indicates that installation has been aborted either by user or some other reason.
+            Not considered as an error.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.InstallerAbortedException.#ctor(System.String)">
+            <summary>
+            Constructor that copies the message.
+            </summary>
+        </member>
+        <member name="T:Starcounter.InstallerEngine.InstallerExceptionFactory">
+            <summary>
+            Creating exception factory specially for handling installer internal exceptions.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.InstallerExceptionFactory.CreateException(System.UInt32,System.Exception,System.String,System.Func{System.UInt32,System.String,System.Object[],System.String},System.Object[])">
+            <inheritdoc />
+        </member>
+        <member name="M:Starcounter.InstallerEngine.UninstallEngine.LoadUninstallationSettings(System.String)">
+            <summary>
+            Loads uninstallation settings.
+            </summary>
+            <param name="configPath">Path to settings file.</param>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.UninstallEngine.UninstallationSettingCompare(System.String,System.String)">
+            <summary>
+            Compares uninstall setting value with provided one.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="compareWith">String to compare with.</param>
+            <returns>True if values are the same.</returns>
+        </member>
+        <member name="F:Starcounter.InstallerEngine.UninstallEngine.cachedRemainingComponentsNum">
+            <summary>
+            Cached list of installed components and its number.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.UninstallEngine.ResetCachedRemainingComponentsNum">
+            <summary>
+            Simply resets corresponding value so that
+            components are obtained from scratch.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.UninstallEngine.RemainingComponents">
+            <summary>
+            Calculates how many components will be left after uninstalling
+            those which are marked TRUE in parameters.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.UninstallEngine.DeleteInstallationDir(System.Boolean)">
+            <summary>
+            Delete installation folder if satisfying.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.UninstallEngine.RollbackInstallation">
+            <summary>
+            Rollback the installation when it fails.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.UninstallEngine.UninstallAllComponents">
+            <summary>
+            Core Starcounter uninstall function.
+            </summary>
+        </member>
+        <member name="M:Starcounter.InstallerEngine.UninstallEngine.UninstallStarcounter(System.Boolean)">
+            <summary>
+            Entry function for uninstalling Starcounter (which calls the core function).
+            </summary>
+        </member>
+    </members>
+</doc>

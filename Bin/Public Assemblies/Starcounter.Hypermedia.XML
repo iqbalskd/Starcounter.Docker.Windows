@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.Hypermedia</name>
+    </assembly>
+    <members>
+        <member name="T:Starcounter.Advanced.Hypermedia.HtmlMerger">
+            <summary>
+            Merges two HTML representations into a single HTML representation.
+            </summary>
+            <remarks>
+            Elements in document B will replace elements in document A if they
+            have the same id and that their direct or indirect parents share the
+            same id. 
+            
+            Elements that have no ids but that are bound to a single data property
+            using the {{ }} syntax, will be treated as having the id
+            "[[ParentId.SomeDataProperty]]". 
+            This allows the author to merge html documents without having to set
+            explicit ids.
+            </remarks>
+        </member>
+        <member name="T:Starcounter.Internal.Web.ScriptInjector">
+            <summary>
+            Helper class for super-fast code injection into exiting http responses containing
+            html content.
+            </summary>
+            <remarks>Starcounter caches static html files in RAM as complete http responses.
+            To save request/response roundtrips
+            (this is an important factor for browser speed), Starcounter can also use these
+            static http responses to inject dynamic view models. This means that a view model
+            does not have to be requested in a seperate XHR call as view models can be represented
+            in text (as either JSON or Faster-than-Json). To do this, Starcounter needs to
+            parse the http header and html content to find an appropriate injection point.
+            Using this injection point, Starcounter can later inject the view model and update
+            the http header accordingly (the Content-Length needs to be updated).</remarks>
+        </member>
+        <member name="M:Starcounter.Internal.Web.ScriptInjector.FindScriptInjectionPoint(System.Byte[],System.Int32)">
+            <summary>
+            Given a http response with a known content offset, an offset where to
+            insert a &lt;script&gt; element that will execute prior to any other &lt;script&gt;
+            elements.
+            </summary>
+            <param name="response">The byte array containing the http response</param>
+            <param name="contentOffset">The first byte of the UTF8 encoded html content</param>
+            <returns>The offset where you can inject the new &lt;script&gt; tag</returns>
+            <remarks>The current version expects UTF8 encoding. In order to inject code, you will also
+            need metadata provided by the http response (such as the header size, whereabouts of
+            the Content-Length). For this, see the Inject method.</remarks>
+        </member>
+        <member name="M:Starcounter.Internal.Web.ScriptInjector.FindHeaderInjectionPoint(System.Byte[])">
+            <summary>
+            Searches for the injection point in response.
+            </summary>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.Web.ScriptInjector.Inject(System.Byte[],System.Byte[],System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Perform the actual code injection. This method operates on a complete HTTP response.
+            This means that the header is also updated to reflect the new Content-Length of the
+            response. To do this, this function requires information about the whereabout if
+            the size text (HTTP Content-Length header) as well as other metadata about the
+            header and content.
+            </summary>
+            <param name="original">The HTML source code</param>
+            <param name="toInject">The source code to inject</param>
+            <param name="headerLength">The previous offset of the content (same as the previous total length of the header)</param>
+            <param name="contentLength">The previously used Content-Length value</param>
+            <param name="contentLengthLength">The number of bytes previously used for the Content-Length value</param>
+            <param name="contentLengthInjectionPoint">The offset of the Content-Length value</param>
+            <param name="scriptInjectionPoint">The offset where the injected code should be inserted</param>
+            <returns>The new, amended source code</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Web.ScriptInjector.InjectInHeader(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            Injects the specified value into the header of the response.
+            </summary>
+            <param name="original">The original raw response</param>
+            <param name="toInject">The header to inject</param>
+            <param name="injectionPoint">The point in the header where to inject the new values.</param>
+            <returns>The complete response with header injected.</returns>
+        </member>
+        <member name="T:Starcounter.Internal.Web.StaticWebServer">
+            <summary>
+            Manages the loading and caching of web resources such as .html files and images. Also keeps track 
+            of non static web resources such as apps (having dynamic content). Each resource is represented 
+            by a WebResource instance.
+            <para><img src="http://www.rebelslounge.com/res/scweb/WebResource.png" /></para>
+            </summary>
+            <summary>
+            Class StaticWebServer
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Web.StaticWebServer.cacheOnUri_">
+            <summary>
+            Http response cache keyed on URI.
+            </summary>
+            <remarks>
+            Http responses are cached in memory. The cache can store both compressed and
+            uncompressed versions. Compressed and uncompressed items are cached
+            the first time they are retrieved.
+            </remarks>
+        </member>
+        <member name="F:Starcounter.Internal.Web.StaticWebServer.cacheOnFilePath_">
+            <summary>
+            Http response cache keyed on file path on disk.
+            </summary>
+            <remarks>
+            Http responses are cached in memory. The cache can store both compressed and
+            uncompressed versions. Compressed and uncompressed items are cached
+            the first time they are retrieved.
+            </remarks>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.UserAddedLocalFileDirectoryWithStaticContent(System.String,System.UInt16,System.String)">
+            <summary>
+            The web server can accept multiple root catalogs/directories to resolve static
+            file resources. If the same file can be found in the same relative path in multiple
+            root directories, the first match is used. For this reason, directories should
+            be added in priority order with the most prioritized path first.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.GetWorkingDirectories(System.UInt16)">
+            <summary>
+            Get a list with all folders where static file resources such as .html files or images are kept.
+            </summary>
+            <param name="port"></param>
+            <returns>List with folders</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.#ctor">
+            <summary>
+            Creates a new web server with an empty cache.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.ClearCache">
+            <summary>
+            Empties the cache.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.GetStaticResponseClone(System.String,Starcounter.Request)">
+            <summary>
+            Handling the static file response clone.
+            </summary>
+            <param name="relativeUri">The URI of the resource</param>
+            <param name="request">The http request as defined by Starcounter</param>
+            <returns>The UTF8 encoded response</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.Compress(System.Byte[])">
+            <summary>
+            Converts an uncompressed resource to a compressed resource.
+            </summary>
+            <param name="input">The uncompressed resource</param>
+            <returns>The compressed resource</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.Housekeep">
+            <summary>
+            House-keeps this instance.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Web.StaticWebServer.watchedPaths_">
+            <summary>
+            Watched file paths.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Web.StaticWebServer.fileDirectories_">
+            <summary>
+            Contains the directories that may contain web resources such as .html files and other assets. 
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Web.StaticWebServer.appNames_">
+            <summary>
+            Application names.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.GetFileResource(Starcounter.Response,System.String,Starcounter.Request)">
+            <summary>
+            Reads the file system to find the resource addressed by an uri without using any cached version.
+            </summary>
+            <param name="cached">If there is an existing cache entry, it is provided here. The cache entry may
+            contain compressed or uncompressed versions whereas the request only targets one of these versions. This means
+            that a cache item may be built up by multiple calls to this method, each with a different version requested. If the
+            provided cached item already contains the version requested, the file is still read and the cached version is
+            overwritten.</param>
+            <param name="relativeUri">The uri without the server domain</param>
+            <param name="req">The Starcounter session id</param>
+            <returns>A cacheable resource item with at least one version (compressed or uncompressed).</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.ReadFileInDirectory(System.String,System.String,System.String@,System.String@,System.String@,System.Byte[]@)">
+            <summary>
+            Tries to find file in specified directory and returns file contents as byte array.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.ReadFile(System.String,System.String@,System.String@,System.String@,System.Byte[]@)">
+            <summary>
+            Searches for file specified in the relative uri and returns a byte array containing
+            the contents. 
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.WatchChange(System.String,System.String)">
+            <summary>
+            Called to monitor live changes to static resources. If a file is changed,
+            the cache is invalidated. This allows the web server to always server fresh
+            versions of any resource.
+            </summary>
+            <param name="dir">The directory the file resides in.</param>
+            <param name="fileName">Name of the file.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.ClearWatchedChange(System.IO.FileSystemWatcher)">
+            <summary>
+            Removes all event listeners and disposes the watcher.
+            </summary>
+            <param name="fsw"></param>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.ClearWatchedParts">
+            <summary>
+            Clears the watched parts.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.FileIsRenamed(System.Object,System.IO.RenamedEventArgs)">
+            <summary>
+            Triggered when a file in a watched directory is renamed.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.FileHasChanged(System.Object,System.IO.FileSystemEventArgs)">
+            <summary>
+            Triggered when a file in a watched directory is changed or deleted.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.DecacheByFilePath(System.String)">
+            <summary>
+            Removes the specified file from the cache
+            </summary>
+            <param name="fileSignature">The file to remove</param>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.FileOpenAlternative(System.String,System.String,System.String@)">
+            <summary>
+            Tries to open the file with the specified name in the specified directory.
+            If not successful and the fileExtension parameter is not specified a default 
+            extension is used.
+            </summary>
+            <param name="dir">The directory to look for the file</param>
+            <param name="fileName">Name of the file.</param>
+            <param name="fileExtension">The file extension.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.Web.StaticWebServer.ParseFileSpecifier(System.String,System.String,System.String@,System.String@,System.String@)">
+            <summary>
+            Parses the file specifier.
+            </summary>
+            <param name="serverPath">The server path.</param>
+            <param name="relativeUri">The relative URI.</param>
+            <param name="directory">The directory.</param>
+            <param name="fileName">Name of the file.</param>
+            <param name="fileExtension">The file extension.</param>
+        </member>
+        <member name="T:Starcounter.Internal.WebServing.ImageToDataUrl">
+            <summary>
+            Class ImageToDataUrl
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.WebServing.ImageToDataUrl.GetDataURL(System.String)">
+            <summary>
+            Gets the data URL.
+            </summary>
+            <param name="imgFile">The img file.</param>
+            <returns>System.String.</returns>
+        </member>
+    </members>
+</doc>

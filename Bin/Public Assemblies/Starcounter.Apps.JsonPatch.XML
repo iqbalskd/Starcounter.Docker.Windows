@@ -1,0 +1,318 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.Apps.JsonPatch</name>
+    </assembly>
+    <members>
+        <member name="T:Starcounter.Internal.AppsBootstrapper">
+            <summary>
+            Sets up the REST, Resources and Apps modules
+            </summary>
+            <remarks>
+            A common dependency injection pattern for all bootstrapping in Starcounter should be
+            considered for a future version. This includes Apps, SQL and other modules.
+            </remarks>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.RegisterNewCodehostInGateway">
+            <summary>
+            Registers newly started codehost.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.InitHandleDelegates">
+            <summary>
+            Initializing some handle delegates.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.InitAppsBootstrapper(System.Byte,System.UInt16,System.UInt16,System.UInt32,System.String,System.Boolean)">
+            <summary>
+            Initializes AppsBootstrapper.
+            </summary>
+            <param name="defaultPort"></param>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.#cctor">
+            <summary>
+            Initializing the codehost apps.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.GetFileServingDirectories">
+            <summary>
+            Gets a list of directories used by the web server to
+            resolve GET requests for static content.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.AddStaticFileDirectory(System.String,System.UInt16)">
+            <summary>
+            Adding static files directory.
+            </summary>
+            <param name="webResourcesDir">Path to static files directory.</param>
+            <param name="port">Port number.</param>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.InternalAddStaticFileDirectory(System.UInt16,System.String,System.String)">
+            <summary>
+            Adding static files directory.
+            </summary>
+            <param name="port">Port number.</param>
+            <param name="webResourcesDir">Path to static files directory.</param>
+            <param name="appName">Application name.</param>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.RegisterUriAliasHandler(System.UInt16,System.String,System.String,System.String)">
+            <summary>
+            Registering URI alias handler.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.RegisterRedirectHandler(System.UInt16,System.String,System.String,System.String)">
+            <summary>
+            Registering redirect handler.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.RegisterReverseProxyHandlers(System.UInt16)">
+            <summary>
+            Registering reverse proxy handler.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.RegisterUriAliasHandlers(System.UInt16)">
+            <summary>
+            Registering uri alias handlers.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.Bootstrap(System.UInt16,System.String,System.String)">
+            <summary>
+            Function that registers a default handler in the gateway and handles incoming requests
+            and dispatch them to Apps. Also registers internal handlers for jsonpatch.
+            <para>
+            The <paramref name="appRootDirectory"/> should be a fully qualified, rooted directory path
+            pointing to the logical application root. The implementation of this method has no advice
+            on how that path is resolved in the first place; its up to the caller.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.AppsBootstrapper.DefaultResponseSerializationBufferSize">
+            <summary>
+            Default size for static serialization buffer.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.AppsBootstrapper.ProcessExternalRequest(Starcounter.Request)">
+            <summary>
+            Entry-point for all external HTTP requests from the Network Gateway.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.ConsoleOuputRestHandler.ConsoleWebSocketGroupName">
+            <summary>
+            Console WebSocket group name.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.ConsoleOuputRestHandler.ConsoleWriteEvents">
+            <summary>
+            List of Console Write Event's
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.ConsoleOuputRestHandler.ConsoleWebSockets">
+            <summary>
+            All active console web sockets.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.ConsoleOuputRestHandler.Register(System.UInt16,System.UInt16)">
+            <summary>
+            Registers the built in REST handlers.
+            </summary>
+            <param name="defaultUserHttpPort">The public session data objects (view-models) are accessed using the same port as the user code REST handlers</param>
+            <param name="defaultSystemHttpPort">The SQL access uses the system port</param>
+        </member>
+        <member name="M:Starcounter.Internal.ConsoleOuputRestHandler.SetupConsoleHandling">
+            <summary>
+            Setup The console handling
+            Redirect the console output to a circular buffer with callback events
+            </summary>
+            <param name="WebSocketSessions"></param>
+        </member>
+        <member name="M:Starcounter.Internal.ConsoleOuputRestHandler.consoleEvents_CollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Event when a new console event has been made.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Internal.ConsoleOuputRestHandler.OnConsoleWrite(System.Object,Starcounter.Internal.ConsoleEventArgs)">
+            <summary>
+            Event when a console.write has been made
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Internal.ConsoleOuputRestHandler.GetConsoleResponse(System.String)">
+            <summary>
+            Retrive the current console buffer 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.ConsoleOuputRestHandler.GetConsoleEvents(System.String)">
+            <summary>
+            Get console events
+            </summary>
+            <returns>ConsoleEvents</returns>
+        </member>
+        <member name="T:Starcounter.Internal.ConsoleEventArgs">
+            <summary>
+            Console Event
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.CircularStream">
+            <summary>
+            Circular buffer stream
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.CircularStream.WriteEventHandler">
+            <summary>
+            Console write event handler
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:Starcounter.Internal.CircularStream.OnWrite">
+            <summary>
+            Console write event
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.CircularStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Read from buffer
+            </summary>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.CircularStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Write to buffer and invoke event to listeners
+            </summary>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:Starcounter.Internal.CircularStream.GetAppName">
+            <summary>
+            Retrive Application name
+            </summary>
+            <returns>Starcounter Application Name</returns>
+        </member>
+        <member name="T:Starcounter.Internal.PuppetRestHandler">
+            <summary>
+            Registers the built in REST handler allowing clients to communicate with
+            the public Session data of a Starcounter application.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.PuppetRestHandler.JsonPatchWebSocketGroupName">
+            <summary>
+            Name of the WebSocket Json-Patch channel.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.PuppetRestHandler.HandleWebSocketJson(System.String,Starcounter.WebSocket)">
+            <summary>
+            Handles incoming WebSocket byte data.
+            </summary>
+            <param name="bs"></param>
+            <param name="ws"></param>
+        </member>
+        <member name="T:Starcounter.Internal.Web.AppRestServer">
+            <summary>
+            Wraps the file based http web resource resolver and the App view model resolver.
+            </summary>
+            <remarks>Supports Http as well as proprietary protocols.
+            If the URI does not point to a App view model or a user implemented
+            handler, the request is routed to a standard file based static resource
+            web serving implementation that will serve html, png, jpg etc. using the file system.
+            This file based resolver will be injected into the constructor of this class.</remarks>
+        </member>
+        <member name="F:Starcounter.Internal.Web.AppRestServer.fileServerPerPort_">
+            <summary>
+            A standard file based static resource web serving implementation.
+            Will serve html, png, jpg etc. using the file system.
+            If the URI does not point to a App view model or a user implemented
+            handler, this is where the request will go.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Web.AppRestServer.#ctor(System.Collections.Concurrent.ConcurrentDictionary{System.UInt16,Starcounter.Internal.Web.StaticWebServer})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Starcounter.Internal.Web.AppRestServer" /> class.
+            </summary>
+            <param name="staticFileServer">The static file server.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Web.AppRestServer.GetExceptionString(System.Exception)">
+            <summary>
+            Gets the exception string.
+            </summary>
+            <param name="ex">The ex.</param>
+            <returns>String.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Web.AppRestServer.RunDelegateAndProcessResponse(System.IntPtr,System.IntPtr,Starcounter.Request)">
+            <summary>
+            Runs delegate and process response.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Web.AppRestServer.ResolveAndPrepareFile(System.String,Starcounter.Request)">
+            <summary>
+            This is where the AppServer calls to get a resource from the file system.
+            </summary>
+            <param name="relativeUri">The uri to resolve</param>
+            <param name="request">The http request</param>
+            <returns>The http response</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Web.AppRestServer.UserAddedLocalFileDirectoryWithStaticContent(System.String,System.UInt16,System.String)">
+            <summary>
+            Sent from the Node when the user runs a module (an .EXE).
+            </summary>
+            <param name="path">The path.</param>
+            <remarks>There is no need to add the directory to the static resolver as the static resolver
+            will already be bootstrapped as a lower priority handler for stuff that this
+            AppServer does not handle.</remarks>
+        </member>
+        <member name="M:Starcounter.Internal.Web.AppRestServer.GetWorkingDirectories">
+            <summary>
+            Get a list with all folders where static file resources such as .html files or images are kept.
+            </summary>
+            <returns>List with ports and folders</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Web.AppRestServer.GetWorkingDirectories(System.UInt16)">
+            <summary>
+            Get a list with all folders where static file resources such as .html files or images are kept.
+            </summary>
+            <returns>List with folders or null</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Web.AppRestServer.Housekeep">
+            <summary>
+            Housekeeps this instance.
+            </summary>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="T:Starcounter.Internal.ResourceMimeConverter">
+            <summary>
+            Default converter that converts the body/resource of a response to a byte representation.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.ResourceMimeConverter.Convert(Starcounter.Request,Starcounter.Response,System.String@)">
+            <inheritdoc />
+        </member>
+        <member name="T:Starcounter.Internal.SqlRestHandler">
+            <summary>
+            Every Starcounter application comes with built in REST handlers to allow communication
+            with public Session.Data (aka. view-models or puppets) objects and/or with a potentially exposed SQL engine.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.SqlRestHandler.Register(System.UInt16,System.UInt16)">
+            <summary>
+            Registers the built in REST handlers.
+            </summary>
+            <param name="defaultUserHttpPort">The public session data objects (view-models) are accessed using the same port as the user code REST handlers</param>
+            <param name="defaultSystemHttpPort">The SQL access uses the system port</param>
+        </member>
+        <member name="M:Starcounter.Internal.SqlRestHandler.ExecuteQuery(System.String,System.Int32)">
+            <summary>
+            Executes the query and returns a json string of the result
+            </summary>
+            <param name="query"></param>
+            <returns>SqlQueryResult</returns>
+        </member>
+    </members>
+</doc>

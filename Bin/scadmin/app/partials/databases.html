@@ -1,0 +1,88 @@
+﻿<div style="margin-top: -50px; margin-bottom: 50px">
+
+    <div ng-show="data.model.Databases.length > 10" class="btn-group pull-right btn-group-sm">
+
+        <form class="navbar-form navbar-left" role="search" style="margin: 0px; margin-right: -15px">
+            <div class="form-group">
+
+                <div class="input-group input-group-sm">
+                    <input ng-model="searchDatabase" type="text" class="form-control" placeholder="search" aria-describedby="search-input">
+                    <span class="input-group-addon" id="Span1">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </span>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<!-- list view -->
+<div ng-show="viewmode=='list'" class="panel panel-default">
+
+    <div class="panel-heading">
+        Databases
+    </div>
+
+    <div class="panel-body" ng-show="data.model.Databases.length == 0">
+        <p>To create a new database click <a href="#/databaseNew">here</a>. Or click on the menu choice <a href="#/databaseNew"><i>New database</i></a> in the menu</p>
+    </div>
+
+    <table class="table" ng-show="data.model.Databases.length > 0">
+
+        <tbody>
+
+            <tr ng-repeat="database in data.model.Databases | filter:{DisplayName:searchDatabase} | orderBy:['DisplayName']">
+
+                <td class="vert-align" style="width: 40px; padding-left: 15px">
+
+                    <span ng-show="!database.HasErrorMessage && database.IsRunning && database.Status==0" style="top: 3px; font-size: 1.2em; color: #5cb85c" class="glyphicon glyphicon-ok-sign" aria-hidden="true" tooltip="Running" title="Running"></span>
+                    <span ng-show="!database.HasErrorMessage && database.IsRunning == false && database.Status==0" style="top: 3px; font-size: 1.2em; color: #eeeeee" class="glyphicon glyphicon-ok-circle" aria-hidden="true" tooltip="Stopped" title="Stopped"></span>
+                    <span ng-show="database.Status!=0" title="{{database.StatusText}}" class="spinner tiny" style="margin: 0px; padding: 0px"></span>
+                </td>
+
+                <td class="vert-align" style="width: 180px; background: rgba(0, 0, 0, 0.0)">
+
+                    <div class="btn-group-sm">
+                        <button style="min-width: 80px" class="btn btn-success" ng-hide="database.IsRunning" ng-click="btnStartDatabase(database)" title="Start Database">Start</button>
+                        <button style="min-width: 80px" class="btn btn-default" ng-show="database.IsRunning" ng-click="btnStopDatabase(database)" title="Stop Database">Stop</button>
+                        <button style="min-width: 80px" class="btn btn-default" ng-disabled="database.Status!=0" ng-click="btnDeleteDatabase(database)" title="Delete Database">Delete...</button>
+                    </div>
+                </td>
+
+                <td class="vert-align" style="width: 20px">
+                    <a title="Database settings" href="#/databases/{{database.ID}}/settings"><span class="glyphicon glyphicon glyphicon-cog"></span></a>
+                </td>
+
+                <td class="vert-align" style="width: 100px">
+                    <a href="#/databases/{{database.ID}}">{{database.DisplayName}}</a>
+                </td>
+
+                <td class="vert-align">
+                    {{database.StatusText}}
+                </td>
+
+                <td class="vert-align text-right">
+                    <div>
+                        <!-- Database error (red) -->
+                        <span ng-show="{{database.HasErrorMessage}}">
+                            <span style="top: 3px; font-size: 1.2em; color: #d9534f" class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" title="{{database.ErrorMessage.Message}}"></span>
+                            {{database.ErrorMessage.Message}}
+                        <a ng-show="database.ErrorMessage.HelpLink" href="{{database.ErrorMessage.HelpLink}}" target="_blank">Help</a>.
+                            View the <a href="#/server/log">log</a> for more details.
+                        </span>
+
+                        <!-- Application error(s) -->
+                        <div ng-show="database.HasErrorMessage == false && database.IsRunning && database.Status==0 && (database.Applications|filter:appsFilter).length > 0">
+                            <a class="popupButton popupButton_warning" href="#/databases/{{database.ID}}" tooltip="Not all installed applications is running" title="Not all installed applications is running"><span style="top: 3px;" class="glyphicon glyphicon-exclamation-sign"></span></a>
+                            Not all installed applications is running. Check <a href="#/databases/{{database.ID}}">applications</a>.
+                        </div>
+
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

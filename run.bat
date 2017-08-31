@@ -1,0 +1,1 @@
+docker run --cpu-count 8 -m 9g rogeralsing/sc

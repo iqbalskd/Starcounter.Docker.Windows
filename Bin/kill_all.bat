@@ -1,0 +1,1 @@
+staradmin kill all

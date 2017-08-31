@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:Starcounter.Tests.TestDecimal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tests.TestDecimal.TestConversionX6ToDecimal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tests.TestDecimal.TestConversionDecimalToX6">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tests.TestDecimal.TestUnsafeReadingBits">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tests.TestDecimal.BenchmarkDecimalConversion">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tests.TestDecimal.TestDecimalConversion">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tests.TestDecimal._TestDecimalConversion(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="cnt"></param>
+        </member>
+        <member name="M:Starcounter.Tests.TestDecimal.TestEncodeDecodeX6Decimal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Starcounter.Blending.Tests.BlendingTestsSetup">
+            <summary>
+            Used for tests initialization/shutdown.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Blending.Tests.BlendingTestsSetup.NewRestTestsSetupInit">
+            <summary>
+            Tests initialization.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.Logging</name>
+    </assembly>
+    <members>
+        <member name="T:Starcounter.Logging.ExceptionFormatter">
+            <summary>
+            Exception formatter that adds property values to the standard exception
+            formatting containing type, message and stack trace. Use to get a
+            better output when logging an exception.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Logging.ExceptionFormatter.ExceptionToString(System.Exception)">
+            <summary>
+            Constructs a string containing exception data from the specified
+            exception.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Logging.LogTraceListener">
+            <summary>
+            Implements a trace listener that logs every traced message to
+            the Starcounter server log, using a certain <see cref="T:Starcounter.Logging.LogSource"/>.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Logging.LogTraceListener.Log">
+            <summary>
+            The <see cref="T:Starcounter.Logging.LogSource"/> used by the current trace listener
+            when a message comes along that should be logged.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Logging.LogTraceListener.AlwaysUseLogTraceSource">
+            <summary>
+            Indicates if the log trace listener should always use the
+            predefined log trace listener source when transferring traces
+            to the log, or if it should try extracting the log to use
+            from each captured message.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Logging.LogTraceListener.#ctor">
+            <summary>
+            Initialize a new <see cref="T:Starcounter.Logging.LogTraceListener"/> with a default
+            log source name, based on the name of the current process.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Logging.LogTraceListener.#ctor(Starcounter.Logging.LogSource)">
+            <summary>
+            Initialize a new <see cref="T:Starcounter.Logging.LogTraceListener"/>.
+            </summary>
+            <param name="source">The <see cref="T:Starcounter.Logging.LogSource"/> to be used
+            by the current trace listener when a message is logged.</param>
+        </member>
+        <member name="M:Starcounter.Logging.LogTraceListener.Write(System.String)">
+            <summary>
+            Writes <paramref name="message"/> to the underlying log.
+            </summary>
+            <param name="message">The message being logged.</param>
+        </member>
+        <member name="M:Starcounter.Logging.LogTraceListener.WriteLine(System.String)">
+            <summary>
+            Writes <paramref name="message"/> to the underlying log.
+            </summary>
+            <param name="message">The message being logged.</param>
+        </member>
+    </members>
+</doc>

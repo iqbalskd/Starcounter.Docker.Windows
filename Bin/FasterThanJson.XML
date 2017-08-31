@@ -1,0 +1,1765 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FasterThanJson</name>
+    </assembly>
+    <members>
+        <member name="T:Starcounter.Internal.Base16x1">
+            <summary>
+            Struct Base16x1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base16x1.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base16Int">
+            <summary>
+            Class Base16Int
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base16Int.Const5">
+            <summary>
+            The const5
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base16Int.Const6">
+            <summary>
+            The const6
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Base16Int.WriteBase16x1(System.UInt32,System.Byte*)">
+            <summary>
+            Writes the base16x1.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="c">The c.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base16Int.ReadBase16x1(Starcounter.Internal.Base16x1*)">
+            <summary>
+            Reads the base16x1.
+            </summary>
+            <param name="c">The c.</param>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="T:Starcounter.Internal.Base256Int">
+            <summary>
+            Class Base256Int
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Base256Int.Write(System.IntPtr,System.UInt64)">
+            <summary>
+            Writes the specified PTR.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <param name="value">The value.</param>
+            <returns>System.UInt32.</returns>
+            <exception cref="T:System.Exception">TODO!</exception>
+        </member>
+        <member name="M:Starcounter.Internal.Base256Int.MeasureNeededSize(System.UInt32)">
+            <summary>
+            Measures the size of the needed.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>System.UInt32.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base256Int.Read(System.Int32,System.IntPtr)">
+            <summary>
+            Reads the specified size.
+            </summary>
+            <param name="size">The size.</param>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+            <exception cref="T:System.Exception">Size not supported</exception>
+        </member>
+        <member name="M:Starcounter.Internal.Base256Int.FixString(System.Byte[])">
+            <summary>
+            Fixes the string.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="T:Starcounter.Internal.Base32x13">
+            <summary>
+            Struct Base32x13
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b2">
+            <summary>
+            The b2
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b3">
+            <summary>
+            The b3
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b4">
+            <summary>
+            The b4
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b5">
+            <summary>
+            The b5
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b6">
+            <summary>
+            The b6
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b7">
+            <summary>
+            The b7
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b8">
+            <summary>
+            The b8
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b9">
+            <summary>
+            The b9
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b10">
+            <summary>
+            The B10
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b11">
+            <summary>
+            The B11
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x13.b12">
+            <summary>
+            The B12
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base32x7">
+            <summary>
+            Struct Base32x7
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x7.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x7.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x7.b2">
+            <summary>
+            The b2
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x7.b3">
+            <summary>
+            The b3
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x7.b4">
+            <summary>
+            The b4
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x7.b5">
+            <summary>
+            The b5
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x7.b6">
+            <summary>
+            The b6
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base32x6">
+            <summary>
+            Struct Base32x6
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x6.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x6.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x6.b2">
+            <summary>
+            The b2
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x6.b3">
+            <summary>
+            The b3
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x6.b4">
+            <summary>
+            The b4
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x6.b5">
+            <summary>
+            The b5
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base32x4">
+            <summary>
+            Struct Base32x4
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x4.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x4.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x4.b2">
+            <summary>
+            The b2
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x4.b3">
+            <summary>
+            The b3
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base32x3">
+            <summary>
+            Struct Base32x3
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x3.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x3.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x3.b2">
+            <summary>
+            The b2
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base32x2">
+            <summary>
+            Struct Base32x2
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x2.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x2.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base32x1">
+            <summary>
+            Struct Base32x1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base32x1.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base32Int">
+            <summary>
+            Class Base32Int
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.Write(System.Byte*,System.UInt32)">
+            <summary>
+            Writes the specified buffer.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="value">The value.</param>
+            <returns>System.UInt32.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.MeasureNeededSize(System.UInt64)">
+            <summary>
+            Measures the size of the needed.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>System.UInt32.</returns>
+            <exception cref="T:System.Exception">TODO!</exception>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.WriteBase32x6(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base32x6.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.WriteBase32x7(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base32x7.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.WriteBase32x13(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base32x13.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.WriteBase32x1(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base32x1.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="c">The c.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.WriteBase32x2(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base32x2.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.WriteBase32x3(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base32x3.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.WriteBase32x4(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base32x4.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.Read(System.Int32,System.Byte*)">
+            <summary>
+            Reads the specified size.
+            </summary>
+            <param name="size">The size.</param>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.ReadBase32x1(System.Byte*)">
+            <summary>
+            Reads the base32x1.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.ReadBase32x2(System.Byte*)">
+            <summary>
+            Reads the base32x2.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.ReadBase32x4(System.Byte*)">
+            <summary>
+            Reads the base32x4.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.ReadBase32x3(System.Byte*)">
+            <summary>
+            Reads the base32x3.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.ReadBase32x6(System.Byte*)">
+            <summary>
+            Reads the base32x6.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.ReadBase32x7(System.Byte*)">
+            <summary>
+            Reads the base32x7.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base32Int.ReadBase32x13(System.Byte*)">
+            <summary>
+            Reads the base32x13.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="T:Starcounter.Internal.Base64DecimalLossless">
+            <summary>
+            Decimal: 1 byte - 0-28 precision, 3 4-bytes (3 ints) - value, sign (http://msdn.microsoft.com/en-us/library/vstudio/system.decimal.getbits.aspx)
+            First letter contains 
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Base64X6Decimal.Write(System.Byte*,System.Decimal)">
+            <summary>
+            Encodes decimal value assuming that it was converted from X6Decimal and
+            writes into the given tuple
+            </summary>
+            <param name="buffer">Place to write</param>
+            <param name="value">Decimal with 6 digits scale as converted from X6Decimal</param>
+            <returns>Number of bytes written</returns>
+        </member>
+        <member name="T:Starcounter.Internal.Base64Double">
+            <summary>
+            The input format of Double is
+            0-51 bits - mantissa
+            52-62 bits - exponent
+            63 bit - sign
+            The serialization format is at least 3 bytes:
+            2 bytes contains 12 bits:
+              0 bit - sign
+              1-11 bits - exponent
+            1 or more bytes contains mantissa (up to 11 bytes until 9 byte representation of UInt64  is implemented)
+            
+            Nullable value will be stored as a single byte.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base64x11">
+            <summary>
+            Struct Base64x11
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x11.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x11.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x11.b2">
+            <summary>
+            The b2
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x11.b3">
+            <summary>
+            The b3
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x11.b4">
+            <summary>
+            The b4
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x11.b5">
+            <summary>
+            The b5
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x11.b6">
+            <summary>
+            The b6
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x11.b7">
+            <summary>
+            The b7
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x11.b8">
+            <summary>
+            The b8
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x11.b9">
+            <summary>
+            The b9
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x11.b10">
+            <summary>
+            The B10
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x8.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x8.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x8.b2">
+            <summary>
+            The b2
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x8.b3">
+            <summary>
+            The b3
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x8.b4">
+            <summary>
+            The b4
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x8.b5">
+            <summary>
+            The b5
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base64x6">
+            <summary>
+            Struct Base64x6
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x6.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x6.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x6.b2">
+            <summary>
+            The b2
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x6.b3">
+            <summary>
+            The b3
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x6.b4">
+            <summary>
+            The b4
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x6.b5">
+            <summary>
+            The b5
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base64x5">
+            <summary>
+            Struct Base64x5
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x5.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x5.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x5.b2">
+            <summary>
+            The b2
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x5.b3">
+            <summary>
+            The b3
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x5.b4">
+            <summary>
+            The b4
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base64x4">
+            <summary>
+            Struct Base64x4
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x4.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x4.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x4.b2">
+            <summary>
+            The b2
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x4.b3">
+            <summary>
+            The b3
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base64x3">
+            <summary>
+            Struct Base64x3
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x3.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x3.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x3.b2">
+            <summary>
+            The b2
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base64x2">
+            <summary>
+            Struct Base64x2
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x2.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x2.b1">
+            <summary>
+            The b1
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base64x1">
+            <summary>
+            Struct Base64x1
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64x1.b0">
+            <summary>
+            The b0
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.Base64Int">
+            <summary>
+            Class Base64Int
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64Int.b64e">
+            <summary>
+            The b64e
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.Base64Int.b64d">
+            <summary>
+            The B64D
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.MeasureNeededSize(System.UInt64)">
+            <summary>
+            Measures the size of the needed.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>System.UInt32.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.WriteBase64x1(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base64x1.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.WriteBase64x2(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base64x2.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.WriteBase64x3(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base64x3.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.WriteBase64x4(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base64x4.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.WriteBase64x5(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base64x5.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.WriteBase64x6(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base64x6.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.WriteBase64x11(System.UInt64,System.Byte*)">
+            <summary>
+            Writes the base64x11.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="ptr">The PTR.</param>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.Write(System.Byte*,System.UInt64)">
+            <summary>
+            Writes the specified buffer.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="value">The value.</param>
+            <returns>System.UInt32.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.Read(System.Int32,System.Byte*)">
+            <summary>
+            Reads the specified size.
+            </summary>
+            <param name="size">The size.</param>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+            <exception cref="T:System.Exception">Illegal size</exception>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.ReadSafe(System.Int32,System.Byte*)">
+            <summary>
+            Checks if the size of value to read is valid and then calls basic read function.
+            </summary>
+            <param name="size">The size of the value to read</param>
+            <param name="ptr">Pointer where to read</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.ReadNullable(System.Int32,System.Byte*)">
+            <summary>
+            Reads nullable unsigned long integer of the given size from the given pointer.
+            If size is invalid, an exception is thrown.
+            </summary>
+            <param name="size">The size of the value to read.</param>
+            <param name="ptr">The pointer to the place where to read.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.ReadBase64x1(System.Byte*)">
+            <summary>
+            Reads the base64x1.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.ReadBase64x2(System.Byte*)">
+            <summary>
+            Reads the base64x2.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.ReadBase64x3(System.Byte*)">
+            <summary>
+            Reads the base64x3.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.ReadBase64x4(System.Byte*)">
+            <summary>
+            Reads the base64x4.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.ReadBase64x5(System.Byte*)">
+            <summary>
+            Reads the base64x5.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.ReadBase64x6(System.Byte*)">
+            <summary>
+            Reads the base64x6.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.Base64Int.ReadBase64x11(System.Byte*)">
+            <summary>
+            Reads the base64x11.
+            </summary>
+            <param name="ptr">The PTR.</param>
+            <returns>UInt64.</returns>
+        </member>
+        <member name="T:Starcounter.Internal.AnyBaseBool">
+            <summary>
+            Contains methods to write and read Boolean suitable for any encoding, since fits 16 bits
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.GetAtPosition(System.Int32,System.Byte*@,System.Int32@)">
+            <summary>
+            Gets pointer to and lenght of the value at the given position
+            </summary>
+            <param name="index">Position of the value in the tuple</param>
+            <param name="valuePos">The pointer to the value</param>
+            <param name="valueLength">The length of the value</param>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.GetValueLength(System.Int32)">
+            <summary>
+            Returns length of the value at given position in the tuple.
+            </summary>
+            <param name="index">The position in the tuple</param>
+            <returns>The length of the value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.GetPosition(System.Int32)">
+            <summary>
+            Calculates the pointer to the value at the given index in the tuple.
+            </summary>
+            <param name="index">The index of the value in the tuple.</param>
+            <returns>The pointer.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadULong(System.Int32)">
+            <summary>
+            Reads unsigned long integer at the given position of the tuple.
+            The implementation cannot be used in performance critical applications,
+            since it checks correctness of the data.
+            </summary>
+            <param name="index">Index of the value to read in this tuple.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadLong(System.Int32)">
+            <summary>
+            Reads signed long integer at the given position of the tuple.
+            The implementation cannot be used in performance critical applications,
+            since it checks correctness of the data.
+            </summary>
+            <param name="index">Index of the value to read in this tuple.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadULongNullable(System.Int32)">
+            <summary>
+            Reads nullable unsigned long integer at the given position of the tuple.
+            The implementation cannot be used in performance critical applications,
+            since it checks correctness of the data.
+            </summary>
+            <param name="index">Index of the value to read in this tuple.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadLongNullable(System.Int32)">
+            <summary>
+            Reads nullable signed long integer at the given position of the tuple.
+            The implementation cannot be used in performance critical applications,
+            since it checks correctness of the data.
+            </summary>
+            <param name="index">Index of the value to read in this tuple.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadString(System.Int32)">
+            <summary>
+            Reads the string value at index position in the tuple.
+            The implementation cannot be used in performance critical applications,
+            since it checks correctness of the data.
+            </summary>
+            <param name="index">The value position in the tuple. </param>
+            <returns>The read string. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadByteArray(System.Int32)">
+            <summary>
+            Reads the byte array value at index position in the tuple.
+            The implementation cannot be used in performance critical applications,
+            since it checks correctness of the data.
+            </summary>
+            <param name="index">The value position in the tuple. </param>
+            <returns>The read byte array. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadBoolean(System.Int32)">
+            <summary>
+            Reads Boolean at the given position of the tuple.
+            </summary>
+            <param name="index">Index of the value to read in this tuple.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadBooleanNullable(System.Int32)">
+            <summary>
+            Reads Nullable Boolean at the given position of the tuple.
+            </summary>
+            <param name="index">Index of the value to read in this tuple.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadDecimal(System.Int32)">
+            <summary>
+            Reads lossless Decimal at the given position of the tuple.
+            </summary>
+            <param name="index">Index of the value to read in this tuple.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadDecimalNullable(System.Int32)">
+            <summary>
+            Reads lossless Nullable Decimal at the given position of the tuple.
+            </summary>
+            <param name="index">Index of the value to read in this tuple.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadDouble(System.Int32)">
+            <summary>
+            Reads Double at the given position of the tuple.
+            </summary>
+            <param name="index">Index of the value to read in this tuple.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadDoubleNullable(System.Int32)">
+            <summary>
+            Reads Nullable Double at the given position of the tuple.
+            </summary>
+            <param name="index">Index of the value to read in this tuple.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadSingle(System.Int32)">
+            <summary>
+            Reads Single at the given position of the tuple.
+            </summary>
+            <param name="index">Index of the value to read in this tuple.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleReaderBase64.ReadSingleNullable(System.Int32)">
+            <summary>
+            Reads Nullable Single at the given position of the tuple.
+            </summary>
+            <param name="index">Index of the value to read in this tuple.</param>
+            <returns>The read value.</returns>
+        </member>
+        <member name="F:Starcounter.Internal.SafeTupleWriterBase64.theTuple">
+            <summary>
+            The fast tuple storing the values.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SafeTupleWriterBase64.TupleMaxLength">
+            <summary>
+            Maximum possible size of tuple in bytes if set by user
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SafeTupleWriterBase64.AvailableSize">
+            <summary>
+            The available size left (in bytes)
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.#ctor(System.Byte*,System.UInt32,System.Int32,System.Int32)">
+            <summary>
+            Method
+            </summary>
+            <param name="start"></param>
+            <param name="valueCount"></param>
+            <param name="offsetElementSize"></param>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.ValidateLength(System.Int32)">
+            <summary>
+            Checks if string value fits the tuple and writes it
+            </summary>
+            <param name="value">String to write</param>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.SealTuple">
+            <summary>
+            Finalizes writing the tuple, checks if all values were written and
+            returns length of the tuple.
+            </summary>
+            <returns>The length of the tuple.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.HaveWritten(System.Int32)">
+            <summary>
+            Writes that nested tuple was written at the current position.
+            Checks if writing will fit the tuple. Thus expensive.
+            Then moves to the end of written area in the tuple, i.e., to the place
+            where next value will be written.
+            </summary>
+            <param name="len">The length of written nested tuple.</param>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeString(System.Char[])">
+            <summary>
+            Estimates the size of encoding the value.
+            </summary>
+            <param name="str">The string value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeString(System.String)">
+            <summary>
+            Estimates the size of encoding the value.
+            </summary>
+            <param name="str">The string value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeULong(System.UInt64)">
+            <summary>
+            Estimates the size of encoding the value.
+            </summary>
+            <param name="str">The integer value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeNullableULong(System.Nullable{System.UInt64})">
+            <summary>
+            Estimates the size of encoding the value.
+            </summary>
+            <param name="str">The integer value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeLong(System.Int64)">
+            <summary>
+            Estimates the size of encoding the value.
+            </summary>
+            <param name="str">The integer value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeNullableLong(System.Nullable{System.Int64})">
+            <summary>
+            Estimates the size of encoding the value.
+            </summary>
+            <param name="str">The integer value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeByteArray(System.Int32)">
+            <summary>
+            Estimates the size of encoding the value.
+            </summary>
+            <param name="str">The byte array value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeByteArray(System.Byte[])">
+            <summary>
+            Estimates the size of encoding the value.
+            </summary>
+            <param name="str">The byte array value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeBoolean(System.Boolean)">
+            <summary>
+            Estimates the size of encoding the value.
+            </summary>
+            <param name="str">The Boolean value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeNullableBoolean(System.Nullable{System.Boolean})">
+            <summary>
+            Estimates the size of encoding the value.
+            </summary>
+            <param name="str">The Nullable Boolean value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeDecimalLossless(System.Decimal)">
+            <summary>
+            Estimates the size of encoding Decimal value without loss.
+            </summary>
+            <param name="str">The value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeX6Decimal(System.Decimal)">
+            <summary>
+            Estimates the size of encoding Decimal value as it was converted from X6Decimal.
+            </summary>
+            <param name="str">The value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeNullableDecimalLossless(System.Nullable{System.Decimal})">
+            <summary>
+            Estimates the size of encoding Nullable Decimal value without loss.
+            </summary>
+            <param name="str">The value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeDouble(System.Double)">
+            <summary>
+            Estimates the size of encoding Double value.
+            </summary>
+            <param name="str">The value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeNullableDouble(System.Nullable{System.Double})">
+            <summary>
+            Estimates the size of encoding Nullable Double value.
+            </summary>
+            <param name="str">The value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeSingle(System.Single)">
+            <summary>
+            Estimates the size of encoding Single value.
+            </summary>
+            <param name="str">The value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.SafeTupleWriterBase64.MeasureNeededSizeNullableSingle(System.Nullable{System.Single})">
+            <summary>
+            Estimates the size of encoding NUllable Single value.
+            </summary>
+            <param name="str">The value to encode.</param>
+            <returns>The estimated length. </returns>
+        </member>
+        <member name="T:Starcounter.Internal.SessionBlobHeader">
+            <summary>
+            Struct SessionBlobHeader
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlobHeader.TotalBlobSize">
+            <summary>
+            The total BLOB size
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlobHeader.Generation">
+            <summary>
+            The generation
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlobHeader.Encoding">
+            <summary>
+            The encoding
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlobHeader.TupleOverflowLimit">
+            <summary>
+            The tuple overflow limit
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlobHeader.OtherSessionBlobCount">
+            <summary>
+            The other session BLOB count
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.SessionBlob">
+            <summary>
+            Allocation binary large object used by the session Storage engine for Session data.
+            The session storage engine is optimized for many concurrent session by trying to keep the number of
+            allocation (session blobs) down to a minimum and the individual size of each blob as small as possible.
+            If there are many session blobs in a session, a session blob merge can be performed resulting in the whole
+            session state being hosted in a single SessionBlob.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlob.Header">
+            <summary>
+            The header
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlob.RootTuple">
+            <summary>
+            The root tuple
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlob.HeaderSize">
+            <summary>
+            The header size
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.SessionTuple">
+            <summary>
+            A tuple holds a view model object (aka app), a view model array (aka app array) or other such
+            view model structures comprising a set of values.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionTuple.OffsetSize">
+            <summary>
+            The offset size
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionTuple.Offsets">
+            <summary>
+            The offsets
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.SessionBlobProxy">
+            <summary>
+            Used to refer to a session blob. This object can be disposed without affecting the blob.
+            A new proxy can be reattached to the blob as the proxy has no state other that its cache.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlobProxy.BlobHandle">
+            <summary>
+            The BLOB handle
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlobProxy.Cached_Blob">
+            <summary>
+            The cached_ BLOB
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlobProxy.pinNesting">
+            <summary>
+            The pin nesting
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.SessionBlobProxy.Init(System.IntPtr)">
+            <summary>
+            Inits the specified handle.
+            </summary>
+            <param name="handle">The handle.</param>
+        </member>
+        <member name="M:Starcounter.Internal.SessionBlobProxy.ToString(System.IntPtr)">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <param name="handle">The handle.</param>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SessionBlobProxy.Pin">
+            <summary>
+            Pins this instance.
+            </summary>
+            <returns>SessionBlob.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SessionBlobProxy.Unpin">
+            <summary>
+            Unpins this instance.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.SessionBlobProxy.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlobProxy.Utf8Encode">
+            <summary>
+            The UTF8 encode
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.SessionBlobProxy.Utf8Decode">
+            <summary>
+            The UTF8 decode
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.SessionBlobProxy.PinBlob(System.IntPtr,Starcounter.Internal.SessionBlob*@)">
+            <summary>
+            Pins the BLOB.
+            </summary>
+            <param name="handle">The handle.</param>
+            <param name="bufferStart">The buffer start.</param>
+        </member>
+        <member name="M:Starcounter.Internal.SessionBlobProxy.CreateBlob(System.Byte*@,System.Byte*@,System.Byte*@)">
+            <summary>
+            Allocates a new Session blob used to keep session state in the form of FriendlyTuples.
+            </summary>
+            <param name="bufferStart">Will point at first tuple</param>
+            <param name="bufferEnd">Will point at the last byte of the blob</param>
+            <param name="tupleStart">The tuple start.</param>
+            <returns>IntPtr.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.SessionBlobProxy.FreeBlob(System.IntPtr)">
+            <summary>
+            Frees the BLOB.
+            </summary>
+            <param name="Handle">The handle.</param>
+        </member>
+        <member name="M:Starcounter.Internal.SessionBlobProxy.ToString(Starcounter.Internal.SessionBlob*)">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <param name="blob">The BLOB.</param>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="T:Starcounter.Internal.TupleProxy">
+            <summary>
+            The friendly tuple proxy is a temporary object that is instantianted when needed to interact
+            with a FriendlyTuple stored in a SessionBlob. The FriendlyTupleProxy should be short lived.
+            There will be millions of unmanaged FriendlyTuples stored inside the blob and the proxy should be
+            created when processing a request and after the request is processed, it should be garbage collected.
+            The next time the same FriendlyTuple is referenced, a new FriendlyTupleProxy should be created.
+            </summary>
+            <remarks>All core methods to manipulate tuples are static. This is for performance reasons as it allows the
+            user to manipulate session state (documents and templates) without having to instantiate CLR objects.
+            The session state can also be manipulated directly using unmanaged code that works directly on memory.</remarks>
+        </member>
+        <member name="F:Starcounter.Internal.TupleProxy.BlobHandle">
+            <summary>
+            A handle to the memory blob hosting this document element.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleProxy.Address">
+            <summary>
+            The address
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleProxy.Generation">
+            <summary>
+            The generation
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleProxy.OffsetInBlob">
+            <summary>
+            The offset in BLOB
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleProxy._Index">
+            <summary>
+            The _ index
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.TupleProxy.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleProxy.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleProxy.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleProxy.MemberwiseClone">
+            <summary>
+            Creates a shallow copy of the current <see cref="T:System.Object" />.
+            </summary>
+            <returns>A shallow copy of the current <see cref="T:System.Object" />.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleProxy.GetType">
+            <summary>
+            Gets the <see cref="T:System.Type" /> of the current instance.
+            </summary>
+            <returns>The exact runtime type of the current instance.</returns>
+        </member>
+        <member name="F:Starcounter.Internal.TupleProxy.Cached_Size">
+            <summary>
+            -1 means that the size is not cached and the value needs to be read from the blob
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleProxy.Cached_OffsetSize">
+            <summary>
+            The cached_ offset size
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleProxy.CachedParent">
+            <summary>
+            If Cached_Index == -2, the parent is not cached and must be read from
+            the session blob. If Create_Index == -1 and Parent == null, it means that
+            the Template has not yet been added to a parent Template.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.TupleProxy.ReferToRootTuple2(System.IntPtr)">
+            <summary>
+            Makes this proxy point at the root tuple in the session blob. Use the Traverse
+            method to traverse down the tree.
+            </summary>
+            <param name="blob">The handle to the session blob</param>
+            <exception cref="T:System.Exception">Not implemented</exception>
+        </member>
+        <member name="M:Starcounter.Internal.TupleProxy.What(System.Int32)">
+            <summary>
+            Whats the specified steps.
+            </summary>
+            <param name="steps">The steps.</param>
+        </member>
+        <member name="M:Starcounter.Internal.TupleProxy.TraverseRight(System.Int32)">
+            <summary>
+            Traverses the right.
+            </summary>
+            <param name="steps">The steps.</param>
+        </member>
+        <member name="M:Starcounter.Internal.TupleProxy.TraverseDown(System.Int32)">
+            <summary>
+            Traverses down.
+            </summary>
+            <param name="steps">The steps.</param>
+        </member>
+        <member name="M:Starcounter.Internal.TupleProxy.Pin">
+            <summary>
+            Pins this instance.
+            </summary>
+            <returns>SessionBlob.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleProxy.Unpin">
+            <summary>
+            Unpins this instance.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.TupleProxy.GetString(System.Int32)">
+            <summary>
+            Gets the string.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="T:Starcounter.Internal.TupleReaderBase64">
+            <summary>
+            Struct TupleReader
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleReaderBase64.ValueOffset">
+            <summary>
+            Offset integer pointing to the end of the tuple with 0 being the beginning of the value count
+            Kept to speed up writing of offsets into the offset list
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleReaderBase64.ValueCount">
+            <summary>
+            Counter remembering the number of values written
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleReaderBase64.AtStart">
+            <summary>
+            Pointer to the start of this tuple
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleReaderBase64.AtOffsetEnd">
+            <summary>
+            Pointer to the end of the offset list of the tuple
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleReaderBase64.AtEnd">
+            <summary>
+            Pointer to the end of the tuple
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleReaderBase64.OffsetElementSize">
+            <summary>
+            The offset element size
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.#ctor(System.Byte*,System.UInt32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Starcounter.Internal.TupleReaderBase64" /> struct.
+            </summary>
+            <param name="start">The start.</param>
+            <param name="valueCount">The value count.</param>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadQuartet">
+            <summary>
+            Reads an unsigned 4 bit integer
+            </summary>
+            <returns>System.UInt32.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadQuintet">
+            <summary>
+            Reads an unsigned 5 bit integer
+            </summary>
+            <returns>System.UInt32.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadULong">
+            <summary>
+            Reads the unsigned long integer.
+            </summary>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadULongNullable">
+            <summary>
+            Reads nullable unsigned long integer.
+            </summary>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ConvertToLong(System.UInt64)">
+            <summary>
+            Converst from unsigned long integer to singed long integer.
+            </summary>
+            <param name="uval">The input value</param>
+            <returns>The converted value</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadLong">
+            <summary>
+            Reads signed long integer.
+            </summary>
+            <returns>The read value</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadLongNullable">
+            <summary>
+            Reads nullable signed long integer.
+            </summary>
+            <returns>The read value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.Skip">
+            <summary>
+            Skip one value
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadString(System.Char*)">
+            <summary>
+            Reads the next string value from the tuple into the given char array pointer.
+            </summary>
+            <param name="value">The pointer to read into.</param>
+            <returns>The length of the array written. -1 means null value. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadString(System.Char[])">
+            <summary>
+            Reads the next string value from the tuple into the given char array.
+            </summary>
+            <param name="value">The char array to read into.</param>
+            <returns>The length of the array written. -1 means null value. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadString">
+            <summary>
+            Reads the next string from the tuple and allocates the string in the heap.
+            </summary>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadByteArray(System.Byte*)">
+            <summary>
+            Reads the next byte array value from the tuple into the given byte array pointer.
+            </summary>
+            <param name="value">The pointer to read into.</param>
+            <returns>The length of the array written. -1 means null value. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadByteArray(System.Byte[])">
+            <summary>
+            Reads the next byte array value from the tuple into the given byte array.
+            </summary>
+            <param name="value">The array to read into.</param>
+            <returns>The length of the array written. -1 means null value. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadByteArray">
+            <summary>
+            Reads the next byte array value and allocates memory in the heap for the returned value.
+            </summary>
+            <returns>The read value. </returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadBoolean">
+            <summary>
+            Reads next value as Boolean from the tuple.
+            </summary>
+            <returns>The read Boolean value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.ReadBooleanNullable">
+            <summary>
+            Reads next value as Nullable Boolean from the tuple.
+            </summary>
+            <returns>The read Nullable Boolean value.</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleReaderBase64.GetValueLength">
+            <summary>
+            Returns the length of the current value to read.
+            </summary>
+            <returns>The length in bytes.</returns>
+        </member>
+        <member name="P:Starcounter.Internal.TupleReaderBase64.ReadByteCount">
+            <summary>
+            Gets the read byte count.
+            </summary>
+            <value>The read byte count.</value>
+        </member>
+        <member name="P:Starcounter.Internal.TupleReaderBase64.DebugString">
+            <summary>
+            Gets the debug string.
+            </summary>
+            <value>The debug string.</value>
+        </member>
+        <member name="T:Starcounter.Internal.TupleWriterBase64">
+            <summary>
+            	<para>Multiple tuples are written to a single buffer (when used to hosts Apps, this buffer is a SessionBlob).</para>
+            	<para>
+            		<img style="WIDTH: 506px; HEIGHT: 387px" src="http://www.rebelslounge.com/res/sessiontuples/tuples.png" width="800" height="683"/>
+            	</para>
+            </summary>
+            <remarks>For each tuple you write, you create a TupleWriter. As alarming as this may sound, the generated machine code will be quite efficient in .NET (not tested on
+            Mono, however). The TupleWriter is a small structure of integers. As it is a structure, everything will be on the stack. The .NET optimizer will make good use
+            of register to host the structure member integers.
+            <para>Each TupleWriter is created using the current write pointer of its parent TupleWriter.</para></remarks>
+            <example>
+            	<para>
+            The following examples assume that you have a pointer to the first byte in a buffer and another pointer to the last byte in this buffer.
+            </para>
+            	<code title="Example" description="To create a tuple represening a person and three nested tuples representing three phone numbers of the person." lang="CS">
+            // Nested tuples in JSON array notation:
+            //
+            // [ "Joachim",
+            //   "Wester",
+            //       [
+            //       "08-54137731",
+            //       "0702-424472"
+            //      ],
+            //   "United Kingdom"
+            // ]
+             
+            TupleWriter person = new TupleWriter(...);
+            person.Write("Joachim");
+            person.Write("Wester");
+            TupleWriter phonenumbers = new TupleWriter(person.??);
+            phonenumbers.Write("08-54137731");
+            phonenumbers.Write("0702-424472");
+            person.HaveWritten( phonenumber.Seal() );
+            person.Write("United Kingdom");
+            person.Seal();</code>
+            </example>
+        </member>
+        <member name="F:Starcounter.Internal.TupleWriterBase64.ValueOffset">
+            <summary>
+            Offset integer pointing to the end of the tuple with 0 being the begining of the value count
+            Kept to speed up writing of offsets into the offset list
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleWriterBase64.ValueCount">
+            <summary>
+            Counter remembering the number of values to be written
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleWriterBase64.AtStart">
+            <summary>
+            Pointer to the start of this tuple
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleWriterBase64.AtOffsetEnd">
+            <summary>
+            Pointer to the end of the offset list of the tuple
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleWriterBase64.AtEnd">
+            <summary>
+            Pointer to the end of the tuple
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.TupleWriterBase64.OffsetElementSize">
+            <summary>
+            OffsetElementSize
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.#ctor(System.Byte*,System.UInt32,System.Int32)">
+            <summary>
+            Method
+            </summary>
+            <param name="start"></param>
+            <param name="valueCount"></param>
+            <param name="offsetElementSize"></param>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.#ctor(System.Byte*,System.UInt32)">
+            <summary>
+            Method
+            </summary>
+            <param name="start"></param>
+            <param name="valueCount"></param>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.WriteQuartet(System.UInt32)">
+            <summary>
+            Writes an unsigned 4 bit integer
+            </summary>
+            <param name="n">The integer to write</param>
+            <remarks>
+            As the value size for this type is fixed, there is no offset written in offset array.
+            </remarks>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.WriteQuintet(System.UInt32)">
+            <summary>
+            Writes an unsigned 5 bit integer
+            </summary>
+            <param name="n">The integer to write</param>
+            <remarks>
+            As the value size for this type is fixed, there is no offset written in offset array.
+            </remarks>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.WriteString(System.String)">
+             <summary>
+             Appends a new value after the last value in this tuple
+             </summary>
+             <param name="str">The strinng to add</param>
+             <remarks>
+             Make sure that the expected data type for the value is a string before 
+             calling this function. For performance reasons, there is no such verification
+             done by this method.
+             </remarks>
+            
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.WriteULong(System.UInt64)">
+            <summary>
+            Writes an unsigned integer value to the tuple
+            </summary>
+            <param name="n">The value to write</param>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.WriteLong(System.Int64)">
+            <summary>
+            Writes a signed integer value to the tuple
+            </summary>
+            <param name="n">The value to write</param>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.WriteBoolean(System.Boolean)">
+            <summary>
+            Adds Boolean value to the tuple.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.WriteBooleanNullable(System.Nullable{System.Boolean})">
+            <summary>
+            Adds Nullable Boolean value to the tuple.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.HaveWritten(System.Int32)">
+            <summary>When you write a nested tuple, the parent tuple (the hosting tuple) will need to advance its write pointer. When you write a string or another primitive value,
+            this is done automatically, but when you have written data using the nested tuple, you need to call the HaveWritten method manually.</summary>
+            <param name="len">The number of bytes that you have written in the nested tuple. This value is returned when you call the <see cref="M:Starcounter.Internal.TupleWriterBase64.SealTuple">SealTuple Method</see> method.</param>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.MoveValuesRightSize(System.Int32)">
+            <summary>
+            Calculates for how many bytes the values should be moved to the right.
+            </summary>
+            <param name="newOffsetSize">New offset size to fit offset value, which requires the move</param>
+            <returns>The caclulated number of bytes</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.Grow(System.Int32)">
+            <summary>
+            This is a tricky task. We have guessed a to small size for the element offsets. We have used a to narrow size of
+            the element size. It means that the values and the offsets needs to move.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.SealTuple">
+            <summary>
+            Finalize writing tuple (currently nothine here) and returns length of the tuple
+            </summary>
+            <returns>The length of the tuple</returns>
+        </member>
+        <member name="M:Starcounter.Internal.TupleWriterBase64.FastSealTuple">
+            <summary>
+            Method
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.Internal.TupleWriterBase64.Length">
+            <summary>
+            Length
+            </summary>
+        </member>
+        <member name="P:Starcounter.Internal.TupleWriterBase64.DebugString">
+            <summary>
+            DebugString
+            </summary>
+        </member>
+    </members>
+</doc>

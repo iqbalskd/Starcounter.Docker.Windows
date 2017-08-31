@@ -1,0 +1,4189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.XSON</name>
+    </assembly>
+    <members>
+        <member name="T:Starcounter.XSON.BoundAttribute">
+            <summary>
+            Attribute used to tag generated code for properties in TypedJSON that is explicitly
+            bound to enable compile-time errors and call-graphs from properties in dataobject.
+            <code>
+            // Generated code \\
+            ...
+            [Bound(nameof(Person.Name))] 
+            public string Name { get { ... } set {... } }
+            ...
+            </code>
+            </summary>
+            <remarks>
+            The attribute itself contains no logic and is not used outside of generated code.
+            </remarks>
+        </member>
+        <member name="T:Starcounter.XSON.SiblingList.Sibling">
+            <summary>
+            A Sibling is a way to connect differerent viewmodels to achieve a 
+            virtual tree that is used on the client to achieve blending.
+            </summary>
+        </member>
+        <member name="T:Starcounter.XSON.SiblingList.DeletedSibling">
+            <summary>
+            Used to keep needed information to be able to create a remove patch
+            for the client. More or less an empty Json with namespace/appname
+            set.
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.SiblingList.ConvertIndexForDeletedList(System.Int32)">
+            <summary>
+            Converts the index to/from a negative number.
+            Used to index items in the deleted list.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.XSON.SiblingList.Identifier">
+            <summary>
+            An identifier to be able to distinguish existing siblings.
+            </summary>
+        </member>
+        <member name="P:Starcounter.XSON.SiblingList.Version">
+            <summary>
+            If versioning is enabled, contains the version it was created, or -1 
+            if versioning is not used.
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.SiblingList.Find(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="ns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.SiblingList.CheckAndRemoveDeletes(Starcounter.XSON.SiblingList.Sibling)">
+            <summary>
+            Called when adding a new sibling. If an item exists with the same 
+            namespace in the deleted list, the deleted item is removed to 
+            avoid incorrect patches being sent.
+            </summary>
+            <param name="sibling"></param>
+        </member>
+        <member name="M:Starcounter.XSON.SiblingList.CreateNamespace(Starcounter.Json)">
+            <summary>
+            Creates a namespace that is used to wrap the json in 
+            when creating patches and serializing.
+            </summary>
+            <param name="sibling"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.XSON.Interfaces.ITemplateFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Starcounter.XSON.Interfaces.IXsonTemplateMarkupReader">
+            <summary>
+            Starcounter provides JSON-by-example to create XSON templates from
+            JSON files out-of-the-box. You can however provide custom markup languages
+            to create templates.
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.Interfaces.IXsonTemplateMarkupReader.CreateTemplate(System.String,System.String)">
+            <summary>
+            Compile markup.
+            </summary>
+            <param name="markup"></param>
+            <param name="origin"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.XSON.Interfaces.ISourceInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.XSON.Interfaces.ISourceInfo.Filename">
+            <summary>
+            Gets the name of the sourcefile.
+            </summary>
+            <value>The name of the file.</value>
+        </member>
+        <member name="P:Starcounter.XSON.Interfaces.ISourceInfo.Line">
+            <summary>
+            Gets the line number.
+            </summary>
+            <value>The line no.</value>
+        </member>
+        <member name="P:Starcounter.XSON.Interfaces.ISourceInfo.Column">
+            <summary>
+            Gets the column number.
+            </summary>
+            <value>The col no.</value>
+        </member>
+        <member name="T:Starcounter.XSON.Interfaces.ITemplateCodeGenerator">
+            <summary>
+            Interface ITemplateCodeGenerator
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.Interfaces.ITemplateCodeGenerator.GenerateCode">
+            <summary>
+            Generates the code.
+            </summary>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.Interfaces.ITemplateCodeGenerator.GenerateAST">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.Interfaces.ITemplateCodeGenerator.DumpAstTree">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.XSON.Interfaces.ITemplateCodeGenerator.Warnings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Starcounter.XSON.Interfaces.ITemplateCodeGeneratorModule">
+            <summary>
+            Interface ITemplateCodeGeneratorModule
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.Interfaces.ITemplateCodeGeneratorModule.CreateGenerator(System.Type,System.String,System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="defaultNewObjTemplateType"></param>
+            <param name="lang"></param>
+            <param name="template"></param>
+            <param name="metadata"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.XSON.JsonByExample.JsonByExampleParser">
+            <summary>
+            Class that parses json and converts it to a TypedJSON template structure.
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.JsonByExample.JsonByExampleParser.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="json"></param>
+            <param name="originFilename"></param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonByExample.JsonByExampleParser.CreateTemplate">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonByExample.JsonByExampleParser.BeginObject(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonByExample.JsonByExampleParser.EndObject(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonByExample.JsonByExampleParser.BeginArray(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonByExample.JsonByExampleParser.EndArray(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonByExample.JsonByExampleParser.Property(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonByExample.JsonByExampleParser.Property(System.String,System.Decimal)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonByExample.JsonByExampleParser.Property(System.String,System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonByExample.JsonByExampleParser.Property(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonByExample.JsonByExampleParser.GetSourceInfo">
+            <summary>
+            Returns an instance holding information about where a specific token is processed.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonByExample.JsonByExampleParser.ProcessName(System.String)">
+            <summary>
+            Since JsonByExample have some specific syntax for allowing metadata to be specified,
+            we check the property-name in case the value should be treated as a metadata-object.
+            </summary>
+            <param name="propertyName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.XSON.Advanced.SessionExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.Advanced.SessionExtension.SetClientRoot(Starcounter.Session,Starcounter.Json)">
+            <summary>
+            Sets the specified viewmodel to use as root for communication for a client. 
+            </summary>
+            <param name="root"></param>
+        </member>
+        <member name="M:Starcounter.XSON.NewtonSoftSerializer.ShouldBeNamespaced(Starcounter.Json,Starcounter.Session)">
+            <summary>
+            Returns true if the specified json should be wrapped in namespace when
+            serializing. 
+            Only certain kinds of json will be namespaced.
+            1. Is stateful (i.e state stored on a session)
+            2. Session have the namespace option enabled.
+            3. Is a possible attachpoint for siblings of other viewmodels (partial/merged).
+            </summary>
+            <param name="json"></param>
+            <param name="session"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.NewtonSoftSerializer.SpecialRead(Newtonsoft.Json.JsonTextReader,Starcounter.Templates.Template)">
+            <summary>
+            Sets the handling for float values depending of the type of the template, 
+            and reads the next token. 
+            </summary>
+            <remarks>
+            This method assumes that there are more tokens to read. If the reader returns
+            false an exception is thrown.
+            </remarks>
+            <param name="reader">The reader</param>
+            <param name="template">The template to check type from</param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.NewtonSoftSerializer.ConvertOrThrow``1(Newtonsoft.Json.JsonTextReader,Starcounter.Json,Starcounter.Templates.Template,Starcounter.Advanced.XSON.JsonSerializerSettings,System.Func{System.Object,``0})">
+            <summary>
+            Tries to convert the object to the specified type. Throws exception
+            if strict value conversion is specified or conversion failed.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <param name="template"></param>
+            <param name="settings"></param>
+            <param name="convert"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.NewtonSoftSerializer.GetValue``1(Starcounter.Templates.Property{``0},Starcounter.Json,Starcounter.Advanced.XSON.JsonSerializerSettings)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="template"></param>
+            <param name="parent"></param>
+            <param name="settings"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.XSON.JsonPatch">
+            <summary>
+            Class for evaluating, handling and creating json-patch to and from typed json objects 
+            and logged changes done in a typed json object during a request.
+            
+            The json-patch is implemented according to http://tools.ietf.org/html/rfc6902
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatch.Generate(Starcounter.Json,System.Boolean,System.Boolean,System.Byte[]@)">
+            <summary>
+            Generates a JSON-Patch array for all changes logged in the changelog.
+            </summary>
+            <param name="flushLog">If true, the change log will be reset</param>
+            <returns>The JSON-Patch string (see RFC6902)</returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatch.Generate(Starcounter.Json,System.Boolean,System.Boolean)">
+            <summary>
+            Generates a JSON-Patch array for all changes logged in the changelog
+            </summary>
+            <param name="flushLog">If true, the change log will be reset</param>
+            <returns>The JSON-Patch string (see RFC6902)</returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatch.WritePatch(Starcounter.Internal.XSON.Change,System.IO.TextWriter,System.Boolean)">
+            <summary>
+            Builds the json patch.
+            </summary>
+            <param name="patchType">Type of the patch.</param>
+            <param name="nearestApp">The nearest app.</param>
+            <param name="from">From.</param>
+            <param name="index">The index.</param>
+            <returns>String.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatch.Apply(Starcounter.Json,System.Byte[],System.Boolean)">
+            <summary>
+            Applies patches and triggers the appropiate inputhandlers
+            </summary>
+            <param name="root">The root json</param>
+            <param name="patchArray">The array containing all patches.</param>
+            <param name="strictPatchRejection">
+            If set to true, rejected patches will throw exception otherwise they will 
+            be ignored (and the rest of the patches will be applied)
+            </param>
+            <returns>The number of patches applied.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatch.Apply(Starcounter.Json,System.String,System.Boolean)">
+            <summary>
+            Applies patches and triggers the appropiate inputhandlers
+            </summary>
+            <param name="root">The root json</param>
+            <param name="patch">The string containing all patches.</param>
+            <param name="strictPatchRejection">
+            If set to true, rejected patches will throw exception otherwise they will 
+            be ignored (and the rest of the patches will be applied)
+            </param>
+            <returns>The number of patches applied.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatch.Apply(Starcounter.Json,System.Byte[],System.Boolean,System.Int32@)">
+            <summary>
+            Applies patches and triggers the appropiate inputhandlers
+            </summary>
+            <param name="root">The root json</param>
+            <param name="patchArray">The bytearray containing all patches.</param>
+            <param name="strictPatchRejection">
+            If set to true, rejected patches will throw exception otherwise they will 
+            be ignored (and the rest of the patches will be applied)
+            </param>
+            <param name="patchCount">The number of applied patches.</param>
+            <returns>The status of the patches that was applied.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatch.Apply(Starcounter.Json,System.String,System.Boolean,System.Int32@)">
+            <summary>
+            Applies patches and triggers the appropiate inputhandlers
+            </summary>
+            <param name="root">The root json</param>
+            <param name="patch">The string containing all patches.</param>
+            <param name="strictPatchRejection">
+            If set to true, rejected patches will throw exception otherwise they will 
+            be ignored (and the rest of the patches will be applied)
+            </param>
+            <param name="patchCount">The number of applied patches.</param>
+            <returns>The status of the patches that was applied.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatch.HandleOnePatch(Starcounter.Json,Starcounter.JsonPatchOperation,Starcounter.XSON.JsonPointer,System.String,System.Int32,Starcounter.XSON.ChangeLog,System.Object,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="root"></param>
+            <param name="op"></param>
+            <param name="ptr"></param>
+            <param name="value"></param>
+            <param name="patchCount"></param>
+            <param name="changeLog"></param>
+            <param name="sourceJson"></param>
+            <param name="strictRejection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatch.ThrowPatchException(System.Int32,System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="patchStart"></param>
+            <param name="patchEnd"></param>
+            <param name="data"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatch.GetPatchAsString(System.Int32,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="patchStart"></param>
+            <param name="data"></param>
+            <param name="dataSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatch.ConvertStatusToCount(Starcounter.XSON.JsonPatchStatus,System.Int32)">
+            <summary>
+            Converts the status to the old hacky way of determining the status of
+            a batch of patches when versioning is used.
+            </summary>
+            <param name="status">The status of the applied patches</param>
+            <param name="patchCount">The count of applied patches</param>
+            <returns>
+            If the status says that the patch is either queued or already applied
+            the return value will be negative (-1 for already applied, -2 for queued),
+            otherwise the applied count will be returned.
+            </returns>
+        </member>
+        <member name="T:Starcounter.XSON.Templates.Factory.FactoryExceptionHelper">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.FactoryExceptionHelper.RaiseWrongValueForPropertyError(System.String,System.String,System.String,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Raises the wrong value for property error.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+            <param name="expectedType">The expected type.</param>
+            <param name="foundType">Type of the found.</param>
+            <param name="sourceInfo">The debug info.</param>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.FactoryExceptionHelper.RaiseInvalidPropertyError(System.String,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Raises the invalid property error.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+            <param name="sourceInfo">The debug info.</param>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.FactoryExceptionHelper.RaiseInvalidPropertyCharactersError(System.String,System.String,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Raises the invalid property error.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+            <param name="debugInfo">The debug info.</param>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.FactoryExceptionHelper.RaiseUnknownPropertyError(System.String,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Raises the unknown property error.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+            <param name="sourceInfo">The debug info.</param>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.FactoryExceptionHelper.RaiseUnknownPropertyTypeError(System.String,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Raises the unknown property type error.
+            </summary>
+            <param name="typeName">Name of the type.</param>
+            <param name="sourceInfo">The debug info.</param>
+        </member>
+        <member name="T:Starcounter.XSON.Templates.Factory.MetaTemplate">
+            <summary>
+            Class MetaTemplate
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.MetaTemplate.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:Starcounter.XSON.Templates.Factory.MetaTemplate" /> class.
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.MetaTemplate.#ctor(Starcounter.Templates.Template,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Starcounter.XSON.Templates.Factory.MetaTemplate" /> class.
+            </summary>
+            <param name="template"></param>
+            <param name="debugInfo"></param>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.MetaTemplate.Set(System.String,System.Object)">
+            <summary>
+            Sets the string on the template for the property with the 
+            specified name.
+            </summary>
+            <param name="name">The name of the property to set.</param>
+            <param name="v">The value.</param>
+        </member>
+        <member name="T:Starcounter.XSON.Templates.Factory.TemplateFactory">
+            <summary>
+            The template factory is intended for template parsers as a clean
+            interface used to built Starcounter controller templates.
+            It is used as a singleton.
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.TemplateFactory.CheckAndAddOrReplaceTemplate(Starcounter.Templates.Template,System.Object,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Checks if the specified name already exists. If the name exists
+            and is not used by an ReplaceableTemplate an exception is thrown.
+            In case the existing template is an ReplaceableTemplate all values
+            set on it are copied to the new template, and the ReplaceableTemplate is
+            replaced with the new template.
+            If no template exists, the new template is added to the parent.
+            </summary>
+            <param name="newTemplate">The new template.</param>
+            <param name="parent">The parent.</param>
+            <param name="debugInfo">The debug info.</param>
+            <returns>Template.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.TemplateFactory.Starcounter#XSON#Interfaces#ITemplateFactory#GetMetaTemplate(Starcounter.Templates.Template,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Gets the meta template.
+            </summary>
+            <param name="templ">The templ.</param>
+            <param name="sourceInfo">The debug info.</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.TemplateFactory.Starcounter#XSON#Interfaces#ITemplateFactory#GetMetaTemplate(Starcounter.Templates.Template,System.String,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Gets the meta template for property.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="name">The name.</param>
+            <param name="debugInfo">The debug info.</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.TemplateFactory.Starcounter#XSON#Interfaces#ITemplateFactory#AddString(Starcounter.Templates.Template,System.String,System.String,System.String,Starcounter.XSON.Interfaces.ISourceInfo)">
+             <summary>
+             Adds the string property.
+             </summary>
+             <param name="parent">The parent.</param>
+             <param name="name">The name.</param>
+             <param name="dotNetName">A legal C# property name (with non C# characters, such as $, stripped out)</param>
+             <param name="value">The value.</param>
+             <param name="sourceInfo">The debug info.</param>
+             <returns>System.Object.</returns>
+            
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.TemplateFactory.Starcounter#XSON#Interfaces#ITemplateFactory#AddInteger(Starcounter.Templates.Template,System.String,System.String,System.Int64,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Adds the integer property.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="name">The name.</param>
+            <param name="dotNetName">A legal C# property name (with non C# characters, such as $, stripped out)</param>
+            <param name="value">The value.</param>
+            <param name="sourceInfo">The debug info.</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.TemplateFactory.Starcounter#XSON#Interfaces#ITemplateFactory#AddDecimal(Starcounter.Templates.Template,System.String,System.String,System.Decimal,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Adds the decimal property.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="name">The name.</param>
+            <param name="dotNetName">A legal C# property name (with non C# characters, such as $, stripped out)</param>
+            <param name="value">The value.</param>
+            <param name="sourceInfo">The debug info.</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.TemplateFactory.Starcounter#XSON#Interfaces#ITemplateFactory#AddDouble(Starcounter.Templates.Template,System.String,System.String,System.Double,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Adds the double property.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="name">The name.</param>
+            <param name="dotNetName">A legal C# property name (with non C# characters, such as $, stripped out)</param>
+            <param name="value">The value.</param>
+            <param name="sourceInfo">The debug info.</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.TemplateFactory.Starcounter#XSON#Interfaces#ITemplateFactory#AddBoolean(Starcounter.Templates.Template,System.String,System.String,System.Boolean,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Adds the boolean property.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="name">The name.</param>
+            <param name="dotNetName">A legal C# property name (with non C# characters, such as $, stripped out)</param>
+            <param name="value">if set to <c>true</c> [value].</param>
+            <param name="sourceInfo">The debug info.</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.TemplateFactory.Starcounter#XSON#Interfaces#ITemplateFactory#AddArray(Starcounter.Templates.Template,System.String,System.String,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Adds the array property.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="name">The name.</param>
+            <param name="dotNetName">A legal C# property name (with non C# characters, such as $, stripped out)</param>
+            <param name="sourceInfo">The debug info.</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.TemplateFactory.Starcounter#XSON#Interfaces#ITemplateFactory#AddObject(Starcounter.Templates.Template,System.String,System.String,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            Adds the app property.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="name">The name.</param>
+            <param name="dotNetName">A legal C# property name (with non C# characters, such as $, stripped out)</param>
+            <param name="sourceInfo">The debug info.</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.TemplateFactory.CheckForInvalidCharactersInPropertyName(System.String,Starcounter.XSON.Interfaces.ISourceInfo)">
+            <summary>
+            
+            </summary>
+            <param name="propertyName"></param>
+            <param name="sourceInfo"></param>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.TemplateFactory.Verify(Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Starcounter.XSON.Templates.Factory.ReplaceableTemplate">
+            <summary>
+            A temporary template used to hold values until the correct
+            template can be created. If for example metadata for a field
+            is specified before the actual field in the json file, a temporary
+            ReplaceableTemplate will be created, and later the values will be
+            copied to the right template.
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.ReplaceableTemplate.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.XSON.Templates.Factory.ReplaceableTemplate.HasInstanceValueOnClient">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.ReplaceableTemplate.SetValue(System.String,System.String)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.Templates.Factory.ReplaceableTemplate.CopyValuesTo(Starcounter.Templates.Template)">
+            <summary>
+            Copies the replaceable template values.
+            </summary>
+            <param name="rt">The rt.</param>
+            <param name="newTemplate">The new template.</param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonDebugHelper.GetClassName(Starcounter.Templates.Template)">
+            <summary>
+            Returns the classname for the specified template.
+            </summary>
+            <param name="template"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonDebugHelper.GetTemplateOrClassName(Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="template"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonDebugHelper.GetFullName(Starcounter.Json,Starcounter.Templates.Template)">
+            <summary>
+            Returns the fully qualified name for the specified json, and 
+            optionally property.
+            </summary>
+            <param name="json"></param>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonDebugHelper.ToBasicString(Starcounter.Json,Starcounter.Templates.Template)">
+            <summary>
+            Returns a string representation of the current state of the specified json, 
+            including fullname and information about the specified property. 
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonDebugHelper.ToFullString(Starcounter.Json)">
+            <summary>
+            Returns a string representation of the current state of the specified json, 
+            including all properties and values as well as additional info (like dirtyflags etc.)
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonDebugHelper.WriteObjectToDebugString(Starcounter.Json,System.Text.StringBuilder,System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="sb"></param>
+            <param name="i"></param>
+            <param name="template"></param>
+        </member>
+        <member name="M:Starcounter.XSON.ChangeLog.UpdateValue(Starcounter.Json,Starcounter.Templates.TValue)">
+            <summary>
+            Adds an value update change.
+            </summary>
+            <param name="obj">The json containing the value.</param>
+            <param name="property">The property to update</param>
+        </member>
+        <member name="M:Starcounter.XSON.ChangeLog.Add(Starcounter.Internal.XSON.Change)">
+            <summary>
+            Adds a list of changes to the log
+            </summary>
+            <param name="toAdd"></param>
+        </member>
+        <member name="M:Starcounter.XSON.ChangeLog.Clear">
+            <summary>
+            Clears all changes.
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.ChangeLog.Generate(System.Boolean,Starcounter.Internal.XSON.Change[]@)">
+            <summary>
+            Logs all changes since the last JSON-Patch update. This method generates the log
+            for the dirty flags and the added/removed logs of the JSON tree in the session data.
+            If called recursively, the method will return false and not collect any changes.
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.ChangeLog.Checkpoint">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatchException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatchException.#ctor(System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="severity"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatchException.#ctor(System.Int32,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="severity"></param>
+            <param name="message"></param>
+            <param name="patch"></param>
+        </member>
+        <member name="P:Starcounter.XSON.JsonPatchException.Patch">
+            <summary>
+            The patch that was currently applied when the exception was thrown.
+            </summary>
+        </member>
+        <member name="P:Starcounter.XSON.JsonPatchException.Version">
+            <summary>
+            Contains the current client and server versions if versioning is enabled.
+            </summary>
+        </member>
+        <member name="P:Starcounter.XSON.JsonPatchException.CurrentProperty">
+            <summary>
+            Contains the value of the current property when moving through the patch.
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPatchException.FormatDetailedMessage(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonProperty.Evaluate(System.String,Starcounter.Json)">
+            <summary>
+            Evaluates the jsonpointer and retrieves the property it points to 
+            and the correct jsonobject for the template starting from the specified root.
+            </summary>
+            <param name="pointer">The jsonpointer in stringformat.</param>
+            <param name="root">The jsonobject to start from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonProperty.Evaluate(System.Byte[],Starcounter.Json)">
+            <summary>
+            Evaluates the jsonpointer and retrieves the property it points to 
+            and the correct jsonobject for the template starting from the specified root.
+            </summary>
+            <param name="pointer">The jsonpointer as a bytearray in utf8.</param>
+            <param name="root">The jsonobject to start from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonProperty.Evaluate(Starcounter.XSON.JsonPointer,Starcounter.Json)">
+            <summary>
+            Evaluates the jsonpointer and retrieves the property it points to 
+            and the correct jsonobject for the template starting from the specified root.
+            </summary>
+            <param name="pointer">The jsonpointer.</param>
+            <param name="root">The jsonobject to start from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.GenerateBoundOrUnboundDelegates``1(Starcounter.Templates.Property{``0})">
+            <summary>
+            Generates an expression-tree for getting and setting values on a json object, either bound 
+            or unbound. The expression will be compiled to a delegate and set on the property. 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="property"></param>
+            <param name="json"></param>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.GenerateUnboundDelegates``1(Starcounter.Templates.Property{``0},System.Boolean)">
+            <summary>
+            Generates an expression-tree for getting and setting unbound values on a json object. The
+            expression will be compiled to a delegate and set on the property. If useBackingField is true
+            the expression will use a backing field instead of accessing a list.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="property"></param>
+            <param name="directAccess"></param>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.GenerateUnboundDelegates(Starcounter.Templates.TObject,System.Boolean)">
+            <summary>
+            Generates an expression-tree for getting and setting unbound values on a json object. The
+            expression will be compiled to a delegate and set on the property. If useBackingField is true
+            the expression will use a backing field instead of accessing a list.
+            </summary>
+            <param name="property"></param>
+            <param name="directAccess"></param>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.GenerateUnboundDelegates(Starcounter.Templates.TObjArr,System.Boolean)">
+            <summary>
+            Generates an expression-tree for getting and setting unbound values on a json object. The
+            expression will be compiled to a delegate and set on the property. If useBackingField is true
+            the expression will use a backing field instead of accessing a list.
+            </summary>
+            <param name="property"></param>
+            <param name="directAccess"></param>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.GenerateUnboundDelegates``1(Starcounter.Templates.TArray{``0},System.Boolean)">
+            <summary>
+            Generates an expression-tree for getting and setting unbound values on a json object. The
+            expression will be compiled to a delegate and set on the property. If useBackingField is true
+            the expression will use a backing field instead of accessing a list.
+            </summary>
+            <param name="property"></param>
+            <param name="directAccess"></param>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.GenerateBoundDelegates``1(Starcounter.Templates.Property{``0},Starcounter.Json)">
+            <summary>
+            Generates an expression-tree for getting and setting bound values on a json or dataobject. The
+            expression will be compiled to a delegate and set on the property.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="property"></param>
+            <param name="json"></param>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.GenerateBoundDelegates(Starcounter.Templates.TObject,Starcounter.Json)">
+            <summary>
+            Generates an expression-tree for getting and setting bound values on a json or dataobject. The
+            expression will be compiled to a delegate and set on the property.
+            </summary>
+            <param name="property"></param>
+            <param name="json"></param>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.GenerateBoundDelegates(Starcounter.Templates.TObjArr,Starcounter.Json)">
+            <summary>
+            Generates an expression-tree for getting and setting bound values on a json or dataobject. The
+            expression will be compiled to a delegate and set on the property.
+            </summary>
+            <param name="property"></param>
+            <param name="json"></param>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.WrapInTryCatch(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="body"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.CreateBinding``1(Starcounter.XSON.BindingInfo,System.Boolean,System.Linq.Expressions.Expression,System.Linq.Expressions.ParameterExpression,Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="bInfo"></param>
+            <param name="createGetBinding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.CreateGetMemberBinding``1(System.Reflection.MemberInfo,System.Linq.Expressions.Expression,System.Boolean,Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="member"></param>
+            <param name="expr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.CreateSetMemberBinding``1(System.Reflection.MemberInfo,System.Linq.Expressions.Expression,System.Linq.Expressions.ParameterExpression,System.Boolean,Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="member"></param>
+            <param name="expr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.CreateFieldGetBinding``1(System.Reflection.FieldInfo,System.Linq.Expressions.Expression,System.Boolean,Starcounter.Templates.Template)">
+            <summary>
+            Generate a delegate (IL code) that accepts an object and
+            that reads and returns the value of a a specific field 
+            </summary>
+            <param name="field">The field to read</param>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.CreateFieldSetBinding``1(System.Reflection.FieldInfo,System.Linq.Expressions.Expression,System.Linq.Expressions.ParameterExpression,System.Boolean,Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="field"></param>
+            <param name="expr"></param>
+            <param name="convertType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.CreatePropertyGetBinding``1(System.Reflection.PropertyInfo,System.Reflection.MethodInfo,System.Linq.Expressions.Expression,System.Boolean,Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="getMethod"></param>
+            <param name="expr"></param>
+            <param name="convertType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.CreatePropertySetBinding``1(System.Reflection.PropertyInfo,System.Reflection.MethodInfo,System.Linq.Expressions.Expression,System.Linq.Expressions.ParameterExpression,System.Boolean,Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="setMethod"></param>
+            <param name="expr"></param>
+            <param name="convertType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.TemplateDelegateGenerator.AddTypeConversionIfPossible(System.Linq.Expressions.Expression,System.Type,System.Type,System.Reflection.MemberInfo,Starcounter.Templates.Template)">
+            <summary>
+            Checks the types and adds a conversion if possible to the expression tree.
+            </summary>
+            <param name="expr">The current node in the expression tree</param>
+            <param name="from">The original type</param>
+            <param name="to">The type to convert to if possible</param>
+            <returns>The new node in the expression tree</returns>
+        </member>
+        <member name="T:Starcounter.XSON.JsonPointer">
+            <summary>
+            Class representing a jsonpointer as described in http://tools.ietf.org/html/rfc6901
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPointer.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Starcounter.XSON.JsonPointer" /> class.
+            </summary>
+            <param name="pointer">The pointer.</param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPointer.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Starcounter.XSON.JsonPointer" /> class.
+            </summary>
+            <param name="pointer">The pointer.</param>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPointer.FindNextToken">
+            <summary>
+            Finds the next token.
+            </summary>
+            <returns>Boolean.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPointer.DecodeTildeEscapeCharacter">
+            <summary>
+            Decodes the tilde escape character.
+            </summary>
+            <exception cref="T:System.Exception">Unexpected ecsape sequence. End of pointer reached.</exception>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPointer.DecodeEscapeSequence">
+            <summary>
+            Decodes the escape sequence.
+            </summary>
+            <exception cref="T:System.Exception">Unexpected token. End of pointer reached.</exception>
+        </member>
+        <member name="P:Starcounter.XSON.JsonPointer.CurrentAsInt">
+            <summary>
+            Gets the current as int.
+            </summary>
+            <value>The current as int.</value>
+            <exception cref="T:System.Exception">The current token is not a number.</exception>
+        </member>
+        <member name="P:Starcounter.XSON.JsonPointer.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+            <value>The current.</value>
+            <returns>The element in the collection at the current position of the enumerator.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPointer.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:Starcounter.XSON.JsonPointer.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+            <value>The current.</value>
+            <returns>The element in the collection at the current position of the enumerator.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPointer.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPointer.IsLastElement">
+            <summary>
+            Checks if additional elements exists but does not advance the enumerator.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPointer.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element in the collection.
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.JsonPointer.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="M:Starcounter.XSON.DataBindingHelper.SearchForBinding(Starcounter.Json,System.String,Starcounter.Templates.TValue,System.Boolean)">
+            <summary>
+            Looks first in the parent for a property with the same name as the binding name. If no property is 
+            found the dataobject is used (if any).
+            </summary>
+            <param name="parent"></param>
+            <param name="bindingName"></param>
+            <param name="template"></param>
+            <param name="throwException"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.DataBindingHelper.GetBindingPath(System.Type,System.Object,System.String,Starcounter.Templates.Template,System.Boolean,System.Boolean)">
+            <summary>
+            Returns the property with the specified name from the data type. If not found an exception 
+            is thrown.
+            </summary>
+            <param name="dataType"></param>
+            <param name="bindingName"></param>
+            <param name="template"></param>
+            <param name="throwException"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.DataBindingHelper.GetMemberForBinding(System.Type,System.String,Starcounter.Templates.Template,System.Boolean,System.Boolean)">
+            <summary>
+            Returns the property with the specified name from the data type.
+            </summary>
+            <param name="dataType"></param>
+            <param name="bindingName"></param>
+            <param name="template"></param>
+            <param name="throwException"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.DataBindingHelper.GetMemberReturnType(System.Reflection.MemberInfo)">
+            <summary>
+            
+            </summary>
+            <param name="mInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.XSON.DataBindingHelper.GetMemberDeclaringType(System.Reflection.MemberInfo)">
+            <summary>
+            
+            </summary>
+            <param name="mInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.XSON.ExceptionHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.ExceptionHelper.ThrowPropertyNotFound(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Starcounter.XSON.ExceptionHelper.ThrowInvalidJson(System.String)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.XSON.ExceptionHelper.ThrowUnexpectedEndOfContent(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Starcounter.XSON.ExceptionHelper.HasErrorCode(System.Exception,System.UInt32)">
+            <summary>
+            Searches in the specified exception and all inner exceptions for
+            an exception that has the specific errorcode.
+            </summary>
+            <param name="ex"></param>
+            <param name="errorCode"></param>
+            <returns>True if an exception with the errocode is found, false otherwise</returns>
+        </member>
+        <member name="T:Starcounter.Json">
+             <summary>
+             A Json object represents tree of values that can be serialized to or from a 
+             JSON string.
+             
+             A value can be a primitive such as numbers, strings and booleans or they can be other Json objects.or
+             arrays of values.
+             
+             The objects mimics the types of trees inducable from the JSON string format.
+             The difference from the Json induced object tree in Javascript is
+             foremost that Obj supports multiple numeric types, time and higher precision numerics.
+             
+             While JSON is a text based notation format, the Json class is a materialized
+             tree of arrays, objects and primitive values than can be serialized 
+             to and from the corresponding JSON text.
+             
+             The types supported are:
+            
+             Object			    (can contain properties of any supported type)
+             List			    (typed array/list/vector of any supported type),
+             null            
+             Time 			    (datetime)
+             Boolean
+             String 			    (variable length Unicode string),
+             Integer 		    (variable length up to 64 bit, signed)
+             Unsigned Integer	(variable length up to 64 bit, unsigned)
+             Decimal			    (base-10 floating point up to 64 bit),
+             Float			    (base-2 floating point up to 64 bit)
+             </summary>
+             <remarks>
+             The current implementation has a few shortcommings. Currently Json only supports arrays of objects.
+             Also, all objects in the array must use the same Schema.
+             
+             In the release version of Starcounter, Obj objects trees will be optimized for storage in "blobs" rather than on
+             the garbage collected heap. This is such that stateful sessions can employ them without causing unnecessary system
+             stress.
+            
+             A Json object can be data bound to a database object such as its bound properties
+             merely reflect the values of the database objects.
+             </remarks>
+            <summary>
+            Class App
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.InitializeCache">
+            <summary>
+            
+            </summary>
+            <param name="vc"></param>
+        </member>
+        <member name="M:Starcounter.Json.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+            <summary>
+            Copies all items to the specified array.
+            </summary>
+            <param name="array">The destination array.</param>
+            <param name="arrayIndex">The start index in the source.</param>
+        </member>
+        <member name="P:Starcounter.Json.System#Collections#ICollection#Count">
+            <summary>
+            Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
+            </summary>
+            <value>The count.</value>
+            <returns>The number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.</returns>
+        </member>
+        <member name="M:Starcounter.Json.System#Collections#IList#IndexOf(System.Object)">
+            <summary>
+            Gets the index in the list of the specified item.
+            </summary>
+            <param name="item">The item.</param>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="M:Starcounter.Json.System#Collections#IList#Insert(System.Int32,System.Object)">
+            <summary>
+            Inserts the item at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="item">The item.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Starcounter.Json.VerifyJsonForInserting(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.VerifyJsonForRemoving(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Starcounter.Json.System#Collections#IList#Add(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.Replace(System.Object,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Starcounter.Json._Add(System.Object)">
+            <summary>
+            Adds the specified item.
+            </summary>
+            <param name="item">The item.</param>
+            <exception cref="T:System.Exception">This template is already used by an App. Cannot add more properties.</exception>
+        </member>
+        <member name="M:Starcounter.Json.System#Collections#IList#Remove(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.Remove(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.System#Collections#IList#RemoveAt(System.Int32)">
+            <summary>
+            Removed the item at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Starcounter.Json.InternalRemove(Starcounter.Json,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="index"></param>
+        </member>
+        <member name="M:Starcounter.Json.System#Collections#IList#Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Starcounter.Json.InternalClear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.System#Collections#IList#Contains(System.Object)">
+            <summary>
+            Checks if the specified item exists in the list.
+            </summary>
+            <param name="item">The item.</param>
+            <returns><c>true</c> if [contains] [the specified item]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="P:Starcounter.Json.System#Collections#IList#IsReadOnly">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
+            </summary>
+            <value><c>true</c> if this instance is read only; otherwise, <c>false</c>.</value>
+            <returns>true if the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only; otherwise, false.</returns>
+        </member>
+        <member name="M:Starcounter.Json.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Starcounter.Json.GetJsonArray">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.Json.IndexInParent">
+            <summary>
+            Return the position of this Json object or array within its parent
+            object or array. For arrays, this means the index of the element and
+            for objects it means the index of the property.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.CreateIncorrectTemplateException(Starcounter.Json,Starcounter.Templates.Template,Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="expected"></param>
+            <param name="actual"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.Json.JsonByExample">
+            <summary>
+            Base classes to be derived by Json-by-example classes.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Json.JsonByExample.Schema">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Starcounter.Json.JsonByExample.Metadata`2">
+            <summary>
+            Used by to support inheritance when using Json-by-example compiler
+            </summary>
+            <typeparam name="TJson">The Json instance type described by this schema</typeparam>
+            <typeparam name="TTemplate">The schema for the Json.</typeparam>
+        </member>
+        <member name="M:Starcounter.Json.#cctor">
+            <summary>
+            Static constructor to automatically initialize XSON.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Starcounter.Json" /> class.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.#ctor(System.String)">
+            <summary>
+            Creates an instance <see cref="T:Starcounter.Json" /> class using the specified string to build a <see cref="P:Starcounter.Json.Template" /> 
+            and set values.
+            </summary>
+            <param name="jsonStr">The string containing proper JSON</param>
+        </member>
+        <member name="P:Starcounter.Json.IsCodegenerated">
+            <summary>
+            Returns true if this instance is backed by a codegenerated template.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json._InitializeValues">
+            <summary>
+            The QUICKTUPLE implementation keeps the property values of an App in a simple array of 
+            boxed CLR values. This implementation should never be used on the server side as the
+            strain on the garbage collector and the memory consumption would be to great. Instead, the
+            server side represetation should use the default session blob model.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.GetChangeLog(System.Boolean)">
+            <summary>
+            Gets the ChangeLog object from the closest parent that have one attached.
+            </summary>
+            <param name="lookInStepSiblings"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.Json.ChangeLog">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Json.Session">
+            <summary>
+            Json objects can be stored on the server between requests as session data.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Json.Template">
+            <summary>
+            The schema element of this app instance
+            </summary>
+            <value>The template.</value>
+            <exception cref="T:System.Exception">Template is already set for App. Cannot change template once it is set</exception>
+        </member>
+        <member name="M:Starcounter.Json.HasThisRoot(Starcounter.Json)">
+            <summary>
+            Returns True if current Obj is within the given tree.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.Json.Root">
+            <summary>
+            Returns the Json root.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.Refresh(Starcounter.Templates.Template)">
+            <summary>
+            Refreshes the specified property of this Obj.
+            </summary>
+            <param name="property">The property</param>
+        </member>
+        <member name="M:Starcounter.Json.HasChanged(Starcounter.Templates.TValue)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            </remarks>
+            <param name="property">The property that has changed in this Obj</param>
+        </member>
+        <member name="P:Starcounter.Json.Metadata">
+            <summary>
+            Here you can set properties for each property in this Obj (such as Editable, Visible and Enabled).
+            The changes only affect this instance.
+            If you which to change properties for the template, use the Template property instead.
+            </summary>
+            <value>The metadata.</value>
+            <remarks>It is much less expensive to set this kind of metadata for the
+            entire template (for example to mark a property for all Obj instances as Editable).</remarks>
+        </member>
+        <member name="P:Starcounter.Json.Parent">
+            <summary>
+            Gets or sets the parent.
+            </summary>
+            <value>The parent.</value>
+            <exception cref="T:System.Exception">Cannot change parent in Apps</exception>
+        </member>
+        <member name="M:Starcounter.Json.SetParent(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+        </member>
+        <member name="P:Starcounter.Json.IsArray">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Json.IsPrimitive">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.PropertyState.Dirty">
+            <summary>
+            The property is considered dirty and value should be sent to client.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.PropertyState.Cached">
+            <summary>
+            Set for bound properties. The bound value is cached and should be read from
+            the cache. Used to avoid changes in bound values while gathering changes and 
+            serializing since these parts are done in steps.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.transaction">
+            <summary>
+            Backing field for the transaction applied to this instance (if any).
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.cacheIndexInArr">
+            <summary>
+            Cache element index if the parent of this Obj is an array (Arr).
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.dirty">
+            <summary>
+            Tells if any property value has changed on this container (if it is an object) or
+            any of its children or grandchildren (recursivly). If this flag is true, there can be
+            no changes to the JSON tree (but there can be changes to bound data objects).
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.pendingEnumeration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.stateFlags">
+            <summary>
+            A list containing state for each property. Will only be initialized if changes are tracked.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.valueList">
+            <summary>
+            If this is a dynamic or a non-codegenerated jsonobject the list will contain the values 
+            for each property.
+            If this is an array, the list will contain the rows.
+            If none of the above the list is not used and will never be initialized.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.parent">
+            <summary>
+            Json instances (objects or arrays) can be values in a hosting object property or in a 
+            hosting array element. Whereas Javascript objects can refered to by a property without
+            the object pointing back to the referrer, Nested objects/elements in JSON trees always
+            have a single parent. Our implementation provides the service of finding the declaring
+            (parent) object of this object.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.session">
+            <summary>
+            Json objects can be stored on the server between requests as session data.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.arrayAddsAndDeletes">
+            <summary>
+            Keeps track on when we added/inserted or removed elements
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.versionLog">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.changeLog">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.metadata">
+            <summary>
+            Implementation field used to cache the Metadata property.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.template">
+            <summary>
+            The template this object is based on.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.data">
+            <summary>
+            An Json object or array can be bound to a data object. This makes the Json reflect the data in the
+            underlying bound object. This is common in database applications where Json messages
+            or view models are often associated with database objects. I.e. a person form might
+            reflect a person database object.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.siblings">
+            <summary>
+            List containing all siblings that exists on this level.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.trackChanges">
+            <summary>
+            If set to true, additional features for keeping track of changes and getting a log of changes 
+            are initialized. If not needed this should not be enabled since the performance will be much worse.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.checkBoundProperties">
+            <summary>
+            If set to false, bound properties will not be updated automatically.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.addedInVersion">
+            <summary>
+            If this json is a part of a stateful viewmodel (i.e. puppet) this field contains
+            the version the json was added to the viewmodel.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Json.isStateful">
+            <summary>
+            Flag determining if this instance is stateful or not. When it's stateful it keeps track of changes
+            in properties that have been made.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Json.IsTrackingChanges">
+            <summary>
+            If true changes in TypedJSON are tracked and stored.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.Dirtyfy(System.Boolean)">
+            <summary>
+            Marks this instance and all parents as dirty, i.e. some value
+            in the instance have changed.
+            </summary>
+            <remarks>
+            If IsTrackingChanges is false, then this method will simply exit
+            without doing anything. Same will happen if it's already dirty.
+            </remarks>
+        </member>
+        <member name="M:Starcounter.Json.IsDirty">
+            <summary>
+            Returns true if any property is marked as dirty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.IsDirty(Starcounter.Templates.Template)">
+            <summary>
+            Returns true if the property is marked as dirty.
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.IsDirty(System.Int32)">
+            <summary>
+            Returns true if the template with the specified index is marked as dirty.
+            </summary>
+            <param name="templateIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.IsCached(System.Int32)">
+            <summary>
+            Returns true if the template with the specified index is marked as cached.
+            </summary>
+            <param name="templateIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.MarkAsDirty(Starcounter.Templates.Template)">
+            <summary>
+            Marks the specified property as dirty.
+            </summary>
+            <param name="property"></param>
+        </member>
+        <member name="M:Starcounter.Json.MarkAsDirty(System.Int32)">
+            <summary>
+            Marks the property with the specified index as dirty.
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Starcounter.Json.MarkAsNonDirty(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="templateIndex"></param>
+        </member>
+        <member name="M:Starcounter.Json.MarkAsCached(System.Int32)">
+            <summary>
+            Marks the property with the specified index as cached.
+            </summary>
+            <param name="templateIndex"></param>
+        </member>
+        <member name="M:Starcounter.Json.CheckpointAt(System.Int32)">
+            <summary>
+            Resets the stateflags for the property with the specified index.
+            </summary>
+            <param name="templateIndex"></param>
+        </member>
+        <member name="M:Starcounter.Json.ScopeAndCheckpoint(System.Boolean)">
+            <summary>
+            Checkpoints this instance and all children and resets state and dirtyflags.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.Checkpoint">
+            <summary>
+            Checkpoints this instance and all children. Possible to override to
+            add custom behaviour.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.ScopeAndCollectChanges(Starcounter.XSON.ChangeLog,System.Boolean)">
+            <summary>
+            Dirty checks each value of the object and adds any changes
+            to the changelog.
+            </summary>
+            <param name="changeLog">Log of changes</param>
+        </member>
+        <member name="M:Starcounter.Json.RetriableCollectChanges(Starcounter.XSON.ChangeLog,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="changeLog"></param>
+            <param name="callAgainOnError"></param>
+        </member>
+        <member name="M:Starcounter.Json.CollectChanges(Starcounter.XSON.ChangeLog)">
+            <summary>
+            Collects the changes for this json. Possible to override to add custom
+            logic for handling the checks.
+            </summary>
+            <remarks>This method assumes that the correct long-running transaction is already scoped.</remarks>
+            <param name="changeLog">The log of changes</param>
+        </member>
+        <member name="M:Starcounter.Json.CollectChangesForArray(Starcounter.Json,Starcounter.XSON.ChangeLog)">
+            <summary>
+            
+            </summary>
+            <param name="changeLog"></param>
+        </member>
+        <member name="M:Starcounter.Json.CheckOneTemplate(Starcounter.Json,Starcounter.Templates.TValue,Starcounter.XSON.ChangeLog)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            This method assumes that the correct transaction is set before calling.
+            </remarks>
+            <param name="parent"></param>
+            <param name="template"></param>
+        </member>
+        <member name="M:Starcounter.Json.ScopeAndSetBoundValuesInTuple(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="callSiblings"></param>
+        </member>
+        <member name="M:Starcounter.Json.RetriableSetBoundValues(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="callAgainOnError"></param>
+        </member>
+        <member name="M:Starcounter.Json.SetBoundValuesInTuple">
+            <summary>
+            The automatic dirtycheck for bound properties works by setting the current 
+            value from the dataobject as the unbound value. This method will set all 
+            current values starting from this instance and mark these properties as cached,
+            which means that the unbound value will be used until all changes have been 
+            sent and viewmodels checkpointed.
+            </summary>
+            <remarks>
+            This method assumes that the correct long-running transaction is already scoped.
+            </remarks>
+        </member>
+        <member name="M:Starcounter.Json.CheckBoundObject(System.Object)">
+            <summary>
+            Compares the existing dataobject with the one submitted as a parameter. 
+            If they differ the new will be set as data.
+            </summary>
+            <remarks>
+            If both dataobjects implements interface IBindable, the property IBindable.Identity 
+            will be used for comparison, otherwise a reference equality will be performed.
+            </remarks>
+            <param name="boundValue"></param>
+        </member>
+        <member name="M:Starcounter.Json.IndexOf(System.Collections.IList,System.Int32,System.Object)">
+            <summary>
+            Returns the index, starting from offset, of the specifed object
+            using either IBindable.Identity (if available) or reference equality
+            for comparison.
+            </summary>
+            <param name="list">The list to find the index in.</param>
+            <param name="offset">The starting point in the list.</param>
+            <param name="value">The value to find.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.CheckBoundArray_OLD(System.Collections.IEnumerable)">
+            <summary>
+            Old method, not currently used, but kept to be able to run tests and check performance and differences.
+            </summary>
+            <param name="boundValue"></param>
+        </member>
+        <member name="M:Starcounter.Json.CheckBoundArray(System.Collections.IEnumerable)">
+            <summary>
+            Compares all items in an array that is bound with an enumeration of values.
+            Will remove, add and replaces items that have changed.
+            </summary>
+            <param name="boundValue"></param>
+        </member>
+        <member name="M:Starcounter.Json.CompareDataObjects(System.Object)">
+            <summary>
+            Compares the currently attached dataobject with the one sent in as parameter, 
+            using the delegate on the template, or the default method if no template is defined.
+            </summary>
+            <param name="other">The other dataobject to compare.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.ReduceArrayChanges(System.Collections.Generic.List{Starcounter.Internal.XSON.Change},System.Int32,System.Int32)">
+            <summary>
+            Try to reduce a list of modifications for an array. Some assumptions are made to make the implementation easier:
+            1) All deletes are in the end of the list, where deleteCount is the number of deletes.
+            2) We always move deletes to the beginning and transforming modification as we move the delete.
+            
+            Modifications can be removed if:
+            a MOVE is moving FROM and TO the same index.
+            an INSERT has the same index as the DELETE were moving. Both will be canceled out.
+            a REPLACE has the same index as the DELETE were moving. The REPLACE will be skipped.
+            </summary>
+            <param name="arrayChanges"></param>
+            <param name="offset"></param>
+            <param name="deleteCount"></param>
+        </member>
+        <member name="M:Starcounter.Json.SplitMoves(System.Collections.Generic.List{Starcounter.Internal.XSON.Change})">
+            <summary>
+            
+            </summary>
+            <param name="changes"></param>
+        </member>
+        <member name="M:Starcounter.Json.IsValidForVersion(System.Int64)">
+            <summary>
+            Checks if this object is accessible in an earlier version of the viewmodel.
+            </summary>
+            <param name="serverVersion">The version of the viewmodel to check</param>
+            <returns>true if this object existed in the specified version, false otherwise.</returns>
+            <remarks>
+            This method is used when versioning is enabled and this json belongs to a viewmodeltree.
+            </remarks>
+        </member>
+        <member name="M:Starcounter.Json.CleanupOldVersionLogs(Starcounter.XSON.ViewModelVersion,System.Int64,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="version"></param>
+            <param name="toVersion"></param>
+            <param name="callStepSiblings"></param>
+        </member>
+        <member name="M:Starcounter.Json.UpgradeToStateful(Starcounter.Session,System.Boolean)">
+            <summary>
+            Initializes needed state to be able to keep track of changes and optionally
+            keep track of versions.
+            </summary>
+            <remarks>
+            If this method is called on an already stateful instance, it will silently return.
+            All children of this json will be called as well, so it's enough to just call 
+            this method for the instance in question.
+            </remarks>
+        </member>
+        <member name="M:Starcounter.Json.DowngradeFromStateful(Starcounter.Session,System.Boolean)">
+            <summary>
+            Downgrades the instance from a stateful viewmodel to a non-stateful meaning that 
+            changes will not be tracked and versioninformation is discarded.
+            </summary>
+            <remarks>
+            If this method is called on a non-stateful instance, it will silently return.
+            All children of this json will be called as well, so it's enough to just call 
+            this method for the instance in question.
+            </remarks>
+        </member>
+        <member name="P:Starcounter.Json.Siblings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Json.AutoRefreshBoundProperties">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Json.HasBeenSent">
+            <summary>
+            If true, this object has been flushed from the change log (usually an
+            indication that the object has been sent to its client.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.VerifyDirtyFlags(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="verifySiblings"></param>
+        </member>
+        <member name="M:Starcounter.Json.VerifyDirtyFlagsForSingleValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.VerifyDirtyFlagsForArray">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.VerifyDirtyFlagsForObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.AssertOrThrow(System.Boolean,Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <param name="template"></param>
+        </member>
+        <member name="M:Starcounter.Json.op_Implicit(Starcounter.Rows)~Starcounter.Json">
+            <summary>
+            You can assign a result set from a SQL query operation directly to 
+            a JSON array property.
+            <example>
+            myJson.Items = Db.SQL("SELECT i FROM Items i");
+            </example>
+            </summary>
+            <param name="res">The SQL result set</param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.#ctor(System.Collections.IEnumerable)">
+            <summary>
+            Creates a Json array bound to a enumerable data source such as
+            for example a SQL query result.
+            </summary>
+            <param name="result">The data source</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Starcounter.Json.Array_InitializeAfterImplicitConversion(Starcounter.Json,Starcounter.Templates.TObjArr)" -->
+        <member name="M:Starcounter.Json.CreateDynamicTemplate(System.Object)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.CreateDynamicTemplate``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">The type of template to create</typeparam>
+        </member>
+        <member name="T:Starcounter.Json.DynamicPropertyMetaObject">
+            <summary>
+            Provides late bound (dynamic) access to Json properties defined in the Template 
+            of the Json object. Also supports data binding using the Json.Data property.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.DynamicPropertyMetaObject.BindGetMember(System.Dynamic.GetMemberBinder)">
+            <summary>
+            Getter implementation. See DynamicPropertyMetaObject.
+            </summary>
+            <param name="binder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.DynamicPropertyMetaObject.BindGetMemberForJsonObject(Starcounter.Json,Starcounter.Templates.TValue,System.Dynamic.GetMemberBinder)">
+            <summary>
+            
+            </summary>
+            <param name="template"></param>
+            <param name="binder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.DynamicPropertyMetaObject.FindGetMember(System.String,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="parameterTypeName"></param>
+            <param name="genericArgType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.DynamicPropertyMetaObject.BindSetMember(System.Dynamic.SetMemberBinder,System.Dynamic.DynamicMetaObject)">
+            <summary>
+            Getter implementation. See DynamicPropertyMetaObject.
+            </summary>
+            <param name="binder"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.DynamicPropertyMetaObject.BindSetMemberForJsonObject(System.Dynamic.SetMemberBinder,System.Dynamic.DynamicMetaObject,Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="binder"></param>
+            <param name="value"></param>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.Get``1(Starcounter.Templates.Property{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TVal"></typeparam>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.Set``1(Starcounter.Templates.Property{``0},``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TVal"></typeparam>
+            <param name="property"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Starcounter.Json.Get(Starcounter.Templates.TBool)">
+            <summary>
+            Gets the value for the specified template. If the property
+            is bound the value will be retrived from the underlying dataobject.
+            </summary>
+            <param name="property">The template to retrieve the value for.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Starcounter.Json.Set(Starcounter.Templates.TBool,System.Boolean)">
+            <summary>
+            Sets the value for the specified template. If the property
+            is bound the value will be set in the underlying dataobject.
+            </summary>
+            <param name="property">The template to set the value to.</param>
+            <param name="value">The value to set.</param>
+        </member>
+        <member name="M:Starcounter.Json.Get(Starcounter.Templates.TDecimal)">
+            <summary>
+            Gets the value for the specified template. If the property
+            is bound the value will be retrived from the underlying dataobject.
+            </summary>
+            <param name="property">The template to retrieve the value for.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Starcounter.Json.Set(Starcounter.Templates.TDecimal,System.Decimal)">
+            <summary>
+            Sets the value for the specified template. If the property
+            is bound the value will be set in the underlying dataobject.
+            </summary>
+            <param name="property">The template to set the value to.</param>
+            <param name="value">The value to set.</param>
+        </member>
+        <member name="M:Starcounter.Json.Get(Starcounter.Templates.TDouble)">
+            <summary>
+            Gets the value for the specified template. If the property
+            is bound the value will be retrived from the underlying dataobject.
+            </summary>
+            <param name="property">The template to retrieve the value for.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Starcounter.Json.Set(Starcounter.Templates.TDouble,System.Double)">
+            <summary>
+            Sets the value for the specified template. If the property
+            is bound the value will be set in the underlying dataobject.
+            </summary>
+            <param name="property">The template to set the value to.</param>
+            <param name="value">The value to set.</param>
+        </member>
+        <member name="M:Starcounter.Json.Get(Starcounter.Templates.TLong)">
+            <summary>
+            Gets the value for the specified template. If the property
+            is bound the value will be retrived from the underlying dataobject.
+            </summary>
+            <param name="property">The template to retrieve the value for.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Starcounter.Json.Set(Starcounter.Templates.TLong,System.Int64)">
+            <summary>
+            Sets the value for the specified template. If the property
+            is bound the value will be set in the underlying dataobject.
+            </summary>
+            <param name="property">The template to set the value to.</param>
+            <param name="value">The value to set.</param>
+        </member>
+        <member name="M:Starcounter.Json.Get(Starcounter.Templates.TString)">
+            <summary>
+            Gets the value for the specified template. If the property
+            is bound the value will be retrived from the underlying dataobject.
+            </summary>
+            <param name="property">The template to retrieve the value for.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Starcounter.Json.Set(Starcounter.Templates.TString,System.String)">
+            <summary>
+            Sets the value for the specified template. If the property
+            is bound the value will be set in the underlying dataobject.
+            </summary>
+            <param name="property">The template to set the value to.</param>
+            <param name="value">The value to set.</param>
+        </member>
+        <member name="M:Starcounter.Json.Get``1(Starcounter.Templates.TObject)">
+            <summary>
+            
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.Get(Starcounter.Templates.TObject)">
+            <summary>
+            
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.Set(Starcounter.Templates.TObject,Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="property"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Starcounter.Json.Set(Starcounter.Templates.TObject,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="property"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Starcounter.Json.Get``1(Starcounter.Templates.TArray{``0})">
+            <summary>
+            
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.Get(Starcounter.Templates.TObjArr)">
+            <summary>
+            
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.Set(Starcounter.Templates.TObjArr,Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="property"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Starcounter.Json.Set(Starcounter.Templates.TObjArr,System.Collections.IEnumerable)">
+            <summary>
+            
+            </summary>
+            <param name="property"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:Starcounter.Json.Set``1(Starcounter.Templates.TObjArr,Starcounter.Rows{System.Object})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="property"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:Starcounter.Json.Get``1(Starcounter.Templates.TObjArr)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.Set``1(Starcounter.Templates.TObjArr,Starcounter.Arr{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="property"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:Starcounter.Json.CallHasAddedElement(System.Int32,Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <param name="item"></param>
+        </member>
+        <member name="M:Starcounter.Json.CallHasReplacedElement(System.Int32,Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <param name="item"></param>
+        </member>
+        <member name="M:Starcounter.Json.CallHasRemovedElement(System.Int32,Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <param name="item"></param>
+        </member>
+        <member name="M:Starcounter.Json.CallHasChanged(Starcounter.Templates.TObjArr,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="property"></param>
+        </member>
+        <member name="M:Starcounter.Json.CallHasChanged(Starcounter.Templates.TValue)">
+            <summary>
+            
+            </summary>
+            <param name="property"></param>
+        </member>
+        <member name="P:Starcounter.Json.DataAsBindable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Json.Data">
+            <summary>
+            Gets or sets the bound (underlying) data object (often a database Entity object). This enables
+            the Obj to reflect the values of the bound object. The values are matched by property names by default.
+            When you declare an Obj using generics, be sure to specify the type of the bound object in the class declaration.
+            </summary>
+            <value>The bound data object (often a database Entity)</value>
+        </member>
+        <member name="M:Starcounter.Json.InternalSetData(System.Object,Starcounter.Templates.TValue,System.Boolean)">
+            <summary>
+            Sets the underlying data object and refreshes all bound values.
+            This function does not check for a valid transaction as the 
+            public Data-property does.
+            </summary>
+            <param name="data">The bound data object (usually an Entity)</param>
+        </member>
+        <member name="M:Starcounter.Json.OnData">
+            <summary>
+            Called after the Data property is set.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Json.Transaction">
+            <summary>
+            Gets the nearest transaction.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Json.AsMimeType(Starcounter.MimeType,System.String,System.String@)">
+            <summary>
+            Override this method to provide custom conversions to a specific mimetype.
+            The default implementation supports conversion to "application/json" and 
+            "application/json-patch+json".
+            </summary>
+            <param name="mimeType">The mimetype represented as an enum.</param>
+            <param name="mimeTypeStr">The mimetype as a string.</param>
+            <param name="resultingMimeType">The mimetype the resource was converted to.</param>
+            <returns>
+            The converted resource as an UTF8 encoded bytearray, or null if the resource was 
+            not converted to the specific mimetype.
+            </returns>
+            <remarks>
+            If the mimetype is not covered in the enum, the value of the enum will be <c>MimeType.Other</c> 
+            and the actual mimetype can be read from the <paramref name="mimeTypeStr"/> parameter.
+            </remarks>
+        </member>
+        <member name="M:Starcounter.Json.AsMimeType(Starcounter.MimeType)">
+            <summary>
+            Override this method to provide a custom conversion when a request
+            is made to some other mime type than "application/json".
+            </summary>
+            <param name="mimeType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.GetHtmlPartialUrl">
+            <summary>
+            The way to get a URL for HTML partial if any.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.AsMimeType(System.String)">
+            <summary>
+            Override this method to provide a custom conversion when a request
+            is made to some other mime type than "application/json".
+            </summary>
+            <param name="mimeType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.AsMimeType(Starcounter.MimeType,Starcounter.MimeType@,Starcounter.Request)">
+            <summary>
+            
+            </summary>
+            <param name="mimeType"></param>
+            <param name="resultingMimeType"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.AsMimeType(System.String,Starcounter.MimeType@,Starcounter.Request)">
+             <summary>
+            
+             </summary>
+             <param name="mimeType"></param>
+             <param name="resultingMimeType"></param>
+             <param name="request"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.ToJson(Starcounter.Advanced.XSON.JsonSerializerSettings)">
+            <summary>
+            Serializes JSON object to a string.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.ToJsonUtf8(Starcounter.Advanced.XSON.JsonSerializerSettings)">
+            <summary>
+            Serializes JSON object to a byte array.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.ToJsonUtf8(System.Byte[],System.Int32,Starcounter.Advanced.XSON.JsonSerializerSettings)">
+            <summary>
+            Serializes this object and sets the out parameter to the buffer containing 
+            the UTF8 encoded characters. Returns the size used in the buffer.
+            </summary>
+            <remarks>
+            The actual returned buffer might be larger than the amount used.
+            </remarks>
+            <param name="buf"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Json.PopulateFromJson(System.String,Starcounter.Advanced.XSON.JsonSerializerSettings)">
+            <summary>
+            
+            </summary>
+            <param name="json"></param>
+        </member>
+        <member name="M:Starcounter.Json.PopulateFromJson(System.Byte[],System.Int32,Starcounter.Advanced.XSON.JsonSerializerSettings)">
+            <summary>
+            
+            </summary>
+            <param name="buf"></param>
+            <param name="bufferSize"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.Json.Serializer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Starcounter.Advanced.XSON.JsonExtension">
+            <summary>
+            Extension class for Json. Contains advanced features that can be excluded for normal use.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.GetAppName(Starcounter.Json)">
+            <summary>
+            Returns the name of the app that created this instance.
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.MergeJson(Starcounter.Json,Starcounter.Json)">
+            <summary>
+            Connects the json with an existing json as siblings.
+            </summary>
+            <remarks>
+            Using this method bypasses the standard merger (that merges
+            json in responses from Self.GET) and does not trigger the 
+            merge-callback.
+            
+            </remarks>
+            <param name="json"></param>
+            <param name="toWrap"></param>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.Scope(Starcounter.Json,System.Action)">
+            <summary>
+            Executes the specifed Action either in the scope of a transaction
+            on the object or if no transaction is found, just executes the action.
+            </summary>
+            <param name="action">The delegate to execute</param>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.Scope``1(Starcounter.Json,System.Func{``0})">
+            <summary>
+            Executes the specifed Func either in the scope of a transaction
+            on the object or if no transaction is found, just executes the action.
+            </summary>
+            <param name="func">The delegate to execute</param>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.Scope``1(Starcounter.Json,System.Action{``0},``0)">
+            <summary>
+            Executes the specifed Action either in the scope of a transaction
+            on the object or if no transaction is found, just executes the action.
+            </summary>
+            <param name="action">The delegate to execute</param>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.Scope``2(Starcounter.Json,System.Action{``0,``1},``0,``1)">
+            <summary>
+            Executes the specifed Action either in the scope of a transaction
+            on the object or if no transaction is found, just executes the action.
+            </summary>
+            <param name="action">The delegate to execute</param>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.Scope``3(Starcounter.Json,System.Action{``0,``1,``2},``0,``1,``2)">
+            <summary>
+            Executes the specifed Action either in the scope of a transaction
+            on the object or if no transaction is found, just executes the action.
+            </summary>
+            <param name="action">The delegate to execute</param>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.Scope``2(Starcounter.Json,System.Func{``0,``1},``0)">
+            <summary>
+            Executes the specifed Func either in the scope of a transaction
+            on the object or if no transaction is found, just executes the action.
+            </summary>
+            <param name="func">The delegate to execute</param>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.Scope``3(Starcounter.Json,System.Func{``0,``1,``2},``0,``1)">
+            <summary>
+            Executes the specifed Func either in the scope of a transaction
+            on the object or if no transaction is found, just executes the action.
+            </summary>
+            <param name="func">The delegate to execute</param>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.Scope``4(Starcounter.Json,System.Func{``0,``1,``2,``3},``0,``1,``2)">
+            <summary>
+            Executes the specifed Func either in the scope of a transaction
+            on the object or if no transaction is found, just executes the action.
+            </summary>
+            <param name="func">The delegate to execute</param>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.Scope``5(Starcounter.Json,System.Func{``0,``1,``2,``3,``4},``0,``1,``2,``3)">
+            <summary>
+            Executes the specifed Func either in the scope of a transaction
+            on the object or if no transaction is found, just executes the function.
+            </summary>
+            <param name="func">The delegate to execute</param>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.Scope``6(Starcounter.Json,System.Func{``0,``1,``2,``3,``4,``5},``0,``1,``2,``3,``4)">
+            <summary>
+            Executes the specifed Func either in the scope of a transaction
+            on the object or if no transaction is found, just executes the function.
+            </summary>
+            <param name="func">The delegate to execute</param>
+        </member>
+        <member name="M:Starcounter.Advanced.XSON.JsonExtension.Scope``7(Starcounter.Json,System.Func{``0,``1,``2,``3,``4,``5,``6},``0,``1,``2,``3,``4,``5)">
+            <summary>
+            Executes the specifed Func either in the scope of a transaction
+            on the object or if no transaction is found, just executes the function.
+            </summary>
+            <param name="func">The delegate to execute</param>
+        </member>
+        <member name="T:Starcounter.Advanced.XSON.JsonSerializerSettings">
+            <summary>
+            Used to specify settings for the jsonserializer.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Advanced.XSON.JsonSerializerSettings.MissingMemberHandling">
+            <summary>
+            Specifies how unknown members should be handled when encountered during population of data.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Advanced.XSON.JsonSerializerSettings.ValueTypeConversion">
+            <summary>
+            Specifies how conversions are handled when types differ during population of data.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Advanced.XSON.JsonSerializerSettings.CacheBoundValues">
+            <summary>
+            If set to true and the TypedJSON instance that is serialized is stateful, bound values 
+            will be cached to avoid multiple accesses to the property in the dataobject.
+            Default is false.
+            </summary>
+            <remarks>
+            When set to true, it's important that the TypedJSON instance is checkpointed when 
+            everything is finished to make sure that flags for cached values are resetted.
+            Otherwise it would lead to incorrect behaviour when determining if a bound value
+            have changed or not.
+            </remarks>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Starcounter.IBound`1" -->
+        <member name="T:Starcounter.IExplicitBound`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Starcounter.Arr`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Starcounter.Arr`1.op_Implicit(Starcounter.Rows)~Starcounter.Arr{`0}">
+            <summary>
+            
+            </summary>
+            <param name="res"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Arr`1.#ctor(System.Collections.IEnumerable)">
+            <summary>
+            
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="M:Starcounter.Arr`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Arr`1.#ctor(Starcounter.Json,Starcounter.Templates.TObjArr)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="templ"></param>
+        </member>
+        <member name="M:Starcounter.Arr`1.IndexOf(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Arr`1.Insert(System.Int32,Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <param name="item"></param>
+        </member>
+        <member name="M:Starcounter.Arr`1.Add(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="P:Starcounter.Arr`1.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.ReflectionHelper.FindPropertyOrField(System.Type,System.String,System.Boolean)">
+            <summary>
+            Finds the first property with the specified name
+            </summary>
+            <param name="type">The type to search in</param>
+            <param name="name">The name of the property</param>
+            <returns>The reflected property</returns>
+        </member>
+        <member name="T:Starcounter.Internal.XSON.Change">
+            <summary>
+            A change of either a value, added or removed item in an json-tree.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.XSON.Change.ChangeType">
+            <summary>
+            The type of change.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.XSON.Change.Parent">
+            <summary>
+            The parent of the property that was changed.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.XSON.Change.Property">
+            <summary>
+            The template of the property that was changed.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.XSON.Change.Index">
+            <summary>
+            The index if the change is add or remove. Will be -1 in other cases.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.XSON.Change.FromIndex">
+            <summary>
+            If the change is moved, this value will be the old index in the array
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.XSON.Change.Item">
+            <summary>
+            If the change is for an item in an array this will be the item, otherwise it will be null.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.XSON.Change.SuppressNamespace">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Change.#ctor(System.Byte,Starcounter.Json,Starcounter.Templates.TValue,System.Int32,Starcounter.Json,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Starcounter.Internal.XSON.Change" /> struct.
+            </summary>
+            <param name="changeType">The change type.</param>
+            <param name="app">The app that was changed.</param>
+            <param name="prop">The template of the property that was changed.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Change.ResetViewModelReferences">
+            <summary>
+            Sets all references to viewmodels and template to null to 
+            allow them to be GC:ed. Needed if the change in question
+            is kept for a potentially long time and this information
+            is no longer needed.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Change.Add(Starcounter.Json,Starcounter.Templates.TObjArr,System.Int32,Starcounter.Json)">
+            <summary>
+            Creates and returns an instance of an Add change.
+            </summary>
+            <param name="app">The app.</param>
+            <param name="list">The property of the list where an item was added.</param>
+            <param name="index">The index in the list of the added item.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Change.Add(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="tobj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Change.Move(Starcounter.Json,Starcounter.Templates.TObjArr,System.Int32,System.Int32,Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="list"></param>
+            <param name="fromIndex"></param>
+            <param name="toIndex"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Change.Remove(Starcounter.Json,Starcounter.Templates.TObjArr,System.Int32,Starcounter.Json)">
+            <summary>
+            Creates and returns an instance of a Remove change.
+            </summary>
+            <param name="app">The app.</param>
+            <param name="list">The property of the list where an item was removed.</param>
+            <param name="index">The index in the list of the removed item.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Change.RemoveAll(Starcounter.Json,Starcounter.Templates.TObjArr,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="list"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Change.Update(Starcounter.Json,Starcounter.Templates.TValue)">
+            <summary>
+            Creates and returns an instance of an Update change.
+            </summary>
+            <param name="app">The app.</param>
+            <param name="property">The template of the property that was updated.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Change.Update(Starcounter.Json,Starcounter.Templates.TValue,System.Int32,Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="property"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Change.Update(Starcounter.Json,Starcounter.Templates.TValue,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="property"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.Internal.XSON.Modules.Starcounter_XSON">
+            <summary>
+            Represents this module
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Modules.Starcounter_XSON.Initialize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Modules.Starcounter_XSON.GetJsonSerializerId(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Modules.Starcounter_XSON.GetJsonSerializer(System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="serializerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Modules.Starcounter_XSON.RegisterJsonSerializer(System.String,Starcounter.XSON.Interfaces.ITypedJsonSerializer)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="serializer"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.Internal.XSON.Modules.Starcounter_XSON.JsonByExample">
+            <summary>
+            Represents this module
+            </summary>
+        </member>
+        <member name="F:Starcounter.Internal.XSON.Modules.Starcounter_XSON.JsonByExample.MarkupReaders">
+            <summary>
+            By default, Starcounter creates
+            a JSON-by-example reader that allows you to convert a JSON file to a XOBJ template using the format
+            string "json". You can inject other template formats here.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.XSON.Modules.Starcounter_XSON.JsonByExample.Initialize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Starcounter.Templates.TValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.TValue.DataObjectComparer">
+            <summary>
+            
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Starcounter.Templates.TValue.HasInstanceValueOnClient" -->
+        <member name="P:Starcounter.Templates.TValue.Bind">
+            <summary>
+            Gets or sets the name of the property this template is bound to.
+            </summary>
+            <value>The name of the property to bind.</value>
+        </member>
+        <member name="P:Starcounter.Templates.TValue.BindingStrategy">
+            <summary>
+            Gets a value indicating how this template should handle binding
+            to a dataobject.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Starcounter.Templates.TValue.InstanceType">
+            <summary>
+            The .NET type of the instance represented by this template.
+            </summary>
+            <value>The type of the instance.</value>
+        </member>
+        <member name="P:Starcounter.Templates.TValue.DefaultInstanceType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.GenerateBoundGetterAndSetter(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.GenerateUnboundGetterAndSetter">
+            <summary>
+            
+            </summary>
+            <param name="json"></param>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.CheckAndSetBoundValue(Starcounter.Json,System.Boolean)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.GetUnboundValueAsObject(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.GetValueAsObject(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.SetValueAsObject(Starcounter.Json,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.SetDefaultValue(Starcounter.Json,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.CopyValueDelegates(Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="from"></param>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.InvalidateBoundGetterAndSetter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.OnPropertySet(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.Checkpoint(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="json"></param>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.CopyTo(Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="toTemplate"></param>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.HasBinding">
+            <summary>
+            Returns true if an existing databinding exists, false otherwise.
+            </summary>
+            <remarks>
+            This method tells if a binding exists, not if it should be used.
+            For example dataobject can be null or bind value changed.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.UseBinding(Starcounter.Json)">
+            <summary>
+            Checks, verifies and creates the binding.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.VerifyBoundDataType(System.Type,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.Templates.TValue.JsonSerializer">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.SetDataObjectComparer(System.Func{Starcounter.Json,System.Object,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="comparer"></param>
+        </member>
+        <member name="M:Starcounter.Templates.TValue.CompareDataObjects(Starcounter.Json,System.Object)">
+            <summary>
+            Compares the existing attached dataobject (json.Data) with the one sent as parameter.
+            If both implements the IBindable interface, the identity will be used, otherwise 
+            a reference equality will be performed.
+            </summary>
+            <param name="json">The TypedJSON instance containing the existing dataobject</param>
+            <param name="other">The dataobject to compare to</param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.Templates.TArray`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="OT"></typeparam>
+        </member>
+        <member name="M:Starcounter.Templates.TArray`1.SetCustomAccessors(System.Func{Starcounter.Json,Starcounter.Arr{`0}},System.Action{Starcounter.Json,Starcounter.Arr{`0}},System.Boolean)">
+            <summary>
+            Sets the getter and setter delegates for unbound values to the submitted delegates.
+            </summary>
+            <param name="getter"></param>
+            <param name="setter"></param>
+            <param name="overwriteExisting">
+            If false the new delegates are only set if the current delegates are null.
+            </param>
+        </member>
+        <member name="M:Starcounter.Templates.TArray`1.GetValueAsObject(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.TArray`1.SetValueAsObject(Starcounter.Json,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Starcounter.Templates.TArray`1.CreateInstance(Starcounter.Json)">
+            <summary>
+            Creates the instance.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="P:Starcounter.Templates.TArray`1.DefaultInstanceType">
+            <summary>
+            The .NET type of the instance represented by this template.
+            </summary>
+            <value>The type of the instance.</value>
+        </member>
+        <member name="T:Starcounter.Templates.TObject">
+            <summary>
+            Defines the properties of an App instance.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Templates.TObject.SingleInstance">
+            <summary>
+            For dynamic Json objects, templates pertain to only a single object.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.#cctor">
+            <summary>
+            Static constructor to automatically initialize XSON.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="!:TObj" /> class.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.HasBinding">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.GetValueAsObject(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.SetValueAsObject(Starcounter.Json,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.SetCustomAccessors(System.Func{Starcounter.Json,Starcounter.Json},System.Action{Starcounter.Json,Starcounter.Json},System.Boolean)">
+            <summary>
+            Sets the getter and setter delegates for unbound values to the submitted delegates.
+            </summary>
+            <param name="getter"></param>
+            <param name="setter"></param>
+            <param name="overwriteExisting">
+            If false the new delegates are only set if the current delegates are null.
+            </param>
+        </member>
+        <member name="P:Starcounter.Templates.TObject.BindChildren">
+            <summary>
+            
+            </summary>
+            <remarks>
+            
+            </remarks>
+        </member>
+        <member name="P:Starcounter.Templates.TObject.Include">
+            <summary>
+            
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.CreateInstance(Starcounter.Json)">
+            <summary>
+            Creates a new Message using the schema defined by this template
+            </summary>
+            <param name="parent">The parent for the new message (if any)</param>
+            <returns>The new message</returns>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.Add``1(System.String)">
+            <summary>
+            Creates a new property (template) with the specified name and type.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name">The name of the new property</param>
+            <returns>The new property template</returns>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.AddExperimental``1(System.String)">
+            <summary>
+            Creates a new property (template) with the specified name and type.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name">The name of the new property</param>
+            <returns>The new property template</returns>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.Add``1(System.String,Starcounter.Templates.TObject)">
+            <summary>
+            Creates a new typed array property (template) with the specified name and type.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name">The name of the new property</param>
+            <param name="type">The type of each element in the array</param>
+            <returns>The new property template</returns>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.Add(System.Type,System.String)">
+            <summary>
+            Creates a new property (template) with the specified name and type.
+            </summary>
+            <param name="name">The name of the new property</param>
+            <param name="type">The type of the new property</param>
+            <returns>The new property template</returns>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.Add``1(System.String,System.String)">
+            <summary>
+            Creates a new template with the specified name and type and
+            adds it to this apps propertylist.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name">The name of the new template</param>
+            <param name="bind">The name of the property in the dataobject to bind to.</param>
+            <returns>A new instance of the specified template</returns>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.Add``1(System.String,Starcounter.Templates.TObject,System.String)">
+            <summary>
+            Creates a new template with the specified name and type and
+            adds it to this apps propertylist.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name">The name of the new template</param>
+            <param name="type"></param>
+            <param name="bind">The name of the property in the dataobject to bind to.</param>
+            <returns>A new instance of the specified template</returns>
+        </member>
+        <member name="P:Starcounter.Templates.TObject.Properties">
+            <summary>
+            Gets a list of all properties for this app.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Starcounter.Templates.TObject.Children">
+            <summary>
+            Gets an enumeration of all templates for this app.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Starcounter.Templates.TObject.OnPropertyAdded(Starcounter.Templates.Template)">
+            <summary>
+            Callback when a child is added to this object properties.
+            </summary>
+            <param name="property"></param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Starcounter.Templates.TObject.OnSetUndefinedProperty(System.String,System.Type)" -->
+        <member name="T:Starcounter.Templates.Property`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">The primitive system type of this property.</typeparam>
+        </member>
+        <member name="P:Starcounter.Templates.Property`1.DefaultValue">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.SetCustomAccessors(System.Func{Starcounter.Json,`0},System.Action{Starcounter.Json,`0},System.Boolean)">
+            <summary>
+            Sets the getter and setter delegates for unbound values to the submitted delegates.
+            </summary>
+            <param name="getter"></param>
+            <param name="setter"></param>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.InvalidateBoundGetterAndSetter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.GenerateBoundGetterAndSetter(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.HasBinding">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.GenerateUnboundGetterAndSetter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.GetUnboundValueAsObject(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.GetValueAsObject(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.SetValueAsObject(Starcounter.Json,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.Checkpoint(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.CheckAndSetBoundValue(Starcounter.Json,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="addToChangeLog"></param>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.CopyValueDelegates(Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="from"></param>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.AddHandler(System.Func{Starcounter.Json,Starcounter.Templates.Property{`0},`0,Starcounter.Input{`0}},System.Action{Starcounter.Json,Starcounter.Input{`0}})">
+            <summary>
+            Adds an inputhandler to this property.
+            </summary>
+            <param name="createInputEvent"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.InvokeHandler(Starcounter.Json,Starcounter.Input{`0})">
+            <summary>
+            Invoking user provided input handler respecting application name.
+            </summary>
+            <param name="parent"></param>
+            <param name="input"></param>
+        </member>
+        <member name="M:Starcounter.Templates.Property`1.ProcessInput(Starcounter.Json,`0)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:Starcounter.Templates.PrimitiveProperty`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Starcounter.Templates.PropertyList">
+            <summary>
+            The collection of properties (Templates) in an Obj template. I.e. for the template PersonTemplate, the
+            list might contain two elements such as TString "FirstName" and TString "LastName".
+            </summary>
+        </member>
+        <member name="F:Starcounter.Templates.PropertyList.parent">
+            <summary>
+            The owner of this list.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Templates.PropertyList.nameLookup">
+            <summary>
+            The full name dictionary. These names can contain characters that are not valid for C# properties,
+            such as the $ character often found in Javascript identifiers.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Templates.PropertyList.propertyNameLookup">
+            <summary>
+            The property name dictionary contains property names that are legal to use in C#.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Templates.PropertyList.exposedPropertyLookup">
+            <summary>
+            Dictionary of names of all exposed properties.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Templates.PropertyList.list">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Starcounter.Templates.PropertyList.exposedProperties">
+            <summary>
+            All properties in this list will be included when serializing a 
+            typed json object to ordinary json.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.#ctor(Starcounter.Templates.TObject)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.ClearExposed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.Expose(Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.GetExposedTemplateByName(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="name"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.IsExposed(Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.Templates.PropertyList.ExposedProperties">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.PropertyList.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Starcounter.Templates.Template" /> with the specified id.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>Template.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="P:Starcounter.Templates.PropertyList.Item(System.String)">
+            <summary>
+            Gets the <see cref="T:Starcounter.Templates.Template" /> with the specified id.
+            </summary>
+            <param name="id">The id.</param>
+            <returns>Template.</returns>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.GetTemplateByName(System.String)">
+            <summary>
+            Gets the <see cref="T:Starcounter.Templates.Template" /> with the specified name.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>Template.</returns>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.GetTemplateByPropertyName(System.String)">
+            <summary>
+            Gets the <see cref="T:Starcounter.Templates.Template" /> with the specified propertyname.
+            </summary>
+            <param name="propertyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.ChildNameIsSet(Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.ChildPropertyNameIsSet(Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.CopyTo(Starcounter.Templates.Template[],System.Int32)">
+            <summary>
+            Copies all items to the specified array.
+            </summary>
+            <param name="array">The destination array.</param>
+            <param name="arrayIndex">The start index in the source.</param>
+        </member>
+        <member name="P:Starcounter.Templates.PropertyList.Count">
+            <summary>
+            Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
+            </summary>
+            <value>The count.</value>
+            <returns>The number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.</returns>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.System#Collections#Generic#IList{Starcounter#Templates#Template}#IndexOf(Starcounter.Templates.Template)">
+            <summary>
+            Gets the index in the list of the specified item.
+            </summary>
+            <param name="item">The item.</param>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.System#Collections#Generic#IList{Starcounter#Templates#Template}#Insert(System.Int32,Starcounter.Templates.Template)">
+            <summary>
+            Inserts the item at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="item">The item.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.System#Collections#Generic#IList{Starcounter#Templates#Template}#RemoveAt(System.Int32)">
+            <summary>
+            Removed the item at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="P:Starcounter.Templates.PropertyList.System#Collections#Generic#IList{Starcounter#Templates#Template}#Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Starcounter.Templates.Template" /> with the specified id.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>ITemplate.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.Replace(Starcounter.Templates.Template)">
+            <summary>
+            Replaces an existing template with the specified template
+            using the same name.
+            </summary>
+            <param name="item">The item.</param>
+            <exception cref="T:System.Exception">This template is already used by an App. Cannot add more properties.</exception>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.Add(Starcounter.Templates.Template)">
+            <summary>
+            Adds the specified item.
+            </summary>
+            <param name="item">The item.</param>
+            <exception cref="T:System.Exception">This template is already used by an App. Cannot add more properties.</exception>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.System#Collections#Generic#ICollection{Starcounter#Templates#Template}#Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.System#Collections#Generic#ICollection{Starcounter#Templates#Template}#Contains(Starcounter.Templates.Template)">
+            <summary>
+            Checks if the specified item exists in the list.
+            </summary>
+            <param name="item">The item.</param>
+            <returns><c>true</c> if [contains] [the specified item]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.System#Collections#Generic#ICollection{Starcounter#Templates#Template}#CopyTo(Starcounter.Templates.Template[],System.Int32)">
+            <summary>
+            Copies all items to the specified array.
+            </summary>
+            <param name="array">The destination array.</param>
+            <param name="arrayIndex">The start index in the source.</param>
+        </member>
+        <member name="P:Starcounter.Templates.PropertyList.System#Collections#Generic#ICollection{Starcounter#Templates#Template}#Count">
+            <summary>
+            Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
+            </summary>
+            <value>The count.</value>
+            <returns>The number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.</returns>
+        </member>
+        <member name="P:Starcounter.Templates.PropertyList.System#Collections#Generic#ICollection{Starcounter#Templates#Template}#IsReadOnly">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
+            </summary>
+            <value><c>true</c> if this instance is read only; otherwise, <c>false</c>.</value>
+            <returns>true if the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only; otherwise, false.</returns>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.System#Collections#Generic#ICollection{Starcounter#Templates#Template}#Remove(Starcounter.Templates.Template)">
+            <summary>
+            Removes the specified item.
+            </summary>
+            <param name="item">The item.</param>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.System#Collections#Generic#IEnumerable{Starcounter#Templates#Template}#GetEnumerator">
+            <summary>
+            Gets the enumerator.
+            </summary>
+            <returns>IEnumerator{ITemplate}.</returns>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Starcounter.Templates.PropertyList.System#Collections#Generic#ICollection{Starcounter#Templates#Template}#Add(Starcounter.Templates.Template)">
+            <summary>
+            Adds the specified item.
+            </summary>
+            <param name="item">The item.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Starcounter.Templates.TContainer">
+            <summary>
+            Base class for Obj and Arr templates.
+            </summary>
+            <remarks>
+            Both arrays and objects can have children. Arrays has elements and objects has properties.
+            In addition, the templates (TContainer) for this complex objects are frozen/sealed whenever there are
+            instance Obj or Arr objects pertaining to them. This means that new templates need to be created to
+            use alternate schemas.
+            </remarks>
+        </member>
+        <member name="P:Starcounter.Templates.TContainer.IsPrimitive">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.TContainer.Children">
+            <summary>
+            Represents the contained properties (TObj) or the single contained type for typed arrays (TArr).
+            </summary>
+            <value>The child property or child element type template</value>
+        </member>
+        <member name="T:Starcounter.Templates.Template">
+            <summary>
+            A template describes an App or a property of an App. A tree of
+            templates defines the schema of an App.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.Template.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Starcounter.Templates.Template" /> class.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.Template.BasedOn">
+            <summary>
+            If this template is based on a template in a baseclass, i.e. inherited, this property
+            is set to the baseclass template.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.Template.IsDynamic">
+            <summary>
+            Returns true if this object support expando like (Javascript like) behaviour that
+            lets you create properties without a preexisting schema.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.Template.IsArray">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.Template.IsPrimitive">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.Template.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.Templates.Template.MetadataType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.Template.JsonType">
+            <summary>
+            Gets the type of the json.
+            </summary>
+            <value>The type of the json.</value>
+        </member>
+        <member name="P:Starcounter.Templates.Template.IsVisibleOnClient">
+            <summary>
+            Gets a value indicating whether this instance is visible on client.
+            </summary>
+            <value><c>true</c> if this instance is visible on client; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Starcounter.Templates.Template.HasInstanceValueOnClient">
+            <summary>
+            Gets a value indicating whether this instance has instance value on client.
+            </summary>
+            <value><c>true</c> if this instance has instance value on client; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Starcounter.Templates.Template.HasDefaultPropertiesOnClient">
+            <summary>
+            Gets a value indicating whether this instance has default properties on client.
+            </summary>
+            <value><c>true</c> if this instance has default properties on client; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Starcounter.Templates.Template.Editable">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Starcounter.Templates.TValue" /> is editable.
+            </summary>
+            <value><c>true</c> if editable; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Starcounter.Templates.Template.InstanceType">
+            <summary>
+            The .NET type of the instance represented by this template.TApp
+            </summary>
+            <value>The type of the instance.</value>
+            <exception cref="T:System.Exception">You are not allowed to set the InstanceType of a </exception>
+        </member>
+        <member name="P:Starcounter.Templates.Template.Parent">
+            <summary>
+            All templates other than the Root template has a parent template. For
+            properties, the parent template is the TApp. For App elements
+            in an array (a list), the parent is the TObjArr.
+            </summary>
+            <value>The parent.</value>
+        </member>
+        <member name="P:Starcounter.Templates.Template.TemplateIndex">
+            <summary>
+            Each template with a parent has an internal position amongst its siblings
+            </summary>
+            <value>The index.</value>
+        </member>
+        <member name="P:Starcounter.Templates.Template.Visible">
+            <summary>
+            Tells if the property or child should be sent to the client.
+            </summary>
+            <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Starcounter.Templates.Template.Enabled">
+            <summary>
+            Tells if the property or child should be enabled on client. Disabled means that
+            it or its children is not editable or invokable.
+            </summary>
+            <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Starcounter.Templates.Template.Sealed">
+            <summary>
+            If this property returns true, you are not allowed to alter the properties of this template.
+            </summary>
+            <value><c>true</c> if sealed; otherwise, <c>false</c>.</value>
+            <exception cref="T:System.Exception">You are not allowed to set the IsSealed value</exception>
+        </member>
+        <member name="P:Starcounter.Templates.Template.TemplateName">
+            <summary>
+            The Name of the property in the parent App. The allowed characters are the same as in JSON.
+            See www.json.org.
+            </summary>
+            <value>The name.</value>
+            <exception cref="T:System.Exception">Once the Name is set, it cannot be changed</exception>
+        </member>
+        <member name="P:Starcounter.Templates.Template.PropertyName">
+            <summary>
+            As the Name of the property represented by this Template may contain characters that are not legal
+            in a .NET property, this property contains a sanitized (or a completely different) name that is used
+            as the property identifier in the App.
+            </summary>
+            <value>The name of the property.</value>
+        </member>
+        <member name="P:Starcounter.Templates.Template.DebugString">
+            <summary>
+            The property name including parent path
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.Template.DebugPropertyNameWithPathSuffix">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.Template.CopyTo(Starcounter.Templates.Template)">
+            <summary>
+            
+            </summary>
+            <param name="toTemplate"></param>
+        </member>
+        <member name="M:Starcounter.Templates.Template.CreateFromJson(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.Template.CreateFromMarkup(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="format"></param>
+            <param name="markup"></param>
+            <param name="origin"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.Templates.TObjArr">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.TObjArr.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.TObjArr.SetCustomAccessors(System.Func{Starcounter.Json,Starcounter.Json},System.Action{Starcounter.Json,Starcounter.Json},System.Boolean)">
+            <summary>
+            Sets the getter and setter delegates for unbound values to the submitted delegates.
+            </summary>
+            <param name="getter"></param>
+            <param name="setter"></param>
+            <param name="overwriteExisting">
+            If false the new delegates are only set if the current delegates are null.
+            </param>
+        </member>
+        <member name="M:Starcounter.Templates.TObjArr.HasBinding">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.TObjArr.GetUnboundValueAsObject(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.TObjArr.GetValueAsObject(Starcounter.Json)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Templates.TObjArr.SetValueAsObject(Starcounter.Json,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="value"></param>
+        </member>
+        <member name="P:Starcounter.Templates.TObjArr.Children">
+            <summary>
+            
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Starcounter.Templates.TObjArr.ElementType">
+            <summary>
+            Gets or sets the type (the template) that should be the template for all elements
+            in this array.
+            Instructs the array what object template should be used for each element
+            in this object array.
+            </summary>
+            <value>The obj template adhering to each element in this array</value>
+        </member>
+        <member name="T:Starcounter.Templates.TBool">
+            <summary>
+            Defines a boolean property in an App object.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.TBool.DefaultInstanceType">
+            <summary>
+            Will return the Boolean runtime type
+            </summary>
+            <value>The type of the instance.</value>
+        </member>
+        <member name="T:Starcounter.Templates.TDecimal">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.TDecimal.DefaultInstanceType">
+            <summary>
+            The .NET type of the instance represented by this template.
+            </summary>
+            <value>The type of the instance.</value>
+        </member>
+        <member name="T:Starcounter.Templates.TDouble">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.TDouble.DefaultInstanceType">
+            <summary>
+            The .NET type of the instance represented by this template.
+            </summary>
+            <value>The type of the instance.</value>
+        </member>
+        <member name="T:Starcounter.Templates.TLong">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.TLong.DefaultInstanceType">
+            <summary>
+            The .NET type of the instance represented by this template.
+            </summary>
+            <value>The type of the instance.</value>
+        </member>
+        <member name="T:Starcounter.Templates.TString">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Templates.TString.DefaultInstanceType">
+            <summary>
+            The .NET type of the instance represented by this template.
+            </summary>
+            <value>The type of the instance.</value>
+        </member>
+        <member name="T:Starcounter.Templates.ArrMetadata`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="AppType"></typeparam>
+            <typeparam name="JsonType"></typeparam>
+        </member>
+        <member name="M:Starcounter.Templates.ArrMetadata`2.#ctor(`1,Starcounter.Templates.TArray{`0})">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="prop"></param>
+        </member>
+        <member name="T:Starcounter.Templates.BoolMetadata`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.BoolMetadata`1.#ctor(`0,Starcounter.Templates.TBool)">
+            <summary>
+            Initializes a new instance of the <see cref="!:BoolMetadata" /> class.
+            </summary>
+            <param name="app">The app.</param>
+            <param name="prop">The prop.</param>
+        </member>
+        <member name="T:Starcounter.Templates.DecimalMetadata`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.DecimalMetadata`1.#ctor(`0,Starcounter.Templates.TDecimal)">
+            <summary>
+            Initializes a new instance of the <see cref="!:DecimalMetadata" /> class.
+            </summary>
+            <param name="app">The app.</param>
+            <param name="prop">The prop.</param>
+        </member>
+        <member name="T:Starcounter.Templates.DoubleMetadata`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.DoubleMetadata`1.#ctor(`0,Starcounter.Templates.TDouble)">
+            <summary>
+            Initializes a new instance of the <see cref="!:DoubleMetadata" /> class.
+            </summary>
+            <param name="app">The app.</param>
+            <param name="prop">The prop.</param>
+        </member>
+        <member name="T:Starcounter.Templates.ObjMetadataBase`2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.ObjMetadataBase`2.#ctor(`0,`1)">
+            <summary>
+            Initializes a new instance of the <see cref="!:ObjMetadataBase" /> class.
+            </summary>
+            <param name="app">The app.</param>
+            <param name="template">The template.</param>
+        </member>
+        <member name="P:Starcounter.Templates.ObjMetadataBase`2.App">
+            <summary>
+            
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Starcounter.Templates.ObjMetadataBase`2.Template">
+            <summary>
+            
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Starcounter.Templates.ValueMetadata`2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.ValueMetadata`2.#ctor(`0,`1)">
+            <summary>
+            Initializes a new instance of the <see cref="!:ValueMetadata" /> class.
+            </summary>
+            <param name="app">The app.</param>
+            <param name="template">The template.</param>
+        </member>
+        <member name="P:Starcounter.Templates.ValueMetadata`2.Enabled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="!:ValueMetadata" /> is enabled.
+            </summary>
+            <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Starcounter.Templates.ValueMetadata`2.Visible">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="!:ValueMetadata" /> is visible.
+            </summary>
+            <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Starcounter.Templates.ValueMetadata`2.Editable">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="!:ValueMetadata" /> is editable.
+            </summary>
+            <value><c>true</c> if editable; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:Starcounter.Templates.LongMetadata`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.LongMetadata`1.#ctor(`0,Starcounter.Templates.TLong)">
+            <summary>
+            Initializes a new instance of the <see cref="!:LongMetadata" /> class.
+            </summary>
+            <param name="app">The app.</param>
+            <param name="prop">The prop.</param>
+        </member>
+        <member name="T:Starcounter.Templates.ObjMetadata`2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.ObjMetadata`2.#ctor(`1,`0)">
+            <summary>
+            Initializes a new instance of the <see cref="!:ObjMetadata" /> class.
+            </summary>
+            <param name="app">The app.</param>
+            <param name="template">The template.</param>
+        </member>
+        <member name="M:Starcounter.Templates.ObjMetadata`2.SetAllEditable(System.Boolean)">
+            <summary>
+            Sets all editable.
+            </summary>
+            <param name="editable">if set to <c>true</c> [editable].</param>
+        </member>
+        <member name="M:Starcounter.Templates.ObjMetadata`2.SetAllVisible(System.Boolean)">
+            <summary>
+            Sets all visible.
+            </summary>
+            <param name="visible">if set to <c>true</c> [visible].</param>
+        </member>
+        <member name="M:Starcounter.Templates.ObjMetadata`2.SetAllEnabled(System.Boolean)">
+            <summary>
+            Sets all enabled.
+            </summary>
+            <param name="enabled">if set to <c>true</c> [enabled].</param>
+        </member>
+        <member name="T:Starcounter.Templates.StringMetadata`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Templates.StringMetadata`1.#ctor(`0,Starcounter.Templates.TString)">
+            <summary>
+            Initializes a new instance of the <see cref="!:StringMetadata" /> class.
+            </summary>
+            <param name="app">The app.</param>
+            <param name="prop">The prop.</param>
+        </member>
+        <member name="T:Starcounter.Input">
+            <summary>
+            Base class for Input events. Input events are events triggered by the client
+            and catched on the server when Objs receive input from the end user.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Input._cancelled">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Starcounter.Input.Cancel">
+            <summary>
+            Cancels this instance.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Input.Cancelled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Starcounter.Input" /> is cancelled.
+            </summary>
+            <value><c>true</c> if cancelled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:Starcounter.Input.Base">
+            <summary>
+            Calls the base handler (if any).
+            </summary>
+        </member>
+        <member name="T:Starcounter.Input`1">
+            <summary>
+            An event that encapsulates a single incomming update for a specific value in
+            a Obj. Used as base class for incomming event data in Objs.
+            </summary>
+            <typeparam name="TValue">The type of the value that is being updated</typeparam>
+        </member>
+        <member name="P:Starcounter.Input`1.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="P:Starcounter.Input`1.OldValue">
+            <summary>
+            Gets the old value (the current value, i.e. before the input is accepted).
+            </summary>
+            <value>The old value.</value>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="P:Starcounter.Input`1.ValueChanged">
+            <summary>
+            Returns true if the value have been changed in the inputhandler.
+            </summary>
+            <remarks>
+            This property will be true even if the value set is the same as before.
+            </remarks>
+        </member>
+        <member name="T:Starcounter.Input`3">
+            <summary>
+            An event that encapsulates a single incomming update for a specific value in
+            a Obj. Used as base class for incomming event data in Objs.
+            </summary>
+            <typeparam name="TApp">The type of the Obj.</typeparam>
+            <typeparam name="TTemplate">The type of the ....TODO</typeparam>
+            <typeparam name="TValue">The type of the value that is being updated</typeparam>
+        </member>
+        <member name="T:Starcounter.SessionDestroyInfo">
+            <summary>
+            Session destroy delegate.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Session">
+            <summary>
+            Class representing session.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Session.schedulerId_">
+            <summary>
+            To which scheduler this session belongs.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Session.destroyDelegates_">
+            <summary>
+            List of destroy delegates for this session.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Session.clientRoot">
+            <summary>
+            The infered root that the merged json that is sent to the client is based on.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Session.storeList">
+            <summary>
+            App-specific storage of viewmodels.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Session.transactions">
+            <summary>
+            Array of transactions that is managed by this session. All transaction here 
+            will be cleaned up when either a json with transaction attached is removed 
+            or when the session is cleaned up.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Session.enableNamespaces">
+            <summary>
+            Namespaces should only be added when the public viewmodel is serialized
+            and when patches are sent AND if the option is set. Otherwise no namespaces
+            and no siblings should be serialized.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Session.CheckCorrectScheduler">
+            <summary>
+            Checks if session is used on the owning scheduler.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Session.AddDestroyDelegate(System.Action{Starcounter.Session})">
+            <summary>
+            Event which is called when session is being destroyed (timeout, manual, etc).
+            </summary>
+        </member>
+        <member name="M:Starcounter.Session.RunDestroyDelegates(Starcounter.Session)">
+            <summary>
+            Runs session destruction delegates.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Session.Options">
+            <summary>
+            Configured options for this session.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Session.CheckOption(Starcounter.SessionOptions)">
+            <summary>
+            Checks if given option exists in session options.
+            </summary>
+            <param name="option"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Session.CalculatePatchAndPushOnWebSocket">
+            <summary>
+            Calculates the patch and pushes it on WebSocket.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Session.SessionTask">
+            <summary>
+            Resembles session task to be used in Session.ScheduleTask and Session.ForAll.
+            </summary>
+            <param name="session">Session on which this task is to be called. Note that Session value can still be null (if session was destroyed in the meantime).</param>
+            <param name="sessionId">Session ASCII representation (useful in case if Session value is null).</param>
+        </member>
+        <member name="M:Starcounter.Session.RunForSessionsOnCurrentScheduler(Starcounter.Session.SessionTask)">
+            <summary>
+            Runs a given session for each task on current scheduler.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Session.ForAll(Starcounter.Session.SessionTask,System.Boolean)">
+            <summary>
+            Running given task on each active session on each owning scheduler.
+            </summary>
+            <param name="task">Task to run on session. Second string parameter is the session ASCII representation.</param>
+            <param name="waitForCompletion">Should we wait for the task to be completed.</param>
+        </member>
+        <member name="M:Starcounter.Session.ScheduleTask(System.String,Starcounter.Session.SessionTask,System.Boolean)">
+            <summary>
+            Schedule a task on specific session.
+            </summary>
+            <param name="sessionId">String representing the session (string is obtained from Session.SessionId).</param>
+            <param name="task">Task to run on session. Note that Session value can still be null (if session was destroyed in the meantime).
+            Second string parameter is the session ASCII representation (useful in case if Session value is null).</param>
+            <param name="waitForCompletion">Should we wait for the task to be completed.</param>
+        </member>
+        <member name="M:Starcounter.Session.ScheduleTask(System.Collections.Generic.IEnumerable{System.String},Starcounter.Session.SessionTask,System.Boolean)">
+            <summary>
+            Schedule a task on given sessions.
+            </summary>
+            <param name="sessionId">String representing the session (string is obtained from Session.SessionId).</param>
+            <param name="task">Task to run on session. Note that Session value can still be null (if session was destroyed in the meantime).
+            Second string parameter is the session ASCII representation (useful in case if Session value is null).</param>
+            <param name="waitForCompletion">Should we wait for the task to be completed.</param>
+        </member>
+        <member name="M:Starcounter.Session.ToAsciiString">
+            <summary>
+            Returns ASCII string representing the session.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Session.UseSessionCookie">
+            <summary>
+            Indicates if user wants to use session cookie.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Session.UseSessionHeader">
+            <summary>
+            If set to true, a header will be added to the outgoing response 
+            containing the location of the session. The header is default set 
+            to 'X-Location', but can be changed using the property 'SessionHeaderName'
+            </summary>
+            <remarks>
+            Only the first response for a request that either: created a new 
+            session or changed the current session will contain this header.
+            </remarks>
+        </member>
+        <member name="P:Starcounter.Session.SessionHeaderName">
+            <summary>
+            Specifies the name used for the header if 'UseSessionHeader' is true.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Session.InternalSession">
+            <summary>
+            Getting internal session.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Session.ActiveWebSocket">
+            <summary>
+            Currently active WebSocket.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Session.Current">
+            <summary>
+            Gets the current active session object, or null if no session is set.
+            </summary>
+            <remarks>
+            Use <c>Ensure()</c> To always get an instance of session and set it as current.
+            </remarks>
+        </member>
+        <member name="M:Starcounter.Session.Ensure">
+            <summary>
+            Ensures that a session is created and is set as active. 
+            </summary>
+            <remarks>
+            This method is threadsafe.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.Session.Data">
+            <summary>
+            Gets or sets session data for one specific application. 
+            </summary>
+        </member>
+        <member name="P:Starcounter.Session.Created">
+            <summary>
+            Getting session creation time. 
+            </summary>
+        </member>
+        <member name="P:Starcounter.Session.LastActive">
+            <summary>
+            Getting last active session time. 
+            </summary>
+        </member>
+        <member name="P:Starcounter.Session.TimeoutMinutes">
+            <summary>
+            Session timeout.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Session.SessionIdString">
+            <summary>
+            Internal session string.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Session.SessionId">
+            <summary>
+            String representation of the session object.
+            Used, for example, for storing session and then using it as parameter for Session.ScheduleTask.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Session.SessionUri">
+            <summary>
+            The URI identifier of the specific session.
+            For example, the contents of the `X-Referer` header to execute the server side handler in scope of a session.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Starcounter.Session.IsBeingUsed" -->
+        <member name="M:Starcounter.Session.StartUsing">
+            <summary>
+            Start using specific session.
+            </summary>
+            <returns>
+            true if switched over to this session, false if the session 
+            already was current.
+            </returns>
+        </member>
+        <member name="M:Starcounter.Session.StopUsing">
+            <summary>
+            Stop using specific session.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Session.IsAlive">
+            <summary>
+            Checks if session is active.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.Session.PublicViewModel">
+            <summary>
+            Gets the public viewmodel
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Starcounter.Session.DatabaseHasBeenUpdatedInCurrentTask">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Session.Destroy">
+            <summary>
+            Destroys the session.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Session.System#IDisposable#Dispose">
+            <summary>
+            Dispose functionality for session.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Session.Use(System.Action)">
+            <summary>
+            Executes the specified delegate inside the scope of the session,
+            ensuring that only the caller have access for the duration of the call       
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Starcounter.Session.Use(Starcounter.Session.SessionTask,System.String)">
+            <summary>
+            Executes the specified delegate inside the scope of the session,
+            ensuring that only the caller have access for the duration of the call       
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Starcounter.Session.Use``1(System.Action{``0},``0)">
+            <summary>
+            Executes the specified delegate inside the scope of the session,
+            ensuring that only the caller have access for the duration of the call
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Starcounter.Session.Use``2(System.Action{``0,``1},``0,``1)">
+            <summary>
+            Executes the specified delegate inside the scope of the session,
+            ensuring that only the caller have access for the duration of the call
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Starcounter.Session.Use``3(System.Action{``0,``1,``2},``0,``1,``2)">
+            <summary>
+            Executes the specified delegate inside the scope of the session,
+            ensuring that only the caller have access for the duration of the call
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Starcounter.Session.Use``1(System.Func{``0})">
+            <summary>
+            Executes the specified delegate inside the scope of the session,
+            ensuring that only the caller have access for the duration of the call
+            </summary>
+            <param name="func"></param>
+        </member>
+        <member name="M:Starcounter.Session.Use``2(System.Func{``0,``1},``0)">
+            <summary>
+            Executes the specified delegate inside the scope of the session,
+            ensuring that only the caller have access for the duration of the call
+            </summary>
+            <param name="func"></param>
+        </member>
+        <member name="M:Starcounter.Session.Use``3(System.Func{``0,``1,``2},``0,``1)">
+            <summary>
+            Executes the specified delegate inside the scope of the session,
+            ensuring that only the caller have access for the duration of the call
+            </summary>
+            <param name="func"></param>
+        </member>
+        <member name="T:Starcounter.TemplateAttribute">
+            <summary>
+            Class TemplateAttribute
+            </summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Parse(System.String)">
+            <summary>from JsonSring to Json</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Parse(System.String,System.Text.Encoding)">
+            <summary>from JsonSring to Json</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Parse(System.IO.Stream)">
+            <summary>from JsonSringStream to Json</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Parse(System.IO.Stream,System.Text.Encoding)">
+            <summary>from JsonSringStream to Json</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Serialize(System.Object)">
+            <summary>create JsonSring from primitive or IEnumerable or Object({public property name:property value})</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.#ctor">
+            <summary>create blank JSObject</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.IsDefined(System.String)">
+            <summary>has property or not</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.IsDefined(System.Int32)">
+            <summary>has property or not</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Delete(System.String)">
+            <summary>delete property</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Delete(System.Int32)">
+            <summary>delete property</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Deserialize``1">
+            <summary>mapping to Array or Class by Public PropertyName</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.ToString">
+            <summary>Serialize to JsonString</summary>
+        </member>
+    </members>
+</doc>

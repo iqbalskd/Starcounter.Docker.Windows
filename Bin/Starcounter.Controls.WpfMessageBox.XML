@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.Controls.WpfMessageBox</name>
+    </assembly>
+    <members>
+        <member name="M:Starcounter.Controls.WpfMessageBox.SetIcon(Starcounter.Controls.WpfMessageBoxImage)">
+            <summary>
+            Sets the icon.
+            </summary>
+            <param name="image">The image.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.Controls.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Controls.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Controls.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

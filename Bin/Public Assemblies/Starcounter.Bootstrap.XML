@@ -1,0 +1,464 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.Bootstrap</name>
+    </assembly>
+    <members>
+        <member name="T:StarcounterInternal.Bootstrap.Configuration">
+            <summary>
+            Basic host configuration.
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Configuration.Load(Starcounter.CommandLine.ApplicationArguments)">
+            <summary>
+            Loads the specified program arguments.
+            </summary>
+            <param name="programArguments">The program arguments.</param>
+            <returns>Configuration.</returns>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.ProgramArguments">
+            <summary>
+            Gets or sets the program arguments.
+            </summary>
+            <value>The program arguments.</value>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.SchedulerCount">
+            <summary>
+            Gets the scheduler count.
+            </summary>
+            <value>The scheduler count.</value>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Configuration.#ctor(Starcounter.CommandLine.ApplicationArguments)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StarcounterInternal.Bootstrap.Configuration" /> class.
+            </summary>
+            <param name="programArguments">The program arguments.</param>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.DbUUID">
+            <summary>
+            Gets the database UUID.
+            </summary>
+            <value>The database UUID.</value>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.OutputDirectory">
+            <summary>
+            Gets the output directory.
+            </summary>
+            <value>The output directory.</value>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.TempDirectory">
+            <summary>
+            Gets the temp directory.
+            </summary>
+            <value>The temp directory.</value>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.AutoStartExePath">
+            <summary>
+            Gets the auto start exe path.
+            </summary>
+            <value>The auto start exe path.</value>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.ServerName">
+            <summary>
+            Gets the name of the server.
+            </summary>
+            <value>The name of the server.</value>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.GatewayNumberOfWorkers">
+            <summary>
+            Number of workers in gateway.
+            </summary>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.DefaultSessionTimeoutMinutes">
+            <summary>
+            Default session timeout.
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Configuration.ApplyAppsFlags">
+            <summary>
+            Applies all application related flags.
+            </summary>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.ChunksNumber">
+            <summary>
+            Gets the chunks number.
+            </summary>
+            <value>The chunks number.</value>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.SQLProcessPort">
+            <summary>
+            Gets the SQL process port.
+            </summary>
+            <value>The SQL process port.</value>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.DefaultUserHttpPort">
+            <summary>
+            Gets the default user HTTP port.
+            </summary>
+            <value>The default user HTTP port.</value>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.DefaultSystemHttpPort">
+            <summary>
+            Gets the default user HTTP port.
+            </summary>
+            <value>The default user HTTP port.</value>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.NoDb">
+            <summary>
+            Gets a value indicating whether [no db].
+            </summary>
+            <value><c>true</c> if [no db]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.Configuration.NoNetworkGateway">
+            <summary>
+            Gets a value indicating whether network gateway should not be used.
+            </summary>
+            <value><c>true</c> if network gateway should not be used; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:StarcounterInternal.Bootstrap.Control">
+            <summary>
+            Class Control
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Bootstrap.Control.ApplicationLogSource">
+            <summary>
+            Log source to be used when logging/tracing application
+            level events.
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Bootstrap.Control.log">
+            <summary>
+            The log source established at the time of creation of the
+            Control instance;
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.Main(System.String[])">
+            <summary>
+            Defines the entry point of the application.
+            </summary>
+            <param name="args">The args.</param>
+        </member>
+        <member name="F:StarcounterInternal.Bootstrap.Control.configuration">
+            <summary>
+            Loaded configuration info.
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Bootstrap.Control.withdb_">
+            <summary>
+            The withdb_
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Bootstrap.Control.hsched_">
+            <summary>
+            The hsched_
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.Setup(System.String[])">
+            <summary>
+            Setups the specified args.
+            </summary>
+            <param name="args">The args.</param>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.Start">
+            <summary>
+            Starts this instance.
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.ParseUserArguments(System.String)">
+            <summary>
+            Simple parser for user arguments.
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.Run">
+            <summary>
+            Runs this instance.
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.Stop">
+            <summary>
+            Stops this instance.
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.Cleanup">
+            <summary>
+            Cleanups this instance.
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Bootstrap.Control.processControl_">
+            <summary>
+            The process control_
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.AssureNoOtherProcessWithTheSameName(StarcounterInternal.Bootstrap.Configuration)">
+            <summary>
+            Assures the name of the no other process with the same.
+            </summary>
+            <param name="c">The c.</param>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.CalculateAmountOfMemoryNeededForRuntimeEnvironment(System.UInt32)">
+            <summary>
+            Calculates the amount of memory needed for runtime environment.
+            </summary>
+            <param name="schedulerCount">The scheduler count.</param>
+            <returns>System.UInt32.</returns>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.ConfigureLogging(StarcounterInternal.Bootstrap.Configuration)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.ConfigureHost(StarcounterInternal.Bootstrap.Configuration,System.UInt64)">
+            <summary>
+            Configures the host.
+            </summary>
+            <param name="configuration">The <see cref="T:StarcounterInternal.Bootstrap.Configuration"/> to use when
+            configuring the host.</param>
+            <param name="hlogs">The hlogs.</param>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.ConfigureScheduler(StarcounterInternal.Bootstrap.Configuration,System.Void*,System.UInt32,System.UInt64)">
+            <summary>
+            Configures the scheduler.
+            </summary>
+            <param name="c">The c.</param>
+            <param name="mem">The mem.</param>
+            <param name="hmenv">The hmenv.</param>
+            <param name="schedulerCount">The scheduler count.</param>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.ConfigureDatabase(StarcounterInternal.Bootstrap.Configuration)">
+            <summary>
+            Configures the database.
+            </summary>
+            <param name="c">The c.</param>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.Control.ConnectDatabase(System.Guid,System.UInt32,System.UInt64)">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:StarcounterInternal.Bootstrap.ProgramCommandLine">
+            <summary>
+            Contains a set of utility methods responsible for defining, parsing
+            and handling errors for the command line parameters given to this
+            program.
+            </summary>
+        </member>
+        <member name="P:StarcounterInternal.Bootstrap.ProgramCommandLine.Syntax">
+            <summary>
+            Gets the command-line syntax of the code host bootstrapping
+            program
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.ProgramCommandLine.TryGetProgramArguments(System.String[],Starcounter.CommandLine.ApplicationArguments@)">
+            <summary>
+            Tries the get program arguments.
+            </summary>
+            <param name="args">The args.</param>
+            <param name="arguments">The arguments.</param>
+        </member>
+        <member name="M:StarcounterInternal.Bootstrap.ProgramCommandLine.Usage(Starcounter.CommandLine.Syntax.IApplicationSyntax,Starcounter.CommandLine.InvalidCommandLineException)">
+            <summary>
+            Usages the specified syntax.
+            </summary>
+            <param name="syntax">The syntax.</param>
+            <param name="argumentException">The argument exception.</param>
+        </member>
+        <member name="T:Starcounter.Bootstrap.Management.CodeHostAPI">
+            <summary>
+            Defines the management API of the code host, mainly
+            providing its URIs.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Bootstrap.Management.CodeHostAPI.Uris">
+            <summary>
+            Provides the set of code host URIs offered by the
+            current instance.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Bootstrap.Management.CodeHostAPI.Setup(System.String)">
+            <summary>
+            Performs setup of the <see cref="T:Starcounter.Bootstrap.Management.CodeHostAPI"/>.
+            </summary>
+            <param name="hostIdentity"></param>
+        </member>
+        <member name="M:Starcounter.Bootstrap.Management.CodeHostAPI.Shutdown">
+            <summary>
+            Initiates shutdown of the current code host.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Bootstrap.Management.CodeHostAPI.ResourceUris">
+            <summary>
+            Provides the URI's used for code host management.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Bootstrap.Management.CodeHostAPI.ResourceUris.RootContext">
+            <summary>
+            Defines the relative URI of the root context for
+            the code host.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Bootstrap.Management.CodeHostAPI.ResourceUris.ContextPath">
+            <summary>
+            Gets the context path in use. Assinged in the constructor.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Bootstrap.Management.CodeHostAPI.ResourceUris.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Starcounter.Bootstrap.Management.CodeHostAPI.ResourceUris"/>.
+            </summary>
+            <param name="hostIdentity">
+            The identity of the host, normally in the form of a database
+            name.</param>
+        </member>
+        <member name="P:Starcounter.Bootstrap.Management.CodeHostAPI.ResourceUris.Host">
+            <summary>
+            Gets the URI of the host resource.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Bootstrap.Management.CodeHostAPI.ResourceUris.Executables">
+            <summary>
+            Gets the URI of the host executables resource.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Bootstrap.Management.CodeHostHandler">
+            <summary>
+            Implements the code host functionality behind the code host "Host"
+            management resource.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Bootstrap.Management.CodeHostHandler.JSON">
+            <summary>
+            Provides a set of utility methods for working with JSON representations
+            in the code host management context.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Bootstrap.Management.CodeHostHandler.JSON.CreateResponse(System.String,System.Int32)">
+            <summary>
+            Creates a response based on JSON content, passed as a string.
+            </summary>
+            <param name="jsonContent">A JSON body.</param>
+            <param name="status">The status code; 200/OK by default.</param>
+            <param name="headers">Optional headers.</param>
+            <returns>A response to be sent back to the client.</returns>
+        </member>
+        <member name="M:Starcounter.Bootstrap.Management.CodeHostHandler.JSON.CreateFromRequest``1(Starcounter.Request,``0@)">
+            <summary>
+            Creates a JSON representation from the body/content of a given
+            request and returns it on successful. If the request is somehow
+            considered invalid for the current (JSON) context, a response
+            is created and the caller is expected to immediately return it.
+            </summary>
+            <remarks>
+            The most obvious failure is a problem parsing the request body.
+            But other conditions specific for JSON representations are, or
+            will be, handled here too, like the failure to accept JSON as a
+            media type.
+            </remarks>
+            <typeparam name="T">The strongly typed JSON to create and populate
+            from the enclosed entity.</typeparam>
+            <param name="request">The request whose body we'll use.</param>
+            <param name="obj">The resulting strongly typed object.</param>
+            <returns>A response to be returned if the request can not be
+            accepted.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Starcounter.Bootstrap.Management.CodeHostHandler.JSON.CreateError(System.UInt32,System.String,System.String)" -->
+        <member name="M:Starcounter.Bootstrap.Management.CodeHostHandler.Setup">
+            <summary>
+            Performs setup of the <see cref="T:Starcounter.Bootstrap.Management.CodeHostHandler"/>.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Bootstrap.Management.ExecutablesHandler">
+            <summary>
+            Implements the code host functionality behind the code host "Executables"
+            management resource.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Bootstrap.Management.ExecutablesHandler.Setup(System.Void*)">
+            <summary>
+            Performs setup of the <see cref="T:Starcounter.Bootstrap.Management.ExecutablesHandler"/>.
+            </summary>
+            <param name="handleScheduler">Handle to the scheduler to use when
+            management services need to schedule work to be done.</param>
+        </member>
+        <member name="T:Starcounter.Bootstrap.Management.ManagementService">
+            <summary>
+            Governs the interface the code host process expose over HTTP
+            to allow code host level management.
+            </summary>
+            <remarks>
+            Managing the code host is primarly done by the admin server as
+            part of providing a way to run executables and start and stop
+            engines and code host processes.
+            </remarks>
+        </member>
+        <member name="P:Starcounter.Bootstrap.Management.ManagementService.HostIdentity">
+            <summary>
+            Gets the host identity, used to expose management services
+            over HTTP.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Bootstrap.Management.ManagementService.Port">
+            <summary>
+            Gets the port used to expose management services over HTTP.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Bootstrap.Management.ManagementService.Unavailable">
+            <summary>
+            Governs the availability of the management service.
+            </summary>
+            <remarks>
+            When the service is unavailable, all HTTP requests to any of
+            its  resources will return a 503. Normally, the service will
+            be unavailable during the bootstrap sequence of the code host
+            and after it has been shut down (and before the process exits
+            while handlers are still registered).
+            </remarks>
+        </member>
+        <member name="P:Starcounter.Bootstrap.Management.ManagementService.IsAdministrator">
+            <summary>
+            Gets a value that indicates if the current service is running
+            in the administrator host.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Bootstrap.Management.ManagementService.Init(System.String)">
+            <summary>
+            Initializes the management service in the starting code host
+            process.
+            </summary>
+            <param name="hostIdentity">The identity of the host. Used when
+            constructing and registering management URIs.</param>
+        </member>
+        <member name="M:Starcounter.Bootstrap.Management.ManagementService.Setup(System.UInt16,System.Void*,System.Boolean)">
+            <summary>
+            Sets up the management service.
+            </summary>
+            <param name="port">The port all handlers should register under.</param>
+            <param name="handleScheduler">Handle to the scheduler to use when
+            management services need to schedule work to be done.</param>
+            <param name="setupAPI">Indicates if the API should be set up.</param>
+        </member>
+        <member name="M:Starcounter.Bootstrap.Management.ManagementService.Shutdown">
+            <summary>
+            Instructs the service to shut down.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Bootstrap.Management.ManagementService.RunUntilShutdown">
+            <summary>
+            Makes the management service functionality available to clients
+            and blocks the calling thread until a request indicates the service
+            should shut down (semantically eqivivalent to stopping the code
+            host).
+            </summary>
+        </member>
+        <member name="T:Starcounter.Bootstrap.Management.Representations.JSON.Executable">
+            <summary>
+            Defines a JSON representation of an executable resource, as
+            defined by the code host.
+            </summary>
+        </member>
+    </members>
+</doc>

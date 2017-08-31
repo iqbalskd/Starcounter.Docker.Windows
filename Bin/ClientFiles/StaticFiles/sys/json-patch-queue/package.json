@@ -1,0 +1,37 @@
+{
+  "name": "json-patch-queue",
+  "version": "2.0.1",
+  "description": "Queue for Versioned JSON-Patch - makes sure that your JSON Patches (RFC6902) gets applied in correct order",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "jasmine test/spec/*.js",
+    "test-sync": "jasmine test/spec/synchronousVersioningSpec.js",
+    "test-async": "jasmine test/spec/asyncVersioningSpec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Palindrom/JSON-Patch-queue.git"
+  },
+  "keywords": [
+    "jsonpatch",
+    "json-patch",
+    "versioned-json-patch",
+    "json",
+    "queue"
+  ],
+  "author": "Tomek Wytrebowicz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Palindrom/JSON-Patch-queue/issues"
+  },
+  "homepage": "https://github.com/Palindrom/JSON-Patch-queue",
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-bump": "^0.8.0",
+    "grunt-contrib-uglify": "^2.2.0",
+    "jasmine": "^2.4.1"
+  }
+}

@@ -1,0 +1,528 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.Hosting</name>
+    </assembly>
+    <members>
+        <member name="T:Starcounter.Hosting.ApplicationDirectory">
+            <summary>
+            Represent the application directory of an application that has been
+            requested to launch into a host.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Hosting.ApplicationDirectory.Path">
+            <summary>
+            Full path to the directory.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Hosting.ApplicationDirectory.Binaries">
+            <summary>
+            Set of binaries that have been resolved from the current
+            directory.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Hosting.ApplicationDirectory.#ctor(System.IO.DirectoryInfo)">
+            <summary>
+            Initialize a new <see cref="T:Starcounter.Hosting.ApplicationDirectory"/>.
+            </summary>
+            <param name="directory">The directory to initialize from.</param>
+        </member>
+        <member name="T:Starcounter.Hosting.AssemblyResolver">
+            <summary>
+            Implements the Starcounter Code Host Assembly resolver.
+            The primary service offered by the assembly resolver is
+            to locate referenced assemblies the CLR don't know how
+            to load.
+            </summary>
+            <remarks>
+            There is an article about the assembly resolver on the
+            wiki: /wiki/How-the-Code-Host-Locates-Assemblies. Make
+            sure to update this article of any of the resolving
+            internals change.
+            </remarks>
+        </member>
+        <member name="T:Starcounter.Hosting.CodeHostError">
+            <summary>
+            Expose utility code used when propagating and consuming
+            error data relating to errors in the code host.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Hosting.CodeHostError.ErrorParcelID">
+            <summary>
+            Gets a value used by hosting components to propagate errors via
+            a simple parcelling mechanism.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Hosting.CodeHostError.Report(System.String)">
+            <summary>
+            Reports <paramref name="error"/> as a code host error.
+            </summary>
+            <param name="error">The error to report.</param>
+        </member>
+        <member name="M:Starcounter.Hosting.CodeHostError.Report(System.Exception,System.Boolean)">
+            <summary>
+            Reports <paramref name="exception"/> as a code host error.
+            </summary>
+            <param name="exception">The error to report.</param>
+            <param name="includeStackTrace"><c>true</c> if the stacktrace should be
+            part of the report; <c>false</c> otherwise.</param>
+        </member>
+        <member name="T:Starcounter.Hosting.IPrivateAssemblyStore">
+            <summary>
+            Represents the collection of private assemblies the code host is
+            aware of, based on loaded applications.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Hosting.IPrivateAssemblyStore.IsApplicationDirectory(System.String)">
+            <summary>
+            Evaluates the given <paramref name="applicationDirectory"/> to see
+            if it is a directory previously registered with the current store.
+            </summary>
+            <param name="applicationDirectory">The directory to look for.</param>
+            <returns><c>true</c> if the given directory is a known application
+            directory; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Starcounter.Hosting.IPrivateAssemblyStore.GetAssembly(System.String)">
+            <summary>
+            Gets the name of the assembly stored for the specified path.
+            </summary>
+            <param name="filePath">That path to translate to a name.</param>
+            <returns>The assembly name</returns>
+        </member>
+        <member name="M:Starcounter.Hosting.IPrivateAssemblyStore.GetAssemblies(System.String)">
+            <summary>
+            Get all assemblies matching the given name, accross our ingoing
+            application directories.
+            </summary>
+            <param name="assemblyName">The name to consult</param>
+            <returns>Each assembly corresponding to the given name.</returns>
+        </member>
+        <member name="T:Starcounter.Hosting.Package">
+            <summary>
+            Class Package
+            </summary>
+        </member>
+        <member name="F:Starcounter.Hosting.Package.InitInternalHttpHandlers_">
+            <summary>
+            Initializes internal HTTP handlers.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Hosting.Package.packageInitialized_">
+            <summary>
+            Indicates if package was already initialized for all executables.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Hosting.Package.InitPackage(System.Action)">
+            <summary>
+            Initializes package with global settings.
+            </summary>
+            <param name="initInternalHttpHandlers">Initializes internal HTTP handlers.</param>
+        </member>
+        <member name="M:Starcounter.Hosting.Package.Process(System.IntPtr)">
+            <summary>
+            Processes the specified h package.
+            </summary>
+            <param name="hPackage">The h package.</param>
+        </member>
+        <member name="F:Starcounter.Hosting.Package.exportedSchemas_">
+            <summary>
+            Exported schema.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Hosting.Package.typeDefinitions">
+            <summary>
+            Set of type definitions to consider during processing
+            of this package.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Hosting.Package.systemTypeDefinitions_">
+            <summary>
+            System type definitions.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Hosting.Package.processedEvent_">
+            <summary>
+            The processed event_
+            </summary>
+        </member>
+        <member name="M:Starcounter.Hosting.Package.#ctor(Starcounter.Binding.TypeDef[],System.Diagnostics.Stopwatch)">
+            <summary>
+            Initialize a simple package, not representing a user code
+            application, but rather just a set of types to register.
+            </summary>
+            <param name="typeDefs">Set of type definitions to
+            consider.</param>
+            <param name="stopwatch">A watch used to time package loading.</param>
+        </member>
+        <member name="M:Starcounter.Hosting.Package.#ctor(Starcounter.Binding.TypeDef[],System.Diagnostics.Stopwatch,Starcounter.Application,Starcounter.Hosting.ApplicationDirectory,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Starcounter.Hosting.Package" /> class.
+            </summary>
+            <param name="typeDefs">Set of type definitions to consider.</param>
+            <param name="stopwatch">A watch used to time package loading.</param>
+            <param name="application">The application that is being launched.</param>
+            <param name="appDir">The materialized application directory.</param>
+            <param name="execEntryPointSynchronously">
+            If true the event for processing complete will be set after the entrypoint returns, 
+            if set to false the event will be set before the entrypoint executes.
+            </param>
+        </member>
+        <member name="M:Starcounter.Hosting.Package.Process">
+            <summary>
+            Processes this instance.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Hosting.Package.WaitUntilProcessed">
+            <summary>
+            Waits the until processed.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Hosting.Package.Dispose">
+            <summary>
+            Disposes this instance.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Hosting.Package.UpdateDatabaseSchemaAndRegisterTypes(System.String,Starcounter.Binding.TypeDef[],Starcounter.Binding.TypeDef[])">
+            <summary>
+            Updates the database schema and register types.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Hosting.Package.CreateOrUpdateDatabaseTable(Starcounter.Binding.TypeDef)">
+            <summary>
+            Creates the or update database table.
+            </summary>
+            <param name="typeDef">The type definition for the table to update or create.</param>
+            <returns>f.</returns>
+        </member>
+        <member name="M:Starcounter.Hosting.Package.ExecuteEntryPoint(Starcounter.Application,System.Reflection.Assembly)">
+            <summary>
+            Executes the entry point.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Hosting.PrivateAssemblyStore">
+            <summary>
+            Code-host specific adapter of a private assembly store, supporting immutable
+            consistent views of the store at different generations to be retrived using
+            the <c>Immutable</c> property.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Hosting.PrivateAssemblyStore.ImmutableState">
+            <summary>
+            Provide a consistent view of the code-host global private assembly store
+            by means of only using immutable state.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Hosting.PrivateAssemblyStore.Immutable">
+            <summary>
+            Gets a snapshot of an immutable state, providing a consistent view
+            of the assembly store.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Hosting.PrivateAssemblyStore.#ctor">
+            <summary>
+            Creates the code-host singleton, empty store.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Hosting.PrivateAssemblyStore.RegisterApplicationDirectory(Starcounter.Hosting.ApplicationDirectory)">
+            <summary>
+            Register a new application within the store, effectively transitioning
+            the underlying immutable state.
+            </summary>
+            <param name="dir">The application directory</param>
+        </member>
+        <member name="T:Starcounter.Hosting.PrivateBinaryFile">
+            <summary>
+            Represents a binary file the host is aware of, possibly an
+            assembly, located in one of the application directories.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Hosting.StarcounterPackage">
+            <summary>
+            The package provided by Starcounter, containing types that are to be
+            loaded and maintained in every host.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Hosting.StarcounterPackage.Create(System.Diagnostics.Stopwatch)">
+            <summary>
+            Create a <see cref="T:Starcounter.Hosting.StarcounterPackage"/>, governing the right set of
+            type definitions.
+            </summary>
+            <param name="watch">Stop watch for diagnostics</param>
+            <returns>The package, ready to be processed.</returns>
+        </member>
+        <member name="M:Starcounter.Hosting.StarcounterPackage.LookupTable(System.String)">
+            <summary>
+            Gets the metadata table definition based on the name. This method
+            differs from the public method in Db class with that it uses internal 
+            metadata API and never queries RawView for expexted layout.
+            There can only ever be one layout for the metadata types as well so if more
+            exists something is broken.
+            </summary>
+            <param name="name">The fullname of the table.</param>
+            <returns>TableDef.</returns>
+        </member>
+        <member name="M:Starcounter.Hosting.TaskSchedulerImpl.Run(Starcounter.Internal.ITask,System.Byte)">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:StarcounterInternal.Hosting.ExceptionManager">
+            <summary>
+            Class ExceptionManager
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.ExceptionManager.HandleUnhandledException(System.Exception)">
+            <summary>
+            Handles the unhandled exception.
+            </summary>
+            <param name="ex">The ex.</param>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise</returns>
+        </member>
+        <member name="T:StarcounterInternal.Hosting.Loader">
+            <summary>
+            Class Loader
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.Loader.ResolveAssembly(System.Object,System.ResolveEventArgs)">
+            <summary>
+            Resolves the assembly.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The <see cref="T:System.ResolveEventArgs" /> instance containing the event data.</param>
+            <returns>Assembly.</returns>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.Loader.AddBasePackage(System.Void*,System.Diagnostics.Stopwatch)">
+            <summary>
+            Adds the package defined by Starcounter, part of every code host
+            and always loaded first.
+            </summary>
+            <param name="hsched">Pointer to scheduler.</param>
+            <param name="stopwatch">Optional stop watch</param>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.Loader.ExecuteApplication(System.Void*,Starcounter.Hosting.ApplicationBase,System.Boolean,System.Diagnostics.Stopwatch)">
+            <summary>
+            Executes an application in the code host.
+            </summary>
+            <param name="hsched">Handle to the environment.</param>
+            <param name="appBase">The application to execute.</param>
+            <param name="execEntryPointSynchronously">Indicates if the entrypoint
+            should be executed synchrounously, i.e. before this method return.</param>
+            <param name="stopwatch">An optional stopwatch to use for timing.</param>
+        </member>
+        <member name="T:StarcounterInternal.Hosting.orange">
+            <summary>
+            Class orange
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Hosting.orange.th_start">
+            <summary>
+            The th_start
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Hosting.orange.th_yield">
+            <summary>
+            The th_yield
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange.orange_configure_scheduler_callbacks(Starcounter.Internal.sccorelib.CM2_SETUP@)">
+            <summary>
+            Orange_configure_scheduler_callbackses the specified setup.
+            </summary>
+            <param name="setup">The setup.</param>
+        </member>
+        <member name="F:StarcounterInternal.Hosting.orange.orange_on_index_updated">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange.orange_configure_database_callbacks(Starcounter.Internal.sccoredb.sccoredb_callbacks@)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange.OnThreadStart(System.UInt32)">
+            <summary>
+            Called when [thread start].
+            </summary>
+            <param name="sf">The sf.</param>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange.orange_thread_enter(System.Void*,System.Byte,System.Void*,System.Int32)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange.orange_thread_leave(System.Void*,System.Byte,System.Void*,System.UInt32)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange.orange_thread_start(System.Void*,System.Byte,System.Void*,System.UInt32)">
+            <summary>
+            Orange_thread_starts the specified hsched.
+            </summary>
+            <param name="hsched">The hsched.</param>
+            <param name="cpun">The cpun.</param>
+            <param name="p">The p.</param>
+            <param name="sf">The sf.</param>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange.orange_thread_yield(System.Void*,System.Byte,System.Void*,System.UInt32)">
+            <summary>
+            Orange_thread_yields the specified hsched.
+            </summary>
+            <param name="hsched">The hsched.</param>
+            <param name="cpun">The cpun.</param>
+            <param name="p">The p.</param>
+            <param name="yr">The yr.</param>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange.on_index_updated(System.UInt32,System.UInt64)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange.orange_fatal_error(System.UInt32)">
+            <summary>
+            Orange_fatal_errors the specified e.
+            </summary>
+            <param name="e">The e.</param>
+        </member>
+        <member name="T:StarcounterInternal.Hosting.orange_nodb">
+            <summary>
+            Class orange_nodb
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Hosting.orange_nodb.th_enter">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Hosting.orange_nodb.th_leave">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Hosting.orange_nodb.th_start">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Hosting.orange_nodb.th_reset">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Hosting.orange_nodb.th_yield">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:StarcounterInternal.Hosting.orange_nodb.vp_idle">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange_nodb.orange_configure_scheduler_callbacks(Starcounter.Internal.sccorelib.CM2_SETUP@)">
+            <summary>
+            Orange_configure_scheduler_callbackses the specified setup.
+            </summary>
+            <param name="setup">The setup.</param>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange_nodb.orange_thread_enter(System.Void*,System.Byte,System.Void*,System.Int32)">
+            <summary>
+            Orange_thread_enters the specified hsched.
+            </summary>
+            <param name="hsched">The hsched.</param>
+            <param name="cpun">The cpun.</param>
+            <param name="p">The p.</param>
+            <param name="init">The init.</param>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange_nodb.orange_thread_leave(System.Void*,System.Byte,System.Void*,System.UInt32)">
+            <summary>
+            Orange_thread_leaves the specified hsched.
+            </summary>
+            <param name="hsched">The hsched.</param>
+            <param name="cpun">The cpun.</param>
+            <param name="p">The p.</param>
+            <param name="yr">The yr.</param>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange_nodb.orange_thread_start(System.Void*,System.Byte,System.Void*,System.UInt32)">
+            <summary>
+            Orange_thread_starts the specified hsched.
+            </summary>
+            <param name="hsched">The hsched.</param>
+            <param name="cpun">The cpun.</param>
+            <param name="p">The p.</param>
+            <param name="ignore">The ignore.</param>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange_nodb.orange_thread_reset(System.Void*,System.Byte,System.Void*)">
+            <summary>
+            Orange_thread_resets the specified hsched.
+            </summary>
+            <param name="hsched">The hsched.</param>
+            <param name="cpun">The cpun.</param>
+            <param name="p">The p.</param>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange_nodb.orange_thread_yield(System.Void*,System.Byte,System.Void*,System.UInt32)">
+            <summary>
+            Orange_thread_yields the specified hsched.
+            </summary>
+            <param name="hsched">The hsched.</param>
+            <param name="cpun">The cpun.</param>
+            <param name="p">The p.</param>
+            <param name="yr">The yr.</param>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange_nodb.orange_vproc_idle(System.Void*,System.Byte,System.Void*)">
+            <summary>
+            Orange_vproc_idles the specified hsched.
+            </summary>
+            <param name="hsched">The hsched.</param>
+            <param name="cpun">The cpun.</param>
+            <param name="p">The p.</param>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.orange_nodb.orange_fatal_error(System.UInt32)">
+            <summary>
+            Orange_fatal_errors the specified e.
+            </summary>
+            <param name="e">The e.</param>
+        </member>
+        <member name="T:StarcounterInternal.Hosting.Processor">
+            <summary>
+            Class Processor
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.Processor.Setup(System.Void*)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.Processor.RunMessageLoop(System.Void*)">
+            <summary>
+            Runs the message loop.
+            </summary>
+            <param name="hsched">The hsched.</param>
+        </member>
+        <member name="T:StarcounterInternal.Hosting.sccoreapp">
+            <summary>
+            Class sccoreapp
+            </summary>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.sccoreapp.sccoreapp_init(System.Void*)">
+            <summary>
+            Sccoreapp_inits the specified hlogs.
+            </summary>
+            <param name="hlogs">The hlogs.</param>
+            <returns>System.UInt32.</returns>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.sccoreapp.sccoreapp_standby(System.Void*,Starcounter.Internal.sccorelib.CM2_TASK_DATA*)">
+            <summary>
+            Sccoreapp_standbies the specified hsched.
+            </summary>
+            <param name="hsched">The hsched.</param>
+            <param name="ptask_data">The ptask_data.</param>
+            <returns>System.UInt32.</returns>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.sccoreapp.sccoreapp_log_critical_code(System.UInt32)">
+            <summary>
+            Sccoreapp_log_critical_codes the specified e.
+            </summary>
+            <param name="e">The e.</param>
+            <returns>System.UInt32.</returns>
+        </member>
+        <member name="M:StarcounterInternal.Hosting.sccoreapp.sccoreapp_log_critical_message(System.String)">
+            <summary>
+            Sccoreapp_log_critical_messages the specified message.
+            </summary>
+            <param name="message">The message.</param>
+            <returns>System.UInt32.</returns>
+        </member>
+    </members>
+</doc>

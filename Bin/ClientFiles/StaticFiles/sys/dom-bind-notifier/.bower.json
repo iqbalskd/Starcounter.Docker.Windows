@@ -1,0 +1,13 @@
+{
+  "name": "dom-bind-notifier",
+  "homepage": "https://github.com/Juicy/dom-bind-notifier",
+  "_release": "a43453ceb9",
+  "_resolution": {
+    "type": "branch",
+    "branch": "deprecate",
+    "commit": "a43453ceb9dd641119d5a0c99a349783be35cbf8"
+  },
+  "_source": "https://github.com/Juicy/dom-bind-notifier.git",
+  "_target": "deprecate",
+  "_originalSource": "dom-bind-notifier"
+}

@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.Server.Rest</name>
+    </assembly>
+    <members>
+        <member name="T:Starcounter.Server.Rest.AdminAPI">
+            <summary>
+            Provides functionality usable when programming against
+            the admin server REST API. The principal service offered
+            is the resolving of URIs, through <see cref="F:Starcounter.Server.Rest.AdminAPI.Uris"/>.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Server.Rest.AdminAPI.Uris">
+            <summary>
+            Provides the set of admin server URIs offered by the
+            current instance.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Server.Rest.AdminAPI.ResourceUris">
+            <summary>
+            Provides information about known URI's used by Starcounter tools
+            and exposed to the community as a means to program admin servers
+            using REST.
+            </summary>
+            <remarks>
+            <para>
+            All URI's should be relative to the admin server base URI and any
+            possible context path. That is, a full URI such as
+                http://www.myadminserver.com:8181/api/objects/foo
+            should be expressed here as
+                "/objects/{?}"
+            when being implemented in a property.
+            </para>
+            <para>
+            All URI's should begin with an included forward slash.
+            </para>
+            <para>
+            All URI's should be defined with the same syntax we use to define
+            handlers, meaning replacement values should be in brackets with a
+            question mark, i.e. {?}.
+            </para>
+            <para>
+            Standard resolvance chart:
+                /api/server - the server
+                
+                /api/databases - database collection
+                /api/databases/foo - the foo database
+                /api/databases/foo/configuration - configuration of the foo database
+                
+                /api/engines - engine collection
+                /api/engines/foo - engine of foo
+                /api/engines/foo/executables - collection of apps running in foo
+                /api/engines/foo/executables/bar - the bar app in the running foo database
+            </para>
+            </remarks>
+        </member>
+        <member name="F:Starcounter.Server.Rest.AdminAPI.ResourceUris.DefaultContextPath">
+            <summary>
+            Provides the default context path used for admin server resources
+            that support the programmatic REST API of admin servers.
+            </summary>
+        </member>
+        <member name="F:Starcounter.Server.Rest.AdminAPI.ResourceUris.ContextPath">
+            <summary>
+            Gets the context path in used. Assinged in the constructor.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Server.Rest.AdminAPI.ResourceUris.Root">
+            <summary>
+            Gets the URI of the root, i.e. the REST entrypoint.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Server.Rest.AdminAPI.ResourceUris.Server">
+            <summary>
+            Gets the URI of the root server resource.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Server.Rest.AdminAPI.ResourceUris.Databases">
+            <summary>
+            Gets the URI of the root databases collection resource.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Server.Rest.AdminAPI.ResourceUris.Database">
+            <summary>
+            Gets the URI template to use to address a single
+            database resource.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Server.Rest.AdminAPI.ResourceUris.DatabaseConfiguration">
+            <summary>
+            Gets the URI template to use to address a database
+            configuration resource.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Server.Rest.AdminAPI.ResourceUris.Engines">
+            <summary>
+            Gets the URI of the root database engines collection
+            resource.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Server.Rest.AdminAPI.ResourceUris.Engine">
+            <summary>
+            Gets the URI template to use to address a single
+            database engine resource.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Server.Rest.AdminAPI.ResourceUris.Executables">
+            <summary>
+            Gets the URI template of a database engine executable
+            collection resource.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Server.Rest.AdminAPI.ResourceUris.Executable">
+            <summary>
+            Gets the URI template to use to address a single
+            database engine executable resource.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Server.Rest.AdminAPI.ResourceUris.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:Starcounter.Server.Rest.AdminAPI.ResourceUris"/>,
+            defining the context path to use to resolve all relative URIs.
+            </summary>
+            <param name="contextPath">The context path to use.</param>
+        </member>
+        <member name="M:Starcounter.Server.Rest.AdminAPI.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:Starcounter.Server.Rest.AdminAPI"/>, defining
+            the context path to use to resolve all relative URIs.
+            </summary>
+            <param name="contextPath">The context path to use.</param>
+        </member>
+        <member name="M:Starcounter.Server.Rest.AdminAPI.FormatUri(System.String,System.Object[])">
+            <summary>
+            Formats the given URI and inserts arguments into it.
+            </summary>
+            <param name="uri">The URI to format</param>
+            <param name="args">The arguments to insert instead of
+            URI template placeholders.</param>
+            <returns>A string with all template placeholders
+            replaced with values from <paramref name="args"/>.</returns>
+        </member>
+        <member name="T:Starcounter.Server.Rest.Representations.JSON.Server">
+            <summary>
+            Represents a server resource.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Server.Rest.Representations.JSON.Executable">
+            <summary>
+            Represents an executable resource.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Server.Rest.Representations.JSON.Engine">
+            <summary>
+            Represents an engine resource.
+            </summary>
+        </member>
+        <member name="M:Starcounter.Server.Rest.Representations.JSON.Engine.GetExecutable(System.String)">
+            <summary>
+            Gets an executable that match the given application file, if
+            such is running inside the current database engine.
+            </summary>
+            <param name="applicationFile">The application file path of
+            the executable being queried for.</param>
+            <returns>An executable with the specified application file path,
+            if such is running in the current database engine; <c>null</c>
+            otherwise.</returns>
+        </member>
+        <member name="M:Starcounter.Server.Rest.Representations.JSON.Engine.GetApplicationByName(System.String)">
+            <summary>
+            Gets an application by its name.
+            </summary>
+            <param name="applicationName">The name of the application to
+            look for and retrive.</param>
+            <returns>The application with the given name, or <c>null</c>
+            if not found.</returns>
+        </member>
+        <member name="T:Starcounter.Server.Rest.Representations.JSON.ErrorDetail">
+            <summary>
+            Outlines an error entity, passed back as the entity
+            for responses with HTTP statuses in the 4xx- and 5xx
+            range.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Server.Rest.Representations.JSON.LogEntry">
+            <summary>
+            Defines the log entry resource.
+            </summary>
+            
+        </member>
+        <member name="T:Starcounter.Server.Rest.Representations.JSON.Database">
+            <summary>
+            Represents a database resource.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Server.Rest.Representations.JSON.DatabaseCollection">
+            <summary>
+            Represents a database collection resource.
+            </summary>
+        </member>
+        <member name="T:Starcounter.Server.Rest.Representations.JSON.EngineCollection">
+            <summary>
+            Represents an engine collection resource.
+            </summary>
+        </member>
+    </members>
+</doc>

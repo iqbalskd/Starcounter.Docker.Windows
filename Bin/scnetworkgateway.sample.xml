@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+Documentation on network gateway configuration and features:
+https://docs.starcounter.io/guides/network/network-gateway/
+https://docs.starcounter.io/guides/network/url-aliases-and-redirects/
+-->
+
+<NetworkGateway>
+    
+  <!-- Number of worker threads -->
+  <WorkersNumber>3</WorkersNumber>
+  
+  <!-- Maximum number of connections -->
+  <MaxConnectionsPerWorker>10000</MaxConnectionsPerWorker>
+  
+  <!-- Maximum receive content length size in bytes -->
+  <MaximumReceiveContentLength>1048576</MaximumReceiveContentLength>
+
+  <!-- Inactive connections life time in seconds -->
+  <InactiveConnectionTimeout>1200</InactiveConnectionTimeout>
+
+  <!-- Gateway traffic aggregation port -->
+  <AggregationPort>9191</AggregationPort>
+
+  <!-- Gateway system internal port -->
+  <InternalSystemPort>8181</InternalSystemPort>
+  
+  <!--
+  
+  <UriAliases>
+  
+	<UriAlias>
+		<HttpMethod>GET</HttpMethod>
+		<FromUri>/</FromUri>
+		<ToUri>/launcher</ToUri>
+		<Port>8080</Port>
+	</UriAlias>
+	
+  </UriAliases>
+  
+  <ReverseProxies>
+  
+    <ReverseProxy>
+      <DestinationIP>127.0.0.1</DestinationIP>
+      <DestinationPort>8080</DestinationPort>
+      <StarcounterProxyPort>80</StarcounterProxyPort>
+	    <MatchingHost>www.example1.sc</MatchingHost>
+    </ReverseProxy>
+
+    <ReverseProxy>
+      <DestinationIP>127.0.0.1</DestinationIP>
+      <DestinationPort>8282</DestinationPort>
+      <StarcounterProxyPort>80</StarcounterProxyPort>
+      <MatchingHost>www.example2.sc</MatchingHost>
+    </ReverseProxy>
+        
+    <ReverseProxy>
+      <DestinationIP>www.starcounter.com</DestinationIP>
+      <DestinationPort>80</DestinationPort>
+      <StarcounterProxyPort>8181</StarcounterProxyPort>
+      <MatchingMethodAndUri>GET /forum@w</MatchingMethodAndUri>
+    </ReverseProxy>
+
+    <ReverseProxy>
+      <DestinationDNS>www.starcounter.com</DestinationDNS>
+      <DestinationPort>80</DestinationPort>
+      <StarcounterProxyPort>8080</StarcounterProxyPort>
+      <MatchingMethodAndUri>GET /oldwiki@w</MatchingMethodAndUri>
+    </ReverseProxy>
+     
+  </ReverseProxies>
+  
+  -->
+  
+  <!--
+  List of local interfaces to bind to.
+  Declare them when you expect the number of outgoing
+  connections(e.g. due to proxying) to be more than 64K.
+  -->
+  <!--
+  <BindingIP>10.0.0.1</BindingIP>
+  <BindingIP>10.0.0.2</BindingIP>
+  <BindingIP>10.0.0.3</BindingIP>
+  <BindingIP>10.0.0.4</BindingIP>
+  <BindingIP>10.0.0.5</BindingIP>
+  -->
+  
+</NetworkGateway>

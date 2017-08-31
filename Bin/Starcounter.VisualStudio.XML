@@ -1,0 +1,387 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.VisualStudio</name>
+    </assembly>
+    <members>
+        <member name="F:Starcounter.VisualStudio.BaseVsPackage.InstallationDirectory">
+            <summary>
+            Gets the full path to the Starcounter installation directory.
+            </summary>
+        </member>
+        <member name="F:Starcounter.VisualStudio.BaseVsPackage.Installed32BitComponponentsDirectory">
+            <summary>
+            Gets the full path to Starcounter 32-bit components.
+            </summary>
+        </member>
+        <member name="T:Starcounter.VisualStudio.TypedJsonEvents">
+            <summary>
+            This class contains some extra functionality needed for handling TypedJSON in 
+            starcounter projects.
+            
+            The following is currently handled: 
+            1) Renaming of the json file and sub-files. When the jsonfile is renamed
+               all child-items (currently the code-behind file) are renamed as well.
+            2) When the codebehind file is saved the buildtask that generates code is also triggered.
+               This is needed since the generated code uses information from both the json file and 
+               the codebehind file.
+            3) When an existing item is added to the project and the added file is a json-file (.json) or a 
+               code-behind file (.json.cs) it's enhanced with some properties needed for custom buildtask
+               to execute. 
+               The rules for this is as follows:
+                  1) If a single json file is added with no corresponding (i.e with the same name) code-behind, 
+                     nothing extra is done. This is to allow adding json-files that is not TypedJSON to the project.
+                  2) If a single json file is added and a corresponding code-behind file is already added, the two 
+                     files are grouped and needed properties is set.
+                  3) If a single code-behind file is added and there is a corresponding json file, the two files are 
+                     grouped and needed properties set.
+            </summary>
+            <remarks>
+            For point 1 and 2 to work properly the json and codebehind file MUST be grouped together 
+            with the json as root.
+            </remarks>
+        </member>
+        <member name="F:Starcounter.VisualStudio.TypedJsonEvents.OnDebuggerProcessChange">
+            <summary>
+            Internally used callback that is invoked by the extension
+            when it detects a change in debugger state. The arguments
+            passed is the process ID, the name of the process and a
+            boolean indicating if the debugger was attached (TRUE if
+            detached; otherwise FALSE, indicating attached.
+            </summary>
+        </member>
+        <member name="M:Starcounter.VisualStudio.TypedJsonEvents.AddEventListeners(Starcounter.VisualStudio.VsPackage)">
+            <summary>
+            Registers handlers for all needed events.
+            </summary>
+            <param name="package"></param>
+        </member>
+        <member name="M:Starcounter.VisualStudio.TypedJsonEvents.RemoveEventListeners">
+            <summary>
+            Removes all registered eventslisteners.
+            </summary>
+        </member>
+        <member name="T:Starcounter.VisualStudio.ErrorTaskSource">
+            <summary>
+            Known sources that can create tasks to be put in the
+            error list.
+            </summary>
+        </member>
+        <member name="T:Starcounter.VisualStudio.StarcounterErrorListProvider">
+            <summary>
+            Implements the specialized <see cref="T:Microsoft.VisualStudio.Shell.ErrorListProvider"/> we use to
+            report about deployment and debugging problems.
+            </summary>
+        </member>
+        <member name="F:Starcounter.VisualStudio.StarcounterErrorListProvider.Package">
+            <summary>
+            Gets the package to which this provider belongs.
+            </summary>
+        </member>
+        <member name="M:Starcounter.VisualStudio.StarcounterErrorListProvider.#ctor(Starcounter.VisualStudio.VsPackage)">
+            <summary>
+            Initializes a new <see cref="T:Starcounter.VisualStudio.StarcounterErrorListProvider"/>.
+            </summary>
+            <param name="package"></param>
+        </member>
+        <member name="M:Starcounter.VisualStudio.StarcounterErrorListProvider.NewTask(Starcounter.VisualStudio.ErrorTaskSource,System.String,System.UInt32)">
+            <summary>
+            Creates a new error task. The task is not stored in the
+            tasks. collection of this <see cref="T:Microsoft.VisualStudio.Shell.ErrorListProvider"/>.
+            Use Tasks.Add to add the created task to
+            the list of errors to be displayed in the GUI.
+            </summary>
+            <param name="source">The source of the new task item.</param>
+            <param name="text">The text to assign the error task.</param>
+            <param name="code">A Starcounter error code to attach to the task.</param>
+            <returns>A task item.</returns>
+        </member>
+        <member name="M:Starcounter.VisualStudio.StarcounterErrorListProvider.NewTask(Starcounter.VisualStudio.ErrorTaskSource,System.Exception)">
+            <summary>
+            Creates a new error task. The task is not stored in the
+            tasks collection of this <see cref="T:Microsoft.VisualStudio.Shell.ErrorListProvider"/>.
+            Use Tasks.Add to add the created task to
+            the list of errors to be displayed in the GUI.
+            </summary>
+            <param name="source">The source of the new task item.</param>
+            <param name="exception">
+            An exception whose data we should use to populate the task.
+            </param>
+            <returns>A task item.</returns>
+        </member>
+        <member name="M:Starcounter.VisualStudio.StarcounterErrorListProvider.NewTask(Starcounter.VisualStudio.ErrorTaskSource,Starcounter.Internal.ErrorMessage)">
+            <summary>
+            Creates a new error task. The task is not stored in the
+            Tasks collection of this <see cref="T:Microsoft.VisualStudio.Shell.ErrorListProvider"/>.
+            Use Tasks.Add to add the created task to
+            the list of errors to be displayed in the GUI.
+            </summary>
+            <param name="source">The source of the new task item.</param>
+            <param name="message">
+            An <see cref="T:Starcounter.Internal.ErrorMessage"/> whose data we should use to populate
+            the task.
+            </param>
+            <returns>A task item.</returns>
+        </member>
+        <member name="M:Starcounter.VisualStudio.StarcounterErrorListProvider.Clear">
+            <summary>
+            Clears the underlying task item collection from all tasks
+            added using this provider. To clear the full set of tasks,
+            no matter of provider, use Tasks.Clear.
+            </summary>
+        </member>
+        <member name="M:Starcounter.VisualStudio.StarcounterErrorListProvider.Clear(Starcounter.VisualStudio.ErrorTaskSource)">
+            <summary>
+            Clears the underlying task item collection from all tasks
+            added using this provider matching the given source. To
+            clear the full set of tasks, no matter of provider,
+            use Tasks.Clear.
+            </summary>
+        </member>
+        <member name="T:Starcounter.VisualStudio.StarcounterErrorTask">
+            <summary>
+            Represents an error task in the Error List window, originated
+            from Starcounter extension code (e.g. deployment, debugging).
+            </summary>
+        </member>
+        <member name="P:Starcounter.VisualStudio.StarcounterErrorTask.Helplink">
+            <summary>
+            Possible help link.
+            </summary>
+        </member>
+        <member name="P:Starcounter.VisualStudio.StarcounterErrorTask.ErrorMessage">
+            <summary>
+            Gets a possible <see cref="P:Starcounter.VisualStudio.StarcounterErrorTask.ErrorMessage"/>.
+            </summary>
+        </member>
+        <member name="P:Starcounter.VisualStudio.StarcounterErrorTask.Package">
+            <summary>
+            Gets the <see cref="T:Starcounter.VisualStudio.VsPackage"/> to which this task
+            belong.
+            </summary>
+        </member>
+        <member name="P:Starcounter.VisualStudio.StarcounterErrorTask.Source">
+            <summary>
+            Gets the <see cref="T:Starcounter.VisualStudio.ErrorTaskSource"/> of this task.
+            </summary>
+        </member>
+        <member name="M:Starcounter.VisualStudio.StarcounterErrorTask.GetHelplinkOrDefault">
+            <summary>
+            Gets the value of the <see cref="P:Starcounter.VisualStudio.StarcounterErrorTask.Helplink"/> property or
+            a link to a general troubleshooting page if the property
+            is not assigned.
+            </summary>
+            <returns>The assigned help link value or the default.</returns>
+        </member>
+        <member name="T:Starcounter.VisualStudio.Projects.AppExeProject">
+            <summary>
+            Implements the app exe project-level functionality, independent
+            of the build configuration (i.e. ignoring Debug|Release etc).
+            </summary>
+        </member>
+        <member name="T:Starcounter.VisualStudio.Projects.HTTPHelp">
+            <summary>
+            Provides a set of methods that governs the handling category
+            of errors occuring in the HTTP traffic when running the debug
+            sequence.
+            </summary>
+        </member>
+        <member name="T:Starcounter.VisualStudio.Projects.AppExeProjectFactory">
+            <summary>
+            Project factory for file app exe projects.
+            </summary>
+        </member>
+        <member name="M:Starcounter.VisualStudio.Projects.AppExeProjectFactory.#ctor(Starcounter.VisualStudio.VsPackage)">
+            <summary>
+            Initializes the project factory.
+            </summary>
+            <remarks>
+            Called by Visual Studio when it needs to create an
+            instance of an app exe project.
+            </remarks>
+            <param name="package"></param>
+        </member>
+        <member name="M:Starcounter.VisualStudio.Projects.AppExeProjectFactory.PreCreateForOuter(System.IntPtr)">
+            <summary>
+            Creates an instance of an app exe project.
+            </summary>
+            <param name="outerProjectIUnknown"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.VisualStudio.Projects.AssemblyDebugConfiguration">
+            <summary>
+            Maintains the subset of configuration that is interesting to
+            the Visual Studio extensions when <see cref="T:Starcounter.VisualStudio.Projects.StarcounterProjectConfiguration"/>
+            are being launched/debugged.
+            </summary>
+        </member>
+        <member name="T:Starcounter.VisualStudio.Projects.AssemblyDebugConfiguration.OutputType">
+            <summary>
+            Defines the set of output types we can allow.
+            </summary>
+        </member>
+        <member name="P:Starcounter.VisualStudio.Projects.AssemblyDebugConfiguration.AssemblyPath">
+            <summary>
+            Gets the path to the target assembly, i.e. the artifact that
+            was built.
+            </summary>
+        </member>
+        <member name="T:Starcounter.VisualStudio.Projects.ProjectPropertySettings">
+            <summary>
+            Represents metadata about a project property whose value is
+            possible to get/set from <see cref="T:Starcounter.VisualStudio.Projects.StarcounterProjectConfiguration"/>
+            implementations.
+            </summary>
+        </member>
+        <member name="F:Starcounter.VisualStudio.Projects.ProjectPropertySettings.StorageType">
+            <summary>
+            Gets or sets the project property storage type.
+            </summary>
+        </member>
+        <member name="F:Starcounter.VisualStudio.Projects.ProjectPropertySettings.IsConfigurationDependent">
+            <summary>
+            Gets or sets a value indicating of the property is configuration
+            dependent.
+            </summary>
+        </member>
+        <member name="F:Starcounter.VisualStudio.Projects.ProjectPropertySettings.DefaultValue">
+            <summary>
+            Gets or sets the default value of the project property.
+            </summary>
+        </member>
+        <member name="M:Starcounter.VisualStudio.Projects.ProjectPropertySettings.#ctor(Microsoft.VisualStudio.Shell.Interop._PersistStorageType,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Starcounter.VisualStudio.Projects.ProjectPropertySettings"/>.
+            </summary>
+            <param name="storageType"></param>
+            <param name="configurationDependent"></param>
+        </member>
+        <member name="M:Starcounter.VisualStudio.Projects.ProjectPropertySettings.#ctor(Microsoft.VisualStudio.Shell.Interop._PersistStorageType,System.Boolean,System.String)">
+            <summary>
+            Initializes a <see cref="T:Starcounter.VisualStudio.Projects.ProjectPropertySettings"/>.
+            </summary>
+            <param name="storageType"></param>
+            <param name="configurationDependent"></param>
+            <param name="defaultValue"></param>
+        </member>
+        <member name="T:Starcounter.VisualStudio.Projects.ProjectStartAction">
+            <summary>
+            Defines the well-known start actions possible to specify for a
+            project exe- or library project.
+            </summary>
+        </member>
+        <member name="T:Starcounter.VisualStudio.Projects.StarcounterProjectConfiguration.PropertyNames">
+            <summary>
+            The names of the project properties utilized by this class.
+            </summary>
+        </member>
+        <member name="F:Starcounter.VisualStudio.Projects.StarcounterProjectConfiguration.configName">
+            <summary>
+            The configuration name. Stored in the form Configuration|Platform.
+            Will typically be either "Debug|AnyCPU" or "Release|AnyCPU", provided
+            that other configurations/platforms have not been added to the project
+            this configuration belongs to.
+            </summary>
+        </member>
+        <member name="M:Starcounter.VisualStudio.Projects.StarcounterProjectConfiguration.BeginDebug(Microsoft.VisualStudio.Shell.Interop.__VSDBGLAUNCHFLAGS)">
+            <summary>
+            When implemented in a subclass, begins debugging.
+            </summary>
+            <param name="flags">Debugging flags from the environment.</param>
+            <returns>True if the launch of the debugger was a success; false
+            if not.</returns>
+        </member>
+        <member name="M:Starcounter.VisualStudio.Projects.StarcounterProjectConfiguration.GetPropertyValue(System.String)">
+            <summary>
+            Gets a property value.
+            </summary>
+            <param name="propertyName">
+            The name of the property whose value to retreive.</param>
+            <returns>The value of the specified property.</returns>
+        </member>
+        <member name="M:Starcounter.VisualStudio.Projects.StarcounterProjectConfiguration.SetPropertyValue(System.String,System.String)">
+            <summary>
+            Sets a property value.
+            </summary>
+            <param name="propertyName">
+            The name of the property whose value to set.</param>
+            <param name="value">The value to assign the property.</param>
+        </member>
+        <member name="M:Starcounter.VisualStudio.Projects.StarcounterProjectConfiguration.Microsoft#VisualStudio#Shell#Interop#IVsProjectFlavorCfg#get_CfgType(System.Guid@,System.IntPtr@)">
+            <summary>
+            If we support the interface, provide an object that implements it.
+            </summary>
+            <param name="iidCfg">IID of the interface that is being asked</param>
+            <param name="ppCfg">Object that implement the interface</param>
+            <returns>HRESULT</returns>
+        </member>
+        <member name="T:Starcounter.VisualStudio.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Starcounter.VisualStudio.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Starcounter.VisualStudio.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Starcounter.VisualStudio.VsPackageConstants">
+            <summary>
+            Defines a set of constants used in this package library.
+            </summary>
+        </member>
+        <member name="F:Starcounter.VisualStudio.VsPackageConstants.VsPackagePkgGUID">
+            <summary>
+            GUID representing the Starcounter extension VsPackage itself.
+            </summary>
+            <remarks>
+            <seealso cref="F:Starcounter.VisualStudio.VsPackageConstants.VsPackagePkgGUIDString"/>
+            </remarks>
+        </member>
+        <member name="F:Starcounter.VisualStudio.VsPackageConstants.VsPackagePkgGUIDString">
+            <summary>
+            GUID, in the form of a string, representing the Starcounter extension
+            VsPackage itself.
+            </summary>
+            <remarks>
+            <seealso cref="F:Starcounter.VisualStudio.VsPackageConstants.VsPackagePkgGUID"/>
+            </remarks>
+        </member>
+        <member name="F:Starcounter.VisualStudio.VsPackageConstants.AppExeProjectGUIDString">
+            <summary>
+            GUID, in the form of a string, representing the project type ID of
+            app exe projects.
+            </summary>
+            <remarks>
+            <seealso cref="F:Starcounter.VisualStudio.VsPackageConstants.AppExeProjectGUID"/>.
+            <see cref="T:Starcounter.VisualStudio.Projects.AppExeProjectFactory"/>.
+            </remarks>
+        </member>
+        <member name="F:Starcounter.VisualStudio.VsPackageConstants.AppExeProjectGUID">
+            <summary>
+            GUID representing the project type of app exe projects.
+            </summary>
+            <remarks>
+            <seealso cref="F:Starcounter.VisualStudio.VsPackageConstants.AppExeProjectGUIDString"/>.
+            <see cref="T:Starcounter.VisualStudio.Projects.AppExeProjectFactory"/>.
+            </remarks>
+        </member>
+        <member name="P:Starcounter.VisualStudio.VsPackage.ErrorList">
+            <summary>
+            Gets the <see cref="P:Starcounter.VisualStudio.VsPackage.ErrorList"/> to use when we report
+            errors during deployment and/or debugging.
+            </summary>
+        </member>
+        <member name="P:Starcounter.VisualStudio.VsPackage.DTE">
+            <summary>
+            Gets the top-level DTE automation object.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,536 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>scTrayIcon</name>
+    </assembly>
+    <members>
+        <member name="T:Starcounter.Tools.TrayIconApp">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Found ideas from:
+            http://mitchelsellers.com/blogs/2006/10/28/lightweight-system-tray-application-(notifyicon-based).aspx
+            </remarks>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.Main(System.String[])">
+            <summary>
+            The parameter '-autostarted' is set on the shortcut that will auto start
+            this program from the windows StartUp folder. This is done so we can 
+            detect if it was auto started or started in another way (from scservice,manually)
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.Setup">
+            <summary>
+            Setup 
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.SetupEndPoint">
+            <summary>
+            Setup Starcounter endpoint 
+            Retrive Starcounter listening ip and port
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.OnServiceError(System.Object,Starcounter.Tools.Service.ErrorEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.ShowError(System.String,System.String)">
+            <summary>
+            Show error message as an BallonTip
+            and log error to EventViewer
+            </summary>
+            <param name="header"></param>
+            <param name="content"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.WriteLog(System.String)">
+            <summary>
+            Write log to Event viewer
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.OnServiceStatusChanged(System.Object,Starcounter.Tools.Service.StatusEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.OnApplicationsStarted(System.Object,Starcounter.Tools.Service.ScApplicationsEventArgs)">
+            <summary>
+            Event when one or several exectuables as been started
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.CreateMessage(Starcounter.Tools.Service.ScApplication)">
+            <summary>
+            Create an messages assosiated to one started application
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.CreateSystemTray">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.mNotifyIcon_MouseUp(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Show context menu with left mouse button 
+            This is a little hack to make it work
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.mShowNotifications_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Show Notifications property changes
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.SetupIcons">
+            <summary>
+            Setup icons
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.SetStatus(Starcounter.Tools.Service.StatusEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="statusArgs"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.Application_ApplicationExit(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.Application_ThreadException(System.Object,System.Threading.ThreadExceptionEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.CurrentDomain_UnhandledException(System.Object,System.UnhandledExceptionEventArgs)">
+            <summary>
+            Caceh unhandle exceptions
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.CleanUpResources">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.OpenStarcounterAdministrator">
+            <summary>
+            Open starcounter Administrator in browser
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.mExitApplication_Click(System.Object,System.EventArgs)">
+            <summary>
+            User choosed the 'Exit' menu choice
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.mStartServer_Click(System.Object,System.EventArgs)">
+            <summary>
+            Start Starcounter server
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.mShutDown_Click(System.Object,System.EventArgs)">
+            <summary>
+            Stop starcounter server
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.mNotifyIcon_MouseDoubleClick(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.TrayIconApp.mDisplayForm_Click(System.Object,System.EventArgs)">
+            <summary>
+            User choosed the 'Show Administrator' menu choice
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.Task.NetworkTask.Execute(Starcounter.Tools.Service.StarcounterWatcher,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.IList{System.Int32}}@)">
+            <summary>
+            
+            </summary>
+            <param name="service"></param>
+            <param name="appList"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.Task.ScApplicationsTask.Execute(Starcounter.Tools.Service.StarcounterWatcher,Starcounter.Server.Rest.Representations.JSON.Executables@)">
+            <summary>
+            
+            </summary>
+            <param name="service"></param>
+            <param name="applications"></param>
+        </member>
+        <member name="T:Starcounter.Tools.Service.ScApplication">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Starcounter.Tools.Service.ScApplication.Name">
+            <summary>
+            Application name
+            </summary>
+        </member>
+        <member name="F:Starcounter.Tools.Service.ScApplication.Ports">
+            <summary>
+            Application listening ports
+            This can be empty
+            </summary>
+        </member>
+        <member name="T:Starcounter.Tools.Service.ScApplicationsEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Starcounter.Tools.Service.ScApplicationsEventArgs.Items">
+            <summary>
+            List of Started applications
+            </summary>
+        </member>
+        <member name="T:Starcounter.Tools.Service.ErrorEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Tools.Service.ErrorEventArgs.HasError">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Tools.Service.ErrorEventArgs.ErrorMessage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Starcounter.Tools.Service.StarcounterWatcher">
+            <summary>
+            Starcounter Service Watcher
+            
+            Checks Starcounter running mode and applications changes
+            </summary>
+        </member>
+        <member name="P:Starcounter.Tools.Service.StarcounterWatcher.Port">
+            <summary>
+            Starcounter Service port
+            </summary>
+        </member>
+        <member name="P:Starcounter.Tools.Service.StarcounterWatcher.IPAddress">
+            <summary>
+            Starcounter Service IP address
+            </summary>
+        </member>
+        <member name="P:Starcounter.Tools.Service.StarcounterWatcher.PollDelay">
+            <summary>
+            Poll delay in ms
+            </summary>
+        </member>
+        <member name="P:Starcounter.Tools.Service.StarcounterWatcher.IsStarcounterServiceOnline">
+            <summary>
+            Starcounter Service online status
+            </summary>
+        </member>
+        <member name="F:Starcounter.Tools.Service.StarcounterWatcher.BackgroundWorker">
+            <summary>
+            Background worker
+            </summary>
+        </member>
+        <member name="F:Starcounter.Tools.Service.StarcounterWatcher.LatestExectuableStarted">
+            <summary>
+            Last Started Application
+            </summary>
+        </member>
+        <member name="T:Starcounter.Tools.Service.StarcounterWatcher.StatusChangedEventHandler">
+            <summary>
+            Status changed event handler
+            Starcounter Service Online/Offline
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:Starcounter.Tools.Service.StarcounterWatcher.StatusChanged">
+            <summary>
+            Status changed event
+            Starcounter Service Online/Offline
+            </summary>
+        </member>
+        <member name="T:Starcounter.Tools.Service.StarcounterWatcher.ApplicationsStartedEventHandler">
+            <summary>
+            applications started event
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:Starcounter.Tools.Service.StarcounterWatcher.ApplicationsStarted">
+            <summary>
+            Applications started event
+            </summary>
+        </member>
+        <member name="T:Starcounter.Tools.Service.StarcounterWatcher.ErrorEventHandler">
+            <summary>
+            Error event
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:Starcounter.Tools.Service.StarcounterWatcher.Error">
+            <summary>
+            Error event
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.StartStarcounterService(System.String)">
+            <summary>
+            Start Starcounter Service
+            </summary>
+            <param name="serviceName"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.Start(System.String,System.UInt16)">
+            <summary>
+            Start worker thread that polls the status and the application list
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.Stop">
+            <summary>
+            Stop worker thread that polls the status
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.BackgroundWorkerThread(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Retrive the Starcounter Service Status
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.OnBackgroundWorkerProgressChanged(System.Object,System.ComponentModel.ProgressChangedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.OnBackgroundWorkCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.OnApplicationsList(Starcounter.Server.Rest.Representations.JSON.Executables)">
+            <summary>
+            Got a list of running applications
+            </summary>
+            <param name="applications"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.GetStartedApplications(Starcounter.Arr{Starcounter.Server.Rest.Representations.JSON.Executables.ItemsElementJson},Starcounter.Tools.Service.ScApplicationsEventArgs@)">
+            <summary>
+            Get started applications
+            Filter out the started applications
+            </summary>
+            <param name="applications"></param>
+            <param name="startedApplicationsArgs"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.ProcessApplicationStats(Starcounter.Tools.Service.ScApplicationsEventArgs)">
+            <summary>
+            Proccess Applications
+            Add port(s) information to each started started executable
+            </summary>
+            <param name="applicationsArgs">Started Executables</param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.GatewayBackgroundWorker(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Retrive executables stats (gwstats)
+            Port(s)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.OnGatewayBackgroundWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            Event when retriving the gateway stats is done 
+            (with or without errors)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.Shutdown">
+            <summary>
+            Shutdown Starcounter Service
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.ShutdownBackgroundWorker(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.OnShutdownBackgroundWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.OnStatusChanged(Starcounter.Tools.Service.StatusEventArgs)">
+            <summary>
+            Invoke Starcounter service status changed
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Starcounter.Tools.Service.StarcounterWatcher.OnError(Starcounter.Tools.Service.ErrorEventArgs)">
+            <summary>
+            Invoke Errors to listeners
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:Starcounter.Tools.Service.StatusEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Tools.Service.StatusEventArgs.Running">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.Tools.Service.StatusEventArgs.InteractiveMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Starcounter.Tools.Utils">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.Utils.GetPort(System.UInt16@,System.String@)">
+            <summary>
+            Get starcounter system port
+            </summary>
+            <param name="port"></param>
+            <param name="error"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Tools.Utils.ReadConfiguration(System.String,System.String@,System.String@)">
+            <summary>
+            Get Server folder
+            </summary>
+            <param name="file"></param>
+            <param name="serverDir"></param>
+            <param name="error"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Tools.Utils.ReadServerConfiguration(System.String,System.UInt16@,System.String@)">
+            <summary>
+            Get port number from server configuration file
+            </summary>
+            <param name="file"></param>
+            <param name="port"></param>
+            <param name="error"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Tools.Utils.ReadConfigFile(System.String,System.String,System.String@,System.String@)">
+            <summary>
+            Get a tag value from a xml configuration file
+            </summary>
+            <param name="file"></param>
+            <param name="tag"></param>
+            <param name="result"></param>
+            <param name="error"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.Tools.Utils.RECT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Starcounter.Tools.Utils.RECT.left">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Starcounter.Tools.Utils.RECT.top">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Starcounter.Tools.Utils.RECT.right">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Starcounter.Tools.Utils.RECT.bottom">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Tools.Utils.FindWindow(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="lpClassName"></param>
+            <param name="lpWindowName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Tools.Utils.FindWindowEx(System.IntPtr,System.IntPtr,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="hwndParent"></param>
+            <param name="hwndChildAfter"></param>
+            <param name="lpszClass"></param>
+            <param name="lpszWindow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Tools.Utils.GetClientRect(System.IntPtr,Starcounter.Tools.Utils.RECT@)">
+            <summary>
+            
+            </summary>
+            <param name="hWnd"></param>
+            <param name="lpRect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Tools.Utils.SendMessage(System.IntPtr,System.UInt32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="hWnd"></param>
+            <param name="msg"></param>
+            <param name="wParam"></param>
+            <param name="lParam"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Starcounter.Tools.Utils.RefreshTrayArea">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1216 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.CLI</name>
+    </assembly>
+    <members>
+        <member name="T:Starcounter.CLI.AdminCLI">
+            <summary>
+            Defines an API to for certain administrative tasks that we
+            support from the CLI, such as listing running applications.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.AdminCLI.#ctor(Starcounter.CLI.ServerReference,Starcounter.Server.Rest.AdminAPI)">
+            <summary>
+            Initialize a new <see cref="T:Starcounter.CLI.AdminCLI"/> instance, given
+            a reference to a server.
+            </summary>
+            <param name="server">The server to bind to.</param>
+            <param name="admin">Optional admin API to use.</param>
+        </member>
+        <member name="M:Starcounter.CLI.AdminCLI.GetApplications(System.String)">
+            <summary>
+            Fetches the set of running applications found on the
+            target admin server, optionally scoped by a specified
+            database.
+            </summary>
+            <param name="database">Optional database to scope the
+            request to.</param>
+            <returns>A list of all applications matching the
+            criteria, grouped by their database.
+            </returns>
+        </member>
+        <member name="M:Starcounter.CLI.AdminCLI.GetEngines(System.String)">
+            <summary>
+            Gets the set of running database engines found on the target
+            admin server, optionally limited to a single database.
+            </summary>
+            <param name="database">Optional database to scope the
+            request to.</param>
+            <returns>A list of all engines matching the criteria.
+            </returns>
+        </member>
+        <member name="M:Starcounter.CLI.AdminCLI.GetDatabases">
+            <summary>
+            Gets a set of all databases found on the target
+            admin server.
+            </summary>
+            <returns>List of databases found.</returns>
+        </member>
+        <member name="M:Starcounter.CLI.AdminCLI.StopDatabase(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Stops the database specified in <paramref name="database"/>.
+            </summary>
+            <param name="database">The database to stop.</param>
+            <param name="writeErrorToConsole">Instructs the CLI library to
+            write out eventual error information to the console.</param>
+            <returns>Zero on success; an error code otherwise. If an error
+            is returned, a formatted error has already been written to the
+            console, depending on the value of </returns>
+            <param name="failIfMissing">Indicates if the method should
+            treat it as a failure if the database does not exist.</param>
+        </member>
+        <member name="M:Starcounter.CLI.AdminCLI.DeleteDatabase(System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Deletes the database specified in <paramref name="database"/>.
+            </summary>
+            <param name="database">The database to delete.</param>
+            <param name="writeErrorToConsole">Instructs the CLI library to
+            write out eventual error information to the console.</param>
+            <returns>Zero on success; an error code otherwise. If an error
+            is returned, a formatted error has already been written to the
+            console, depending on the value of </returns>
+            <param name="failIfMissing">Indicates if the method should
+            treat it as a failure if the database does not exist.</param>
+            <param name="stopIfRunning">Stops the database before deleting it, 
+            if it's found to be running.</param>
+        </member>
+        <member name="T:Starcounter.CLI.CLIClientCommand">
+            <summary>
+            Represents a command that execute in the scope of a CLI
+            application and that communicates with a target admin
+            server to accomplish its task.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.CLIClientCommand.ServerHost">
+            <summary>
+            Gets or sets the host of the admin server to
+            target.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.CLIClientCommand.ServerPort">
+            <summary>
+            Gets or sets the port of the admin server to
+            target.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.CLIClientCommand.ServerName">
+            <summary>
+            Gets or sets the logical server name of the
+            admin server being targetted.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.CLIClientCommand.Node">
+            <summary>
+            Gets the <see cref="P:Starcounter.CLI.CLIClientCommand.Node"/> used by the current
+            command when executed.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.CLIClientCommand.Status">
+            <summary>
+            Gets the <see cref="T:Starcounter.CLI.StatusConsole"/> opened by
+            the current command when executed.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.CLIClientCommand.Parent">
+            <summary>
+            Gets the <see cref="T:Starcounter.CLI.CLIClientCommand"/> parent command,
+            that is the context of the current one. Can be null.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.CLIClientCommand.DatabaseName">
+            <summary>
+            Gets the name of the database the current command
+            target, if applicable.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.CLIClientCommand.WriteErrorLogsToConsoleAfterRun">
+            <summary>
+            Gets or sets a value that dictates of the command should
+            write error logs to the console when <see cref="M:Starcounter.CLI.CLIClientCommand.Run"/> has
+            exited.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.CLIClientCommand.StartTime">
+            <summary>
+            Gets the time the current command started executing.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.CLIClientCommand.Execute">
+            <summary>
+            Executes the logic of the given CLI arguments on the
+            on the target database on the target server.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.CLIClientCommand.ExecuteWithin(Starcounter.CLI.CLIClientCommand)">
+            <summary>
+            Execute the current command as a child of the given one.
+            </summary>
+            <param name="context">The parent command.</param>
+        </member>
+        <member name="M:Starcounter.CLI.CLIClientCommand.Run">
+            <summary>
+            Runs the current command.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.CLIClientCommand.ResolveServer(Starcounter.CommandLine.ApplicationArguments)">
+            <summary>
+            Resolves the server properties of the current instance
+            using the given application arguments and/or defaults.
+            </summary>
+            <param name="args">Application arguments possibly containing
+            specified well-known CLI admin server properties.</param>
+        </member>
+        <member name="M:Starcounter.CLI.CLIClientCommand.ShowStatus(System.String,System.Boolean)">
+            <summary>
+            Writes a new status to the underlying <see cref="T:Starcounter.CLI.StatusConsole"/>.
+            </summary>
+            <param name="status">The new status message.</param>
+            <param name="onlyIfVerbose">Tells the method to write only if
+            the CLI context indicates a verbose mode.</param>
+        </member>
+        <member name="T:Starcounter.CLI.CreateDatabaseCLICommand">
+            <summary>
+            Represents a CLI operation that creates a database.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.CreateDatabaseCLICommand.Create(System.String,Starcounter.CommandLine.ApplicationArguments)">
+            <summary>
+            Factory method used to create new commands.
+            </summary>
+            /// <param name="name">Optional explicit database name.</param>
+            <param name="args">Optional well-known CLI-level arguments.</param>
+            <returns>A new command</returns>
+        </member>
+        <member name="M:Starcounter.CLI.CreateDatabaseCLICommand.ParseAndApplyParameters(System.Collections.Generic.List{System.String})">
+            <summary>
+            Allow custom parmeters to be given when the database is to be created.
+            </summary>
+            <param name="parameters">Set of custom parameters</param>
+        </member>
+        <member name="M:Starcounter.CLI.CreateDatabaseCLICommand.Run">
+            <inheritdoc/>
+        </member>
+        <member name="T:Starcounter.CLI.FilterableLogReader">
+            <summary>
+            Provides functionality that allows a client to fetch log entries
+            from the (local) Starcounter log, possibly applying some
+            filtering.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.FilterableLogReader.Count">
+            <summary>
+            Number of log records to fetch.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.FilterableLogReader.TypeOfLogs">
+            <summary>
+            Minimum severity of logs to consider.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.FilterableLogReader.Source">
+            <summary>
+            Filters logs fetched on a specified source.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.FilterableLogReader.Database">
+            <summary>
+            Filters logs fetched on a specified database.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.FilterableLogReader.Since">
+            <summary>
+            Specifies a filter that ignores any log entry
+            older than the given value.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.FilterableLogReader.#ctor">
+            <summary>
+            Initialize a new <see cref="T:Starcounter.CLI.FilterableLogReader"/>.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.FilterableLogReader.LogsSince(Sc.Tools.Logging.Severity,System.DateTime)">
+            <summary>
+            Factory method creating a reader from a set of parameters.
+            </summary>
+            <param name="typeOfLogs">The type of logs to include.</param>
+            <param name="since">Since-filter, specifying the oldest time of any
+            log.</param>
+            <returns>A reader scoped to the given arguments.</returns>
+        </member>
+        <member name="M:Starcounter.CLI.FilterableLogReader.Fetch(System.Action{Sc.Tools.Logging.LogEntry})">
+            <summary>
+            Fetches a log entries from the server log and invokes the specified
+            callback on every matching entry.
+            </summary>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Starcounter.CLI.KeyValueTable">
+            <summary>
+            Expose functionality to write key-value sets in a table-like
+            output to a given output source (normally the console).
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.KeyValueTable.LeftMargin">
+            <summary>
+            Gets or sets the left margin of the table.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.KeyValueTable.ColumnSpace">
+            <summary>
+            Gets or sets the space between the key- and the
+            value column.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.KeyValueTable.RowSpace">
+            <summary>
+            Gets or sets the space between rows.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.KeyValueTable.Title">
+            <summary>
+            Gets or sets the title of the table.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.KeyValueTable.EnforceSingleLine">
+            <summary>
+            Gets or sets a value that governs of long values can be
+            distributed over several rows (the default). If this is
+            set to <c>true</c>, long values will instead be trimmed
+            down to the width of the value column.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.KeyValueTable.SplitValue">
+            <summary>
+            Allows a client to customize the way any value is split up
+            before written to the value column.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.KeyValueTable.TrimValueItem">
+            <summary>
+            Allows a client to customize entries of a split up value
+            just before it is written to the value column. Every item
+            of the returned result will be written on a new line.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.KeyValueTable.#ctor">
+            <summary>
+            Instantiate a new <see cref="T:Starcounter.CLI.KeyValueTable"/>.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.KeyValueTable.Write(System.Collections.Generic.Dictionary{System.String,System.String},Starcounter.CLI.ValueSplitOptions)">
+            <summary>
+            Writes the given content to the current <see cref="T:Starcounter.CLI.KeyValueTable"/>.
+            </summary>
+            <param name="content">The content, including keys and
+            values.</param>
+            <param name="splitValueOption">Optional way of specifying a built-in
+            split-up of values.</param>
+        </member>
+        <member name="T:Starcounter.CLI.ValueSplitOptions">
+            <summary>
+            Specifies a set of predefined ways to split up given
+            values when writing to a <see cref="T:Starcounter.CLI.KeyValueTable"/>.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.ValueSplitOptions.None">
+            <summary>
+            Dont split
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.ValueSplitOptions.SplitLines">
+            <summary>
+            Split the value up based on the <see cref="P:System.Environment.NewLine"/>
+            seqence.
+            </summary>
+        </member>
+        <member name="T:Starcounter.CLI.LogConsole">
+            <summary>
+            Governs the output of logs to be printed to the console.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.LogConsole.ShowSourceAndHost">
+            <summary>
+            Indicates if the source and the host should be part of
+            the output.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.LogConsole.HeaderColor">
+            <summary>
+            Specifies the color of the header.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.LogConsole.ShowSimplifiedHost">
+            <summary>
+            Dictates if the console should output the host information
+            in a simplfied form, as oppopsed to the "native" URI format
+            using in the log.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.LogConsole.IncludeSeverityInHeader">
+            <summary>
+            Gets or sets a value that cause the severity of each log
+            entry written to be part of the header.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.LogConsole.#ctor">
+            <summary>
+            Initialize a new <see cref="T:Starcounter.CLI.LogConsole"/>.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.LogConsole.Write(Sc.Tools.Logging.LogEntry)">
+            <summary>
+            Writes the given log entry to the console, formatted using
+            the settings of the current instance.
+            </summary>
+            <param name="log">The log entry to write.</param>
+        </member>
+        <member name="T:Starcounter.CLI.LogSnapshot">
+            <summary>
+            Expose predefined sets of logs captured from a given
+            log reader, taken at a certain time.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.LogSnapshot.Database">
+            <summary>
+            Gets the name of the database the current snapshot use
+            to capture database/codehost-specific logs, retreived
+            by <see cref="P:Starcounter.CLI.LogSnapshot.DatabaseLogs"/>.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.LogSnapshot.DatabaseLogs">
+            <summary>
+            Gets the set of entries that are specific to a certain,
+            named database/codehost, specified by <see cref="F:Starcounter.CLI.LogSnapshot.Database"/>.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.LogSnapshot.WeaverLogs">
+            <summary>
+            Gets the set of entries that originates from the
+            weaver component.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.LogSnapshot.All">
+            <summary>
+            Get all entries captured.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.LogSnapshot.Take(Starcounter.CLI.FilterableLogReader,System.String)">
+            <summary>
+            Captures a snapshot using the given parameters.
+            </summary>
+            <param name="reader">The filterable log reader to use.</param>
+            <param name="database">An optional database, allowing logs from
+            only that host to be later retreived using <see cref="P:Starcounter.CLI.LogSnapshot.DatabaseLogs"/>
+            </param>
+            <returns>A snapshot based on the given parameters.</returns>
+        </member>
+        <member name="T:Starcounter.CLI.OutputLevel">
+            <summary>
+            Defines possible output levels (i.e "verbosity") of a given CLI tool.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.OutputLevel.Minimal">
+            <summary>
+            Minimal output.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.OutputLevel.Normal">
+            <summary>
+            Normal output.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.OutputLevel.Verbose">
+            <summary>
+            Verbose (detailed) output
+            </summary>
+        </member>
+        <member name="T:Starcounter.CLI.ConsoleUtil">
+            <summary>
+            Provides a set of utility methods for the console.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.ConsoleUtil.DisableColors">
+            <summary>
+            Gets or sets a value if the CLI client should disable
+            colorization.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.ConsoleUtil.ToConsoleWithColor(System.String,System.ConsoleColor,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Writes <paramref name="text"/> to the console using the given
+            <see cref="T:System.ConsoleColor"/>.
+            </summary>
+            <param name="text">The text to write.</param>
+            <param name="color">The color to use.</param>
+            <param name="backgroundColor">Optional customized background color.</param>
+        </member>
+        <member name="M:Starcounter.CLI.ConsoleUtil.ToConsoleWithColor(System.Action,System.ConsoleColor,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Executes an action where all console output written will use
+            the given <see cref="T:System.ConsoleColor"/> when writing to the console.
+            </summary>
+            <param name="action">The action to execute.</param>
+            <param name="color">The color to use.</param>
+            <param name="backgroundColor">Optional customized background color.</param>
+        </member>
+        <member name="T:Starcounter.CLI.CodeHostConsole">
+            <summary>
+            Implements a console bound to a given code host.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.CodeHostConsole.DatabaseName">
+            <summary>
+            Gets the name of the database running in the code host
+            whose console the current instance represent.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.CodeHostConsole.TimeFilter">
+            <summary>
+            Filters output based on a given time.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.CodeHostConsole.ApplicationName">
+            <summary>
+            Filters only output from a specified application.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.CodeHostConsole.#ctor(System.String,System.Nullable{System.DateTime},System.String)">
+            <summary>
+            
+            </summary>
+            <param name="databaseName"></param>
+            <param name="timeFilter"></param>
+            <param name="applicationName"></param>
+        </member>
+        <member name="P:Starcounter.CLI.CodeHostConsole.Opened">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.CodeHostConsole.Closed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.CodeHostConsole.MessageWritten">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.CodeHostConsole.Open">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.CodeHostConsole.Close">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Starcounter.CLI.ApplicationCLICommand">
+            <summary>
+            Provides the principal entrypoint to use when a CLI client
+            want to use the common way to start or stop an application.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.ApplicationCLICommand.ApplicationName">
+            <summary>
+            Gets or sets the application name.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.ApplicationCLICommand.#ctor(System.String)">
+            <summary>
+            Creates a new instance of this class.
+            </summary>
+        </member>
+        <member name="T:Starcounter.CLI.RedirectedStatusConsole">
+            <summary>
+            Implements the StatusConsole features in an environment where console
+            output is redirected. In this environment, no status bar output should
+            be written.
+            </summary>
+            <seealso cref="M:Starcounter.CLI.StatusConsole.Open(System.Int32)"/>
+        </member>
+        <member name="T:Starcounter.CLI.ServerReference">
+            <summary>
+            Represents a reference to a certain admin server, identified
+            principally by its name. The server reference can be used to
+            construct <see cref="T:Starcounter.Node"/> instances.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.ServerReference.Host">
+            <summary>
+            Gets the host the current instance reference.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.ServerReference.Port">
+            <summary>
+            Gets the port the current instance reference.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.ServerReference.Name">
+            <summary>
+            Gets or sets the logical server name of the server
+            the current instance reference.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.ServerReference.CreateFromCommonCLI(Starcounter.CommandLine.ApplicationArguments)">
+            <summary>
+            Creates a new <see cref="T:Starcounter.CLI.ServerReference"/> from well-known CLI
+            input given. Uses defaults for everything not given as input.
+            </summary>
+            <param name="args">The input to resolve the reference from.</param>
+            <returns>A server reference based on the given input and/or
+            defaults, depending on what is given.</returns>
+        </member>
+        <member name="M:Starcounter.CLI.ServerReference.CreateDefault">
+            <summary>
+            Creates a new <see cref="T:Starcounter.CLI.ServerReference"/> based on configured defaults.
+            </summary>
+            <returns>A reference to a server based on defaults.</returns>
+        </member>
+        <member name="M:Starcounter.CLI.ServerReference.#ctor(System.String,System.Int32)">
+            <summary>
+            Initialize a new <see cref="T:Starcounter.CLI.ServerReference"/>.
+            </summary>
+            <param name="host">The host of the server referenced.</param>
+            <param name="port">The port the server communicates over.</param>
+        </member>
+        <member name="M:Starcounter.CLI.ServerReference.CreateNode">
+            <summary>
+            Creates a new <see cref="T:Starcounter.Node"/> based on the values
+            of the given instance.
+            </summary>
+            <returns>A <see cref="T:Starcounter.Node"/> that can be used to
+            communicate with the server being referenced by the current instance.
+            </returns>
+        </member>
+        <member name="T:Starcounter.CLI.SharedCLI">
+            <summary>
+            Provides a set of utilities that can be used by applications
+            and tools that offer a command-line interface to Starcounter.
+            </summary>
+            <remarks>
+            Examples of standard components and tools that will use this
+            is star.exe, staradmin.exe and the Visual Studio extension,
+            the later supporting customization when debugging executables
+            via the Debug | Command Line project property.
+            </remarks>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.UnresolvedServerName">
+            <summary>
+            Provides the server name used when any of the known server
+            names doesn't apply.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.DefaultAdminServerHost">
+            <summary>
+            Provides the default admin server host.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.DefaultDatabaseName">
+            <summary>
+            Provides the name of the default database being used when
+            none is explicitly given.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.CLITemplateFolderName">
+            <summary>
+            Provides the name of the folder storing CLI templates.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.CLIAppFolderName">
+            <summary>
+            Provides the name of the folder storing CLI utility applications.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.SharedCLI.InitCLIContext(System.String)">
+            <summary>
+            Assures a given CLI context is properly initialized when it
+            has been established it is to be used (i.e. when the calling
+            code needs to use the CLI services of this assembly from a
+            CLI client process).
+            </summary>
+        </member>
+        <member name="T:Starcounter.CLI.SharedCLI.Option">
+            <summary>
+            Defines well-known options, offered by most CLI tools.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.Serverport">
+            <summary>
+            Gets the option name of the server port.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.Server">
+            <summary>
+            Gets the option name of the user-friendly server name.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.ServerHost">
+            <summary>
+            Gets the option name of the server host.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.Db">
+            <summary>
+            Gets the option name of the database.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.AppName">
+            <summary>
+            Gets the option name of the application name.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.ResourceDirectory">
+            <summary>
+            Gets the option name of the parameter that specifies where
+            to look for static resources by default.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.LogSteps">
+            <summary>
+            Gets the option name of the paremeter indicating boot
+            sequence steps to be logged.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.NoDb">
+            <summary>
+            Gets the option name of the parameter specifying no
+            database should be connected to.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.NoAutoCreateDb">
+            <summary>
+            Gets the option name of the parameter that instructs the
+            infrastructure never to automatically create a database
+            when such does not exist with a given name.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.NoRestart">
+            <summary>
+            Gets the option name of the parameter that specifies that
+            restarting is not allowed, if the about-to-be started object
+            is already running.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.Stop">
+            <summary>
+            Gets the option name of the parameter that specifies that
+            the executable should be stopped rather than started.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.Verbose">
+            <summary>
+            Gets the option name of the parameter that instructs the
+            client to turn on verbose output.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.Detailed">
+            <summary>
+            Gets the option name of the parameter that instructs the
+            client to turn on detailed output.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.Logs">
+            <summary>
+            Gets the option name of the parameter that instructs the
+            client to output matching logs from the server log at the
+            end of an operation
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.Async">
+            <summary>
+            Gets the option name of the parameter that instructs the
+            client to return as soon as the executable has been passed
+            to the host, not awaiting the full entrypoint of the
+            executable to return.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Option.TransactMain">
+            <summary>
+            Gets the option name of the parameter that specifies the
+            starting applications entrypoint should run in a write
+            transactions, as opposed to a readonly transaction, which
+            is the default.
+            </summary>
+        </member>
+        <member name="T:Starcounter.CLI.SharedCLI.UnofficialOptions">
+            <summary>
+            Defines a set of unofficial options, optionally supported by
+            our clients, but not neccessary part of the standard documentation.
+            </summary>
+            <remarks>
+            All unofficial options should begin with sc-*.
+            </remarks>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.UnofficialOptions.Debug">
+            <summary>
+            Gets the option name of the debug switch, allowing the
+            debugger to be attached to the active CLI client.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.UnofficialOptions.CodeHostCommandLineOptions">
+            <summary>
+            Gets the option name of the option that allows customized,
+            extra parametes to be sent to the code host processes when
+            spawned by the admin server.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.Verbosity">
+            <summary>
+            Defines the verbosity of the current CLI context.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.SharedCLI.Verbose">
+            <summary>
+            Gets or sets a value indicating if the current client/host
+            should display verbose output.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.ShowLogs">
+            <summary>
+            Gets or sets a value instructing the shared CLI library to
+            display server logs at the end of a application command.
+            </summary>
+        </member>
+        <member name="F:Starcounter.CLI.SharedCLI.LogDisplaySeverity">
+            <summary>
+            Gets or sets a value controlling the minimum severity of
+            logs to be displayed in case <see cref="F:Starcounter.CLI.SharedCLI.ShowLogs"/> is set.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.SharedCLI.DefineWellKnownOptions(Starcounter.CommandLine.Syntax.SyntaxDefinition,System.Boolean)">
+            <summary>
+            Defines and includes the well-known, shared CLI options in
+            the given <see cref="T:Starcounter.CommandLine.Syntax.SyntaxDefinition"/>.
+            </summary>
+            <param name="definition">The <see cref="T:Starcounter.CommandLine.Syntax.SyntaxDefinition"/>
+            in which well-known, shared options should be included.</param>
+            <param name="includeUnofficial">Indicates if unofficial options
+            should be included in the definition.</param>
+        </member>
+        <member name="M:Starcounter.CLI.SharedCLI.TryParse(System.String[],Starcounter.CommandLine.Syntax.IApplicationSyntax,Starcounter.CommandLine.ApplicationArguments@)">
+            <summary>
+            Parses the given argument set in <paramref name="args"/> using
+            the given <paramref name="syntax"/>.
+            </summary>
+            <param name="args">The command line arguments to parse.</param>
+            <param name="syntax">The syntax to use</param>
+            <param name="appArgs">Parsed arguments.</param>
+            <returns><c>true</c> if the parsing succeeded; <c>false</c>
+            otherwise.
+            </returns>
+            <remarks>
+            If parsing fails, this method will write a message to the console
+            and set the environment exit code accordingly.
+            </remarks>
+        </member>
+        <member name="M:Starcounter.CLI.SharedCLI.ResolveAdminServer(Starcounter.CommandLine.ApplicationArguments,System.String@,System.Int32@,System.String@)">
+            <summary>
+            Resolves the admin server host, port and well-known name from a given
+            set of command-line arguments.
+            </summary>
+            <remarks>
+            For arguments that are not explicitly given, this method uses environment
+            defaults as a first fallback and finally constants, in case there is no
+            environment data available.
+            </remarks>
+            <param name="args">Command-line arguments, possibly including shared
+            options.</param>
+            <param name="host">The host of the admin server.</param>
+            <param name="port">The admin server port.</param>
+            <param name="name">The display name of the admin server, e.g. "Personal".
+            </param>
+        </member>
+        <member name="M:Starcounter.CLI.SharedCLI.ResolveDatabase(Starcounter.CommandLine.ApplicationArguments,System.String@)">
+            <summary>
+            Resolves the named database to use from a given set of
+            command-line arguments.
+            </summary>
+            <remarks>
+            If database argument are not explicitly given, this method uses environment
+            defaults as a first fallback and finally constants, in case there is no
+            environment data available.
+            </remarks>
+            <param name="args">Command-line arguments to consult.</param>
+            <param name="name">The name of the database.</param>
+        </member>
+        <member name="M:Starcounter.CLI.SharedCLI.ResolveApplication(Starcounter.CommandLine.ApplicationArguments,System.String,System.String@)">
+            <summary>
+            Resolves the name of the application from a given set of
+            command-line arguments, and/or defaults.
+            </summary>
+            <param name="args">Command-line arguments to consult.</param>
+            <param name="applicationFilePath">The full path to the logical application
+            file.</param>
+            <param name="name">The name of the application.</param>
+        </member>
+        <member name="M:Starcounter.CLI.SharedCLI.ResolveResourceDirectories(Starcounter.CommandLine.ApplicationArguments,System.String,System.String[]@)">
+            <summary>
+            Resolves any specified resource directories for a given application.
+            </summary>
+            <param name="args">CLI arguments</param>
+            <param name="relativeBasePath">The directory path to qualify relative
+            resource directories from.</param>
+            <param name="dirs">Resource directories</param>
+        </member>
+        <member name="M:Starcounter.CLI.SharedCLI.ShowVerbose(System.String,System.ConsoleColor)">
+            <summary>
+            Writes the given output if the CLI context indicates
+            it's in verbose mode.
+            </summary>
+            <param name="output">The output to write.</param>
+            <param name="color">The color to write it with.</param>
+        </member>
+        <member name="M:Starcounter.CLI.SharedCLI.ShowErrorAndSetExitCode(Starcounter.Internal.ErrorMessage,System.Boolean)">
+            <summary>
+            Writes <paramref name="msg"/> to the console using the default
+            shared CLI error color and formatting, setting the exit code to
+            the error given in the strongly typed error message. Possibly
+            also exits the process, depending on the <paramref name="exit"/>
+            flag.
+            </summary>
+            <param name="msg">The message to write.</param>
+            <param name="exit">If <c>true</c>, exits the process with the exit code
+            fetched from the strongly typed error message.</param>
+        </member>
+        <member name="M:Starcounter.CLI.SharedCLI.ShowErrorAndSetExitCode(Starcounter.Server.Rest.Representations.JSON.ErrorDetail,System.Boolean)">
+            <summary>
+            Writes <paramref name="detail"/> to the console using the default
+            shared CLI error color and formatting, setting the exit code to
+            the error given in the strongly typed error detail. Possibly
+            also exits the process, depending on the <paramref name="exit"/>
+            flag.
+            </summary>
+            <param name="detail">The message to write.</param>
+            <param name="exit">If <c>true</c>, exits the process with the exit code
+            fetched from the strongly typed error detail.</param>
+        </member>
+        <member name="M:Starcounter.CLI.SharedCLI.ShowInformationAndSetExitCode(System.String,System.UInt32,System.String,System.Boolean,System.Boolean,System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Writes the given information to the console and sets the process
+            exit code.
+            </summary>
+            <param name="info">The information to write.</param>
+            <param name="code">The process exit code to assign the process.</param>
+            <param name="hint">An optional hint.</param>
+            <param name="showStandardHints">Indicates if standard hints should
+            be shown too.</param>
+            <param name="exit">A boolean specifying if the process should be exited.</param>
+            <param name="color">An optional console color.</param>
+            <param name="hintColor">An optional hint console color.</param>
+        </member>
+        <member name="M:Starcounter.CLI.SharedCLI.ShowErrorAndSetExitCode(System.Exception,System.Boolean,System.Boolean)">
+            <summary>
+            Writes the exception <paramref name="e"/> to the console, after first
+            formatting it to an error message. Sets the exit code to according to
+            the exception.
+            </summary>
+            <param name="e">The exception to act upon.</param>
+            <param name="showStackTrace">Pass <c>true</c> to have this method
+            include the stacktrace when writing to the console.</param>
+            <param name="exit">If <c>true</c>, exits the process with the exit code
+            fetched from the strongly typed error message.</param>
+        </member>
+        <member name="T:Starcounter.CLI.SourceCodeCompiler">
+            <summary>
+            Provide a simple API to compile a single source Starcounter
+            application file with common defaults.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.SourceCodeCompiler.CompileSingleFileToExecutable(System.String,System.String@)">
+            <summary>
+            Compiles a source code file to an executable. If the operation
+            succeed, the path to the compiled assembly is returned.
+            </summary>
+            <param name="sourceCode">The source code to compile.</param>
+            <param name="assemblyPath">Path to the compiled assembly.</param>
+        </member>
+        <member name="T:Starcounter.CLI.StartApplicationCLICommand">
+            <summary>
+            Implements a <see cref="T:Starcounter.CLI.ApplicationCLICommand"/> that support
+            starting an application.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.StartApplicationCLICommand.JobDescription">
+            <summary>
+            Gets or sets the string normally displayed in the CLI
+            when the command starts executing its primary job.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.StartApplicationCLICommand.JobCompletionDescription">
+            <summary>
+            Gets or sets the string normally displayed in the CLI
+            when the command completes.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.StartApplicationCLICommand.ApplicationStartingDescription">
+            <summary>
+            Gets or sets the string normally displayed in the CLI
+            when everything has been setup and the actual application
+            is about to start.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.StartApplicationCLICommand.#ctor(Starcounter.Hosting.ApplicationBase)">
+            <summary>
+            Initialize a new <see cref="T:Starcounter.CLI.StartApplicationCLICommand"/>.
+            </summary>
+            <param name="application">The application being targetted.</param>
+        </member>
+        <member name="M:Starcounter.CLI.StartApplicationCLICommand.FromFile(System.String,System.String,Starcounter.CommandLine.ApplicationArguments,System.String[])">
+            <summary>
+            Creates a new instance of the <see cref="T:Starcounter.CLI.StartApplicationCLICommand"/>
+            class based on the given arguments. This instance can thereafter be
+            executed with the <see cref="M:Starcounter.CLI.CLIClientCommand.Execute"/> method.
+            </summary>
+            <param name="applicationFilePath">The application file.</param>
+            <param name="exePath">The compiled application file.</param>
+            <param name="args">Arguments given to the CLI host.</param>
+            <param name="entrypointArgs">Arguments that are to be passed along
+            to the application entrypoint.</param>
+            <returns>An instance of <see cref="T:Starcounter.CLI.StartApplicationCLICommand"/>.</returns>
+        </member>
+        <member name="M:Starcounter.CLI.StartApplicationCLICommand.Run">
+            <summary>
+            Runs the current command.
+            </summary>
+            <seealso cref="M:Starcounter.CLI.CLIClientCommand.Run"/>
+        </member>
+        <member name="T:Starcounter.CLI.StartCleanerCLICommand">
+            <summary>
+            Client-side command representation of a request to start the cleaner
+            process.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.StartCleanerCLICommand.StartAsync">
+            <summary>
+            Gets or sets a value indicating if start should be asynchronous.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.StartCleanerCLICommand.Create(Starcounter.CommandLine.ApplicationArguments)">
+            <summary>
+            Factory method supporting the creation of this command.
+            </summary>
+            <param name="args">Optional well-known CLI-level arguments.</param>
+            <returns>A new command</returns>
+        </member>
+        <member name="M:Starcounter.CLI.StartCleanerCLICommand.Run">
+            <summary>
+            Runs the current command.
+            </summary>
+            <seealso cref="M:Starcounter.CLI.CLIClientCommand.Run"/>
+        </member>
+        <member name="T:Starcounter.CLI.StartDatabaseCLICommand">
+            <summary>
+            Provides functionality for a client to stop hosts and databases.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.StartDatabaseCLICommand.Create(Starcounter.CommandLine.ApplicationArguments)">
+            <summary>
+            Factory method used to create new commands.
+            </summary>
+            <param name="args">Optional well-known CLI-level arguments.</param>
+            <returns>A new command</returns>
+        </member>
+        <member name="M:Starcounter.CLI.StartDatabaseCLICommand.Run">
+            <inheritdoc/>
+        </member>
+        <member name="T:Starcounter.CLI.StartServerCLICommand">
+            <summary>
+            Implements a <see cref="T:Starcounter.CLI.CLIClientCommand"/> that support
+            starting the server.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.StartServerCLICommand.Create(Starcounter.CommandLine.ApplicationArguments)">
+            <summary>
+            Factory method supporting the creation of this command.
+            </summary>
+            <param name="args">Optional well-known CLI-level arguments.</param>
+            <returns>A new command</returns>
+        </member>
+        <member name="M:Starcounter.CLI.StartServerCLICommand.Run">
+            <summary>
+            Runs the current command.
+            </summary>
+            <seealso cref="M:Starcounter.CLI.CLIClientCommand.Run"/>
+        </member>
+        <member name="T:Starcounter.CLI.StatusConsole">
+            <summary>
+            Manage the output of the star.exe command and it's
+            shell bootstrapper counterpart.
+            </summary>
+            <remarks>
+            <para>
+            An instance of this class represents an area of the console,
+            normally a single line, where a hosting application write
+            output about an onging job, and intermediate tasks. It's
+            comparable to the Visual Studio status bar in that output
+            that is written to it is written on a fixed surface and will
+            overwrite any previous content.
+            </para>
+            <para>
+            This class is not thread-safe.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Starcounter.CLI.StatusConsole.ProgressColor">
+            <summary>
+            Gets or sets the console color used to display output
+            about a job/task in progress.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.StatusConsole.CompletionColor">
+            <summary>
+            Gets or sets the console color used to display output
+            about a job that has completed.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.StatusConsole.Open(System.Int32)">
+            <summary>
+            Opens a new the console at the current position of the
+            underying system console.
+            </summary>
+            <param name="lines">The number of lines to reserve for the
+            console being opened; single (1) line if not given.</param>
+            <returns>A new console.</returns>
+        </member>
+        <member name="M:Starcounter.CLI.StatusConsole.StartNewJob(System.String)">
+            <summary>
+            Starts a job in the current console.
+            </summary>
+            <param name="job">The description of the job being started.</param>
+            <returns>Reference to self.</returns>
+        </member>
+        <member name="M:Starcounter.CLI.StatusConsole.CompleteJob(System.String)">
+            <summary>
+            Completes the job bound to the current console.
+            </summary>
+            <param name="result">An optional result to display.</param>
+            <returns>Reference to self.</returns>
+        </member>
+        <member name="M:Starcounter.CLI.StatusConsole.CompleteWithFinalJob(System.String,System.String)">
+            <summary>
+            Completes the job bound to the current console after first
+            chaging it to <paramref name="job"/>.
+            </summary>
+            <param name="job">The final job, now being completed.</param>
+            <param name="result">An optional result to display.</param>
+            <returns>Reference to self.</returns>
+        </member>
+        <member name="M:Starcounter.CLI.StatusConsole.WriteTask(System.String)">
+            <summary>
+            Instructs the current console to display a message that
+            a new task is ongoing.
+            </summary>
+            <param name="task">The task that is starting.</param>
+            <returns>Reference to self.</returns>
+        </member>
+        <member name="T:Starcounter.CLI.StopApplicationCLICommand">
+            <summary>
+            Provides functionality for a client to stop applications.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.StopApplicationCLICommand.#ctor(System.String)">
+            <summary>
+            Initialize a new <see cref="T:Starcounter.CLI.StopApplicationCLICommand"/>.
+            </summary>
+            <param name="applicationName">The name of the application being
+            targetted.</param>
+        </member>
+        <member name="M:Starcounter.CLI.StopApplicationCLICommand.Run">
+            <inheritdoc/>
+        </member>
+        <member name="M:Starcounter.CLI.StopApplicationCLICommand.Stop(Starcounter.Server.Rest.Representations.JSON.Engine@)">
+            <summary>
+            Assures the application is stopped.
+            </summary>
+            <param name="engine">The engine (i.e. code host) in the state
+            it's on when the operation has completed.</param>
+        </member>
+        <member name="M:Starcounter.CLI.StopApplicationCLICommand.GetApplicationToStop(Starcounter.Server.Rest.Representations.JSON.Engine)">
+            <summary>
+            Implemented by subclasses supporting stopping an application.
+            </summary>
+            <param name="engine">The engine in which the application is
+            presumably running.</param>
+            <returns>A reference to the given application, or null if the
+            application is not found.</returns>
+        </member>
+        <member name="T:Starcounter.CLI.StopApplicationByNameCommand">
+            <summary>
+            Provides functionality for a client to stop applications based on
+            their name.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.StopApplicationByNameCommand.#ctor(System.String)">
+            <summary>
+            Initialize a new <see cref="T:Starcounter.CLI.StopApplicationByNameCommand"/>.
+            </summary>
+            <param name="applicationName">Name of the application that are to
+            be stopped.</param>
+        </member>
+        <member name="M:Starcounter.CLI.StopApplicationByNameCommand.Create(System.String,Starcounter.CommandLine.ApplicationArguments)">
+            <summary>
+            Creates a new instance of <see cref="T:Starcounter.CLI.StopApplicationByNameCommand"/>
+            from given arguments.
+            </summary>
+            <param name="name">The name of the application to stop.</param>
+            <param name="args">Optional arguments.</param>
+            <returns>A new instance of <see cref="T:Starcounter.CLI.StopApplicationByNameCommand"/>
+            ready to be executed.</returns>
+        </member>
+        <member name="M:Starcounter.CLI.StopApplicationByNameCommand.GetApplicationToStop(Starcounter.Server.Rest.Representations.JSON.Engine)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Starcounter.CLI.StopApplicationFromFileCommand">
+            <summary>
+            Provides functionality for a client to stop applications based on
+            a given application file.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.StopApplicationFromFileCommand.#ctor(Starcounter.Hosting.ApplicationBase)">
+            <summary>
+            Initialize a new <see cref="T:Starcounter.CLI.StopApplicationFromFileCommand"/>.
+            </summary>
+            <param name="application">The application being targetted.</param>
+        </member>
+        <member name="M:Starcounter.CLI.StopApplicationFromFileCommand.Create(System.String,System.String,Starcounter.CommandLine.ApplicationArguments)">
+            <summary>
+            Creates a new instance of the <see cref="T:Starcounter.CLI.StopApplicationFromFileCommand"/>
+            class based on the given arguments. This instance can thereafter be
+            executed with the <see cref="M:Starcounter.CLI.CLIClientCommand.Execute"/> method.
+            </summary>
+            <param name="applicationFilePath">The application file.</param>
+            <param name="exePath">The compiled application file.</param>
+            <param name="args">Arguments given to the CLI host.</param>
+            <returns>An instance of <see cref="T:Starcounter.CLI.StopApplicationFromFileCommand"/>.</returns>
+        </member>
+        <member name="M:Starcounter.CLI.StopApplicationFromFileCommand.GetApplicationToStop(Starcounter.Server.Rest.Representations.JSON.Engine)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Starcounter.CLI.StopDatabaseCLICommand">
+            <summary>
+            Provides functionality for a client to stop hosts and databases.
+            </summary>
+        </member>
+        <member name="P:Starcounter.CLI.StopDatabaseCLICommand.StopCodeHostOnly">
+            <summary>
+            Indicates stopping of the code host only. Other processes
+            running as part of the target database will remain.
+            </summary>
+        </member>
+        <member name="M:Starcounter.CLI.StopDatabaseCLICommand.Create(Starcounter.CommandLine.ApplicationArguments)">
+            <summary>
+            Factory method used to create new commands.
+            </summary>
+            <param name="args">Optional well-known CLI-level arguments.</param>
+            <returns>A new command</returns>
+        </member>
+        <member name="M:Starcounter.CLI.StopDatabaseCLICommand.Run">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

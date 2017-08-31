@@ -1,0 +1,92 @@
+<!--
+`starcounter-debug-aid element` - Polymer Elements for debugging Starcounter Puppet web apps
+
+@element starcounter-debug-aid
+version: 2.0.11
+-->
+<!--<link rel="import" href="juicy-error-stacktrace-reporter.html">-->
+<!--<link rel="import" href="fast-json-patch-error-reporter.html">-->
+<!--<link rel="import" href="juicy-error-dialog.html">-->
+<link rel="import" href="../../polymer/polymer.html" />
+<link rel="import" href="puppet-js-patches.html" />
+
+<dom-module id="starcounter-debug-aid">
+    <template>
+        <style>
+            :host {
+                font-family: sans-serif;
+                display: block;
+                overflow: auto;
+            }
+
+            #overlay {
+                position: fixed;
+                z-index: 9999;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.6);
+                display: flex;
+                justify-content: center;
+            }
+
+            #overlay.hidden {
+                display: none;
+            }
+
+            #dialog {
+                width: 90vw;
+                margin-top: 5vh;
+            }
+        </style>
+        <template is="dom-if" if="{{visible}}" restamp>
+            <div id="overlay" on-click="onClickOverlay">
+                <div id="dialog">
+                    <starcounter-debug-aid-ui id="ui"></starcounter-debug-aid-ui>
+                </div>
+            </div>
+        </template>
+        <content></content>
+    </template>
+    <script>
+        Polymer({
+            is: "starcounter-debug-aid",
+            properties: {
+                visible: { type: Boolean, value: false }
+            },
+            ready: function () {
+                var that = this;
+                window.addEventListener("keydown", function (ev) {
+                    if ((ev.keyCode === 192 || ev.keyCode === 220) && (ev.ctrlKey || ev.metaKey)) { //CTRL+` (Windows) or CMD+§ (Mac) or CTRL+/ (Windows+Parallels)
+                        if (!that.visible) {
+                            that.openDialog();
+                        } else {
+                            that.closeDialog();
+                        }
+                    } else if (ev.keyCode === 27) { //Esc
+                        if (that.visible) {
+                            that.closeDialog();
+                        }
+                    }
+                });
+                //window.addEventListener("error", this.openDialog.bind(this));
+            },
+            onClickOverlay: function (ev) {
+                if (ev.target === Polymer.dom(this.root).querySelector('#overlay') || ev.target === Polymer.dom(this.root).querySelector('#dialog')) {
+                    this.closeDialog();
+                }
+            },
+            closeDialog: function () {
+                this.set("visible", false);
+                //this.$.errorDialog.reset();
+            },
+            openDialog: function () {
+                if (!Polymer.isInstance(this.$.ui)) {
+                    this.importHref(this.resolveUrl("starcounter-debug-aid-ui.html"));
+                }
+                this.set("visible", true);
+            }
+        });
+    </script>
+</dom-module>

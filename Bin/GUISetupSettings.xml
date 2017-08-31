@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StarcounterSetupSettings>
+  <StarcounterInstallationSettings>
+    <AddStarcounterToStartMenu>True</AddStarcounterToStartMenu>
+    <InstallPersonalServer>True</InstallPersonalServer>
+    <PersonalServerPath>C:\Users\rogeralsing\Documents\Starcounter</PersonalServerPath>
+    <DefaultPersonalServerUserHttpPort>8080</DefaultPersonalServerUserHttpPort>
+    <DefaultPersonalServerSystemHttpPort>8181</DefaultPersonalServerSystemHttpPort>
+    <AggregationPort>9191</AggregationPort>
+    <DefaultPersonalPrologSqlProcessPort>8066</DefaultPersonalPrologSqlProcessPort>
+    <SendUsageAndCrashReports>True</SendUsageAndCrashReports>
+    <CreatePersonalServerShortcuts>True</CreatePersonalServerShortcuts>
+    <InstallSystemServer>False</InstallSystemServer>
+    <SystemServerPath>C:Starcounter</SystemServerPath>
+    <DefaultSystemServerUserHttpPort>80</DefaultSystemServerUserHttpPort>
+    <DefaultSystemServerSystemHttpPort>81</DefaultSystemServerSystemHttpPort>
+    <DefaultSystemPrologSqlProcessPort>8067</DefaultSystemPrologSqlProcessPort>
+    <IsProductionInstallation>False</IsProductionInstallation>
+    <LaunchVisualStudioExtensionInstaller>True</LaunchVisualStudioExtensionInstaller>
+  </StarcounterInstallationSettings>
+</StarcounterSetupSettings>

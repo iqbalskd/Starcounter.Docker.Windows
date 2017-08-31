@@ -1,0 +1,7 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly GatewayToClrProxy, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly Starcounter.UriMatcher, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf: 
+	hash=None, flags=None

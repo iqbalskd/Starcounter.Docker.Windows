@@ -1,0 +1,67 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!-- 
+      Keeping the codegen version directly here instead of reading it from the codegenerator
+      to avoid that Starcounter.MsBuild.dll gets locked during compilation of Starcounter 
+    -->
+    <CSharpCodegenVersion>1005</CSharpCodegenVersion>
+    
+    <!--<PrepareForBuildDependsOn>$(PrepareForBuildDependsOn);GetTypedJsonCSharpCodegenVersion</PrepareForBuildDependsOn>-->
+    <PrepareForBuildDependsOn>$(PrepareForBuildDependsOn);VerifyTargetVersionCompatibility</PrepareForBuildDependsOn>
+    <CoreCompileDependsOn>$(CoreCompileDependsOn);GenerateTypedJsonCode</CoreCompileDependsOn>
+    <CleanDependsOn>$(CleanDependsOn);CleanupOldJsonGeneratedFiles</CleanDependsOn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvailableItemName Include="TypedJSON"/>
+  </ItemGroup>
+  
+  <UsingTask TaskName="Starcounter.Internal.MsBuild.JsonToTypedJsonCsMsBuildTask" AssemblyFile="$(StarcounterBin)\Starcounter.MsBuild.dll" />
+  <!--<UsingTask TaskName="Starcounter.Internal.MsBuild.GetTypedJsonCSharpCodegenVersionTask" AssemblyFile="$(StarcounterBin)\Starcounter.MsBuild.dll" />-->
+
+  <!--<Target Name="GetTypedJsonCSharpCodegenVersion">
+    <GetTypedJsonCSharpCodegenVersionTask>
+      <Output TaskParameter="CSharpCodegenVersion" PropertyName="CSharpCodegenVersion"></Output>
+    </GetTypedJsonCSharpCodegenVersionTask>
+  </Target>-->
+
+  <Target Name="VerifyTargetVersionCompatibility">
+    <!-- 
+    In 2.3 and all lower versions, we support "2.3" and empty. Empty is to support projects prior to 2.3,
+    created before this was implemented.
+    -->
+    <PropertyGroup>
+      <_ThisVersion>2.3</_ThisVersion>
+      <_TargetVersion>$(StarcounterVersionCompatibility)</_TargetVersion>
+      <_TargetVersion Condition=" '$(_TargetVersion)' == '' ">$(_ThisVersion)</_TargetVersion>
+      <Helplink>https://github.com/Starcounter/Starcounter.VisualStudio/wiki/Version-compatibility</Helplink>
+      <RecommendedExtensionVersion>%3E=1.0.0 %3C2.0.0</RecommendedExtensionVersion>
+      <ErrorText>This project specifies its compatible with Starcounter $(StarcounterVersionCompatibility) while the installed version of Starcounter requires $(_ThisVersion). The probable cause is you have an incompatible version of the Starcounter Visual Studio extension installed. For Starcounter version $(_ThisVersion), we recommend extension versions $(RecommendedExtensionVersion). Please see $(Helplink) if you need further help.</ErrorText>
+    </PropertyGroup>
+
+    <Error Condition="'$(_TargetVersion)' != '$(_ThisVersion)'" File="$(MSBuildProjectFile)" Code="ScErr1234" HelpKeyword="$(Helplink)" Text="$(ErrorText)" />
+    
+  </Target>
+  
+  <Target Name="GenerateTypedJSONCode" Inputs="@(TypedJSON)" Outputs="@(TypedJSON->'$(IntermediateOutputPath)%(RelativeDir)%(FileName)-$(CSharpCodegenVersion)%(Extension).g.cs')">
+    <JsonToTypedJsonCsMsBuildTask
+       InputFiles="@(TypedJSON)"
+       OutputFiles="@(TypedJSON->'$(IntermediateOutputPath)%(RelativeDir)%(FileName)-$(CSharpCodegenVersion)%(Extension).g.cs')" >
+       <Output TaskParameter="OutputFiles" ItemName="TypedJSONFiles" />
+    </JsonToTypedJsonCsMsBuildTask>
+    <ItemGroup>
+      <Compile Include="@(TypedJSONFiles)" />
+    </ItemGroup>
+  </Target>
+  
+  <!-- Cleans up JSON generated source files. -->
+  <Target Name="CleanupOldJsonGeneratedFiles">
+    <ItemGroup>
+      <GeneratedFilesList Include="$(IntermediateOutputPath)**\*.json.g.cs" />
+    </ItemGroup>
+    <Delete Files="@(GeneratedFilesList)" />
+  </Target>
+  
+</Project>
+
+

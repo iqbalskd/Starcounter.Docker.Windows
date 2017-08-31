@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Starcounter.MsBuild</name>
+    </assembly>
+    <members>
+        <member name="T:Starcounter.Internal.MsBuild.JsonToCsMsBuildTask">
+            <summary>
+            Class responsible for generating partial class for TypedJSON
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.MsBuild.JsonToCsMsBuildTask.ExecuteTask(Microsoft.Build.Framework.ITaskItem[],Microsoft.Build.Framework.ITaskItem[],Microsoft.Build.Utilities.TaskLoggingHelper)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Starcounter.Internal.MsBuild.JsonToTypedJsonCsMsBuildTask">
+            <summary>
+            Task for MsBuild responsible for generating partial class for TypedJSON.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Internal.MsBuild.JsonToTypedJsonCsMsBuildTask.InputFiles">
+            <summary>
+            Gets or sets the input files.
+            </summary>
+            <value>The input files.</value>
+        </member>
+        <member name="P:Starcounter.Internal.MsBuild.JsonToTypedJsonCsMsBuildTask.OutputFiles">
+            <summary>
+            Gets or sets the output files.
+            </summary>
+            <value>The output files.</value>
+        </member>
+        <member name="M:Starcounter.Internal.MsBuild.JsonToTypedJsonCsMsBuildTask.Execute">
+            <summary>
+            When overridden in a derived class, executes the task.
+            </summary>
+            <returns>true if the task successfully executed; otherwise, false.</returns>
+        </member>
+        <member name="T:Starcounter.Internal.MsBuild.GetTypedJsonCSharpCodegenVersionTask">
+            <summary>
+            Task for MsBuild that reads the versionnumber of the csharp codegenerator and returns it as
+            output.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Internal.MsBuild.GetTypedJsonCSharpCodegenVersionTask.CSharpCodegenVersion">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.MsBuild.GetTypedJsonCSharpCodegenVersionTask.Execute">
+            <summary>
+            When overridden in a derived class, executes the task.
+            </summary>
+            <returns>true if the task successfully executed; otherwise, false.</returns>
+        </member>
+        <member name="T:Starcounter.Internal.MsBuild.JsonToTypedJsonCsMsBuildTaskNoLocking">
+            <summary>
+            Task for MsBuild responsible for generating partial class for TypedJSON. 
+            Executed without loading into domain (slower).
+            </summary>
+        </member>
+        <member name="P:Starcounter.Internal.MsBuild.JsonToTypedJsonCsMsBuildTaskNoLocking.InputFiles">
+            <summary>
+            Gets or sets the input files.
+            </summary>
+            <value>The input files.</value>
+        </member>
+        <member name="P:Starcounter.Internal.MsBuild.JsonToTypedJsonCsMsBuildTaskNoLocking.OutputFiles">
+            <summary>
+            Gets or sets the output files.
+            </summary>
+            <value>The output files.</value>
+        </member>
+        <member name="M:Starcounter.Internal.MsBuild.JsonToTypedJsonCsMsBuildTaskNoLocking.Execute">
+            <summary>
+            When overridden in a derived class, executes the task.
+            </summary>
+            <returns>true if the task successfully executed; otherwise, false.</returns>
+        </member>
+        <member name="T:Starcounter.Internal.MsBuild.GetTypedJsonCSharpCodegenVersionTaskNoLocking">
+            <summary>
+            Task that reads the versionnumber of the csharp codegenerator and returns it as
+            output.
+            </summary>
+        </member>
+        <member name="P:Starcounter.Internal.MsBuild.GetTypedJsonCSharpCodegenVersionTaskNoLocking.CSharpCodegenVersion">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Starcounter.Internal.MsBuild.GetTypedJsonCSharpCodegenVersionTaskNoLocking.Execute">
+            <summary>
+            When overridden in a derived class, executes the task.
+            </summary>
+            <returns>true if the task successfully executed; otherwise, false.</returns>
+        </member>
+    </members>
+</doc>

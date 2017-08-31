@@ -1,0 +1,35 @@
+{
+  "name": "json-patch-ot",
+  "homepage": "https://github.com/Palindrom/JSON-Patch-OT",
+  "description": "JSON Patch Operational Transformations - resolves outdated JSON Patches (RFC6902) in real-time JSON collaboration",
+  "authors": [
+    "Tomek Wytrebowicz <tomalecpub@gmail.com>"
+  ],
+  "keywords": [
+    "jsonpatch",
+    "json-patch",
+    "OT",
+    "transformation",
+    "versioned-json-patch",
+    "json",
+    "queue"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {},
+  "_release": "61992acdfd",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "61992acdfdc864ab7ee9be48a24b584d225ad142"
+  },
+  "_source": "https://github.com/PuppetJs/JSON-Patch-OT.git",
+  "_target": "master",
+  "_originalSource": "PuppetJs/JSON-Patch-OT"
+}
